@@ -1,0 +1,38 @@
+name: build-index
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "muzeu-virtual/content/obiecte/**"
+      - "muzeu-virtual/js/raioane.js"
+
+permissions:
+  contents: write
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Regenerează lista satelor în .pages.yml
+        run: python3 muzeu-virtual/scripts/gen-sate.py
+      - name: Atribuie dosarId + raion fișelor (max+1, din sat)
+        run: python3 muzeu-virtual/scripts/atribuie-dosar.py
+      - name: Regenerează content/obiecte/index.json
+        run: python3 muzeu-virtual/scripts/build-index.py
+      - name: Commit dacă s-a schimbat ceva
+        run: |
+          if git diff --quiet -- muzeu-virtual/content/obiecte/ .pages.yml muzeu-virtual/.pages.yml; then
+            echo "nimic nou"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add muzeu-virtual/content/obiecte/
+            for f in .pages.yml muzeu-virtual/.pages.yml; do [ -f "$f" ] && git add "$f"; done
+            git commit -m "content: completare automată fișe + index"
+            git push
+          fi
