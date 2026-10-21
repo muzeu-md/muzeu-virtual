@@ -81,7 +81,8 @@
    function fetchJSON(url, ms) {
     var c = ('AbortController' in window) ? new AbortController() : null;
     var t = setTimeout(function () { if (c) c.abort(); }, ms || TIMEOUT_MS);
-    var opt = c ? { signal: c.signal, cache: 'default' } : {};
+    /* cache: 'no-store' — editările din CMS se văd instant la refresh; fără max-age=600 din Pages */
+    var opt = c ? { signal: c.signal, cache: 'no-store' } : { cache: 'no-store' };
     return fetch(url, opt).then(function (r) {
       clearTimeout(t);
       if (!r.ok) throw new Error('HTTP ' + r.status + ' la ' + url);
