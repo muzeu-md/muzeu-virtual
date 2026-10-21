@@ -1,0 +1,20 @@
+{
+  "id": "geoda-ametist",
+  "dosarId": "DOS-00007",
+  "titlu": "Geodă de ametist",
+  "sala": "sala-naturii",
+  "perioada": "Anii 2000",
+  "an": "2005",
+  "material": "Piatră",
+  "dimensiuni": "2.3 kg",
+  "autor": "",
+  "locatie_fizica": "Sala 4, Vitrina C",
+  "descriere": "Eu sunt geoda. Nimeni nu m-a vrut că eram urâtă. Când m-au spart, toți au zis wow. Nu judeca piatra după copertă!",
+  "imagine_principala": "https://picsum.photos/seed/muzeu-ametist/800/600",
+  "img_1": "https://picsum.photos/seed/muzeu-ametist-1/800/600",
+  "img_2": "https://picsum.photos/seed/muzeu-ametist-2/800/600",
+  "img_3": "https://picsum.photos/seed/muzeu-ametist-3/800/600",
+  "img_4": "-",
+  "raion": "chisinau",
+  "sat": "singera"
+}

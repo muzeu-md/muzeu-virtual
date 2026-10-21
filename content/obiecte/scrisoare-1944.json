@@ -1,0 +1,20 @@
+{
+  "id": "scrisoare-1944",
+  "dosarId": "DOS-00015",
+  "titlu": "Scrisoare de pe front",
+  "sala": "sala-marturiilor",
+  "perioada": "Război",
+  "an": "1944",
+  "material": "Hârtie",
+  "dimensiuni": "Plic + 2 pag.",
+  "autor": "",
+  "locatie_fizica": "Sala 5, Vitrina E",
+  "descriere": "Eu sunt scrisoarea. Scrisă cu creion chimic, pe genunchi, în tranșee. Învățătorul cerea copiilor să ude florile din clasă. S-a întors și a mai predat 30 de ani.",
+  "imagine_principala": "https://picsum.photos/seed/muzeu-scrisoare/800/600",
+  "img_1": "https://picsum.photos/seed/muzeu-scrisoare-1/800/600",
+  "img_2": "https://picsum.photos/seed/muzeu-scrisoare-2/800/600",
+  "img_3": "https://picsum.photos/seed/muzeu-scrisoare-3/800/600",
+  "img_4": "-",
+  "raion": "chisinau",
+  "sat": "singera"
+}

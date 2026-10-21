@@ -1,0 +1,21 @@
+{
+  "files": [
+    "abac-rigla.json",
+    "aparat-proiectie.json",
+    "banca-lemn-1960.json",
+    "catalog-1974.json",
+    "clopotel-arama.json",
+    "costum-oltenesc.json",
+    "geoda-ametist.json",
+    "harta-1938.json",
+    "ierbar-1965.json",
+    "microscop-1982.json",
+    "minge-1985.json",
+    "oala-horezu.json",
+    "penar-1950.json",
+    "razboi-tesut.json",
+    "scrisoare-1944.json"
+  ],
+  "count": 15,
+  "updatedAt": "2026-09-26T12:52:48.950188+00:00"
+}

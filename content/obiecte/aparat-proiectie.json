@@ -1,0 +1,20 @@
+{
+  "id": "aparat-proiectie",
+  "dosarId": "DOS-00002",
+  "titlu": "Proiector diafilme",
+  "sala": "sala-scolii",
+  "perioada": "Comunism",
+  "an": "1978",
+  "material": "Metal",
+  "dimensiuni": "35x25 cm",
+  "autor": "",
+  "locatie_fizica": "Sala 2, Vitrina D",
+  "descriere": "Eu sunt proiectorul. Scârțâiam și pâlpâiam Capra cu trei iezi pe cearșaf alb. Toată clasa țipa de bucurie.",
+  "imagine_principala": "https://picsum.photos/seed/muzeu-proiector/800/600",
+  "img_1": "https://picsum.photos/seed/muzeu-proiector-1/800/600",
+  "img_2": "https://picsum.photos/seed/muzeu-proiector-2/800/600",
+  "img_3": "https://picsum.photos/seed/muzeu-proiector-3/800/600",
+  "img_4": "-",
+  "raion": "chisinau",
+  "sat": "singera"
+}
