@@ -1,0 +1,3481 @@
+# Pages CMS — singura sursă de configurare. Se pune la rădăcina repo-ului.
+# Documentație: https://pagescms.org/docs/configuration
+# NOTĂ: fișierele proiectului stau în subfolderul muzeu-virtual/ (nu la rădăcina
+# repo-ului), de aceea toate căile de mai jos sunt prefixate cu muzeu-virtual/.
+
+# Upload-urile din CMS ajung aici; câmpurile imagine sunt de tip string și
+# primesc calea publică scrisă mai jos (ex: /muzeu-virtual/public/images/x.jpg)
+# sau un URL extern — ambele funcționează la afișare.
+media:
+  input: muzeu-virtual/public/images
+  output: /muzeu-virtual/public/images
+
+content:
+  - name: obiecte
+    label: Obiecte muzeu
+    type: collection
+    path: muzeu-virtual/content/obiecte
+    format: json
+    exclude: [index.json]
+    filename: "{fields.id}.json"
+    view:
+      primary: titlu
+      sort: [titlu]
+      fields: [dosarId, titlu, sala, perioada, raion]
+    fields:
+      - name: id
+        label: "ID (slug, ex: clopotel-arama)"
+        type: string
+        required: true
+      - name: dosarId
+        label: "Număr dosar"
+        type: string
+        hidden: true
+      - name: titlu
+        label: Titlu
+        type: string
+        required: true
+      - name: sala
+        label: Sala
+        type: select
+        required: true
+        options:
+          values:
+            - name: sala-documentelor
+              label: Sala Documentelor
+            - name: sala-scolii
+              label: Sala Școlii
+            - name: sala-naturii
+              label: Sala Naturii
+            - name: sala-mestesugurilor
+              label: Sala Meșteșugurilor
+            - name: sala-gospodariei
+              label: Sala Gospodăriei
+            - name: sala-marturiilor
+              label: Sala Mărturiilor
+      - name: perioada
+        label: Perioada
+        type: string
+        required: true
+      - name: an
+        label: An
+        type: string
+        required: true
+      - name: material
+        label: Material
+        type: string
+        required: true
+      - name: dimensiuni
+        label: Dimensiuni
+        type: string
+      - name: autor
+        label: Autor
+        type: string
+      - name: locatie_fizica
+        label: Locația fizică
+        type: string
+      - name: descriere
+        label: Descriere
+        type: text
+        required: true
+      - name: imagine_principala
+        label: Imagine principală (URL sau cale)
+        type: string
+      - name: img_1
+        label: Imagine 2 (URL sau cale)
+        type: string
+      - name: img_2
+        label: Imagine 3 (URL sau cale)
+        type: string
+      - name: img_3
+        label: Imagine 4 (URL sau cale)
+        type: string
+      - name: img_4
+        label: Imagine 5 (URL sau cale)
+        type: string
+      - name: raion
+        label: "Raion"
+        type: string
+        hidden: true
+      - name: sat
+        label: "Sat"
+        type: select
+        required: true
+        description: "Alege satul (lista arată și raionul). Raionul se completează automat în fișă."
+        options:
+          values:
+            # SATE-GENERAT-START
+            - name: anenii-noi
+              label: "Anenii Noi — Anenii Noi"
+            - name: albinita
+              label: "Anenii Noi — Albinița"
+            - name: balmaz
+              label: "Anenii Noi — Balmaz"
+            - name: batic
+              label: "Anenii Noi — Batîc"
+            - name: beriozchi
+              label: "Anenii Noi — Beriozchi"
+            - name: botnaresti
+              label: "Anenii Noi — Botnărești"
+            - name: botnarestii-noi
+              label: "Anenii Noi — Botnăreștii Noi"
+            - name: bulboaca
+              label: "Anenii Noi — Bulboaca"
+            - name: calfa
+              label: "Anenii Noi — Calfa"
+            - name: calfa-noua
+              label: "Anenii Noi — Calfa Nouă"
+            - name: chetrosu
+              label: "Anenii Noi — Chetrosu"
+            - name: chirca
+              label: "Anenii Noi — Chirca"
+            - name: ciobanovca
+              label: "Anenii Noi — Ciobanovca"
+            - name: cobusca-noua
+              label: "Anenii Noi — Cobusca Nouă"
+            - name: cobusca-veche
+              label: "Anenii Noi — Cobusca Veche"
+            - name: cretoaia
+              label: "Anenii Noi — Crețoaia"
+            - name: delacau
+              label: "Anenii Noi — Delacău"
+            - name: floreni
+              label: "Anenii Noi — Floreni"
+            - name: floresti
+              label: "Anenii Noi — Florești"
+            - name: geamana
+              label: "Anenii Noi — Geamăna"
+            - name: gura-bicului
+              label: "Anenii Noi — Gura Bîcului"
+            - name: hirbovat
+              label: "Anenii Noi — Hîrbovăț"
+            - name: hirbovatul-nou
+              label: "Anenii Noi — Hîrbovățul Nou"
+            - name: larga
+              label: "Anenii Noi — Larga"
+            - name: maximovca
+              label: "Anenii Noi — Maximovca"
+            - name: mereni
+              label: "Anenii Noi — Mereni"
+            - name: merenii-noi
+              label: "Anenii Noi — Merenii Noi"
+            - name: mirnoe
+              label: "Anenii Noi — Mirnoe"
+            - name: nicolaevca
+              label: "Anenii Noi — Nicolaevca"
+            - name: ochiul-ros
+              label: "Anenii Noi — Ochiul Roș"
+            - name: picus
+              label: "Anenii Noi — Picus"
+            - name: puhaceni
+              label: "Anenii Noi — Puhăceni"
+            - name: roscani
+              label: "Anenii Noi — Roșcani"
+            - name: ruseni
+              label: "Anenii Noi — Ruseni"
+            - name: salcia
+              label: "Anenii Noi — Salcia"
+            - name: serpeni
+              label: "Anenii Noi — Șerpeni"
+            - name: socoleni
+              label: "Anenii Noi — Socoleni"
+            - name: speia
+              label: "Anenii Noi — Speia"
+            - name: telita
+              label: "Anenii Noi — Telița"
+            - name: telita-noua
+              label: "Anenii Noi — Telița Nouă"
+            - name: tintareni
+              label: "Anenii Noi — Țînțăreni"
+            - name: todiresti
+              label: "Anenii Noi — Todirești"
+            - name: troita-noua
+              label: "Anenii Noi — Troița Nouă"
+            - name: varnita
+              label: "Anenii Noi — Varnița"
+            - name: zolotievca
+              label: "Anenii Noi — Zolotievca"
+            - name: balti
+              label: "Bălți — Bălți"
+            - name: elizaveta
+              label: "Bălți — Elizaveta"
+            - name: sadovoe
+              label: "Bălți — Sadovoe"
+            - name: basarabeasca
+              label: "Basarabeasca — Basarabeasca"
+            - name: abaclia
+              label: "Basarabeasca — Abaclia"
+            - name: bascalia
+              label: "Basarabeasca — Bașcalia"
+            - name: bogdanovca
+              label: "Basarabeasca — Bogdanovca"
+            - name: carabetovca
+              label: "Basarabeasca — Carabetovca"
+            - name: carabiber
+              label: "Basarabeasca — Carabiber"
+            - name: iordanovca
+              label: "Basarabeasca — Iordanovca"
+            - name: iserlia
+              label: "Basarabeasca — Iserlia"
+            - name: ivanovca
+              label: "Basarabeasca — Ivanovca"
+            - name: sadaclia
+              label: "Basarabeasca — Sadaclia"
+            - name: bender
+              label: "Bender — Bender"
+            - name: proteagailovca
+              label: "Bender — Proteagailovca"
+            - name: briceni
+              label: "Briceni — Briceni"
+            - name: lipcani
+              label: "Briceni — Lipcani"
+            - name: balasinesti
+              label: "Briceni — Balasinești"
+            - name: balcauti
+              label: "Briceni — Bălcăuți"
+            - name: beleavinti
+              label: "Briceni — Beleavinți"
+            - name: berlinti
+              label: "Briceni — Berlinți"
+            - name: bezeda
+              label: "Briceni — Bezeda"
+            - name: bocicauti
+              label: "Briceni — Bocicăuți"
+            - name: bogdanesti
+              label: "Briceni — Bogdănești"
+            - name: bulboaca
+              label: "Briceni — Bulboaca"
+            - name: caracusenii-noi
+              label: "Briceni — Caracușenii Noi"
+            - name: caracusenii-vechi
+              label: "Briceni — Caracușenii Vechi"
+            - name: chirilovca
+              label: "Briceni — Chirilovca"
+            - name: colicauti
+              label: "Briceni — Colicăuți"
+            - name: corjeuti
+              label: "Briceni — Corjeuți"
+            - name: coteala
+              label: "Briceni — Coteala"
+            - name: cotiujeni
+              label: "Briceni — Cotiujeni"
+            - name: criva
+              label: "Briceni — Criva"
+            - name: drepcauti
+              label: "Briceni — Drepcăuți"
+            - name: grimancauti
+              label: "Briceni — Grimăncăuți"
+            - name: grimesti
+              label: "Briceni — Grimești"
+            - name: groznita
+              label: "Briceni — Groznița"
+            - name: halahora-de-jos
+              label: "Briceni — Halahora de Jos"
+            - name: halahora-de-sus
+              label: "Briceni — Halahora de Sus"
+            - name: hlina
+              label: "Briceni — Hlina"
+            - name: larga
+              label: "Briceni — Larga"
+            - name: marcauti
+              label: "Briceni — Mărcăuți"
+            - name: marcautii-noi
+              label: "Briceni — Mărcăuții Noi"
+            - name: medveja
+              label: "Briceni — Medveja"
+            - name: mihaileni
+              label: "Briceni — Mihăileni"
+            - name: pavlovca
+              label: "Briceni — Pavlovca"
+            - name: pererita
+              label: "Briceni — Pererita"
+            - name: sirauti
+              label: "Briceni — Șirăuți"
+            - name: slobozia-medveja
+              label: "Briceni — Slobozia-Medveja"
+            - name: slobozia-sirauti
+              label: "Briceni — Slobozia-Șirăuți"
+            - name: tabani
+              label: "Briceni — Tabani"
+            - name: tetcani
+              label: "Briceni — Tețcani"
+            - name: trebisauti
+              label: "Briceni — Trebisăuți"
+            - name: trestieni
+              label: "Briceni — Trestieni"
+            - name: cahul
+              label: "Cahul — Cahul"
+            - name: alexanderfeld
+              label: "Cahul — Alexanderfeld"
+            - name: alexandru-ioan-cuza
+              label: "Cahul — Alexandru Ioan Cuza"
+            - name: andrusul-de-jos
+              label: "Cahul — Andrușul de Jos"
+            - name: andrusul-de-sus
+              label: "Cahul — Andrușul de Sus"
+            - name: badicul-moldovenesc
+              label: "Cahul — Badicul Moldovenesc"
+            - name: baurci-moldoveni
+              label: "Cahul — Baurci-Moldoveni"
+            - name: borceag
+              label: "Cahul — Borceag"
+            - name: brinza
+              label: "Cahul — Brînza"
+            - name: bucuria
+              label: "Cahul — Bucuria"
+            - name: burlaceni
+              label: "Cahul — Burlăceni"
+            - name: burlacu
+              label: "Cahul — Burlacu"
+            - name: chioselia-mare
+              label: "Cahul — Chioselia Mare"
+            - name: chircani
+              label: "Cahul — Chircani"
+            - name: cislita-prut
+              label: "Cahul — Cîșlița-Prut"
+            - name: colibasi
+              label: "Cahul — Colibași"
+            - name: cotihana
+              label: "Cahul — Cotihana"
+            - name: crihana-veche
+              label: "Cahul — Crihana Veche"
+            - name: cucoara
+              label: "Cahul — Cucoara"
+            - name: doina
+              label: "Cahul — Doina"
+            - name: frumusica
+              label: "Cahul — Frumușica"
+            - name: gavanoasa
+              label: "Cahul — Găvănoasa"
+            - name: giurgiulesti
+              label: "Cahul — Giurgiulești"
+            - name: greceni
+              label: "Cahul — Greceni"
+            - name: huluboaia
+              label: "Cahul — Huluboaia"
+            - name: hutulu
+              label: "Cahul — Hutulu"
+            - name: iasnaia-poleana
+              label: "Cahul — Iasnaia Poleana"
+            - name: iujnoe
+              label: "Cahul — Iujnoe"
+            - name: larga-noua
+              label: "Cahul — Larga Nouă"
+            - name: larga-veche
+              label: "Cahul — Larga Veche"
+            - name: lebedenco
+              label: "Cahul — Lebedenco"
+            - name: lopatica
+              label: "Cahul — Lopățica"
+            - name: lucesti
+              label: "Cahul — Lucești"
+            - name: manta
+              label: "Cahul — Manta"
+            - name: moscovei
+              label: "Cahul — Moscovei"
+            - name: nicolaevca
+              label: "Cahul — Nicolaevca"
+            - name: paicu
+              label: "Cahul — Paicu"
+            - name: pascani
+              label: "Cahul — Pașcani"
+            - name: pelinei
+              label: "Cahul — Pelinei"
+            - name: rosu
+              label: "Cahul — Roșu"
+            - name: rumeantev
+              label: "Cahul — Rumeanțev"
+            - name: satuc
+              label: "Cahul — Sătuc"
+            - name: slobozia-mare
+              label: "Cahul — Slobozia Mare"
+            - name: spicoasa
+              label: "Cahul — Spicoasa"
+            - name: taraclia-de-salcie
+              label: "Cahul — Taraclia de Salcie"
+            - name: tartaul-de-salcie
+              label: "Cahul — Tartaul de Salcie"
+            - name: tataresti
+              label: "Cahul — Tătărești"
+            - name: tretesti
+              label: "Cahul — Tretești"
+            - name: trifestii-noi
+              label: "Cahul — Trifeștii Noi"
+            - name: tudoresti
+              label: "Cahul — Tudorești"
+            - name: ursoaia
+              label: "Cahul — Ursoaia"
+            - name: vadul-lui-isac
+              label: "Cahul — Vadul lui Isac"
+            - name: valeni
+              label: "Cahul — Văleni"
+            - name: vladimirovca
+              label: "Cahul — Vladimirovca"
+            - name: zirnesti
+              label: "Cahul — Zîrnești"
+            - name: calarasi
+              label: "Călărași — Călărași"
+            - name: bahmut
+              label: "Călărași — Bahmut"
+            - name: bahmut-statia-cf
+              label: "Călărași — Bahmut (stație c.f.)"
+            - name: bahu
+              label: "Călărași — Bahu"
+            - name: bravicea
+              label: "Călărași — Bravicea"
+            - name: buda
+              label: "Călărași — Buda"
+            - name: bularda
+              label: "Călărași — Bularda"
+            - name: cabaiesti
+              label: "Călărași — Căbăiești"
+            - name: dereneu
+              label: "Călărași — Dereneu"
+            - name: duma
+              label: "Călărași — Duma"
+            - name: frumoasa
+              label: "Călărași — Frumoasa"
+            - name: hirbovat
+              label: "Călărași — Hîrbovăț"
+            - name: hirjauca
+              label: "Călărași — Hîrjauca"
+            - name: hirova
+              label: "Călărași — Hirova"
+            - name: hoginesti
+              label: "Călărași — Hoginești"
+            - name: horodiste
+              label: "Călărași — Horodiște"
+            - name: leordoaia
+              label: "Călărași — Leordoaia"
+            - name: meleseni
+              label: "Călărași — Meleșeni"
+            - name: mindra
+              label: "Călărași — Mîndra"
+            - name: niscani
+              label: "Călărași — Nișcani"
+            - name: novaci
+              label: "Călărași — Novaci"
+            - name: oniscani
+              label: "Călărași — Onișcani"
+            - name: oricova
+              label: "Călărași — Oricova"
+            - name: palanca
+              label: "Călărași — Palanca"
+            - name: parcani
+              label: "Călărași — Parcani"
+            - name: paulesti
+              label: "Călărași — Păulești"
+            - name: peticeni
+              label: "Călărași — Peticeni"
+            - name: pirjolteni
+              label: "Călărași — Pîrjolteni"
+            - name: pitusca
+              label: "Călărași — Pitușca"
+            - name: podul-lung
+              label: "Călărași — Podul Lung"
+            - name: raciula
+              label: "Călărași — Răciula"
+            - name: radeni
+              label: "Călărași — Rădeni"
+            - name: sadova
+              label: "Călărași — Sadova"
+            - name: saseni
+              label: "Călărași — Săseni"
+            - name: schinoasa
+              label: "Călărași — Schinoasa"
+            - name: selistea-noua
+              label: "Călărași — Seliștea Nouă"
+            - name: sipoteni
+              label: "Călărași — Sipoteni"
+            - name: sverida
+              label: "Călărași — Sverida"
+            - name: temeleuti
+              label: "Călărași — Temeleuți"
+            - name: tibirica
+              label: "Călărași — Țibirica"
+            - name: tuzara
+              label: "Călărași — Tuzara"
+            - name: ursari
+              label: "Călărași — Ursari"
+            - name: valcinet
+              label: "Călărași — Vălcineț"
+            - name: varzarestii-noi
+              label: "Călărași — Vărzăreștii Noi"
+            - name: cantemir
+              label: "Cantemir — Cantemir"
+            - name: acui
+              label: "Cantemir — Acui"
+            - name: alexandrovca
+              label: "Cantemir — Alexandrovca"
+            - name: antonesti
+              label: "Cantemir — Antonești"
+            - name: baimaclia
+              label: "Cantemir — Baimaclia"
+            - name: bobocica
+              label: "Cantemir — Bobocica"
+            - name: cania
+              label: "Cantemir — Cania"
+            - name: capaclia
+              label: "Cantemir — Capaclia"
+            - name: chioselia
+              label: "Cantemir — Chioselia"
+            - name: ciietu
+              label: "Cantemir — Cîietu"
+            - name: ciobalaccia
+              label: "Cantemir — Ciobalaccia"
+            - name: cirpesti
+              label: "Cantemir — Cîrpești"
+            - name: cisla
+              label: "Cantemir — Cîșla"
+            - name: cociulia
+              label: "Cantemir — Cociulia"
+            - name: constantinesti
+              label: "Cantemir — Constantinești"
+            - name: costangalia
+              label: "Cantemir — Coștangalia"
+            - name: craciun
+              label: "Cantemir — Crăciun"
+            - name: dimitrova
+              label: "Cantemir — Dimitrova"
+            - name: enichioi
+              label: "Cantemir — Enichioi"
+            - name: flocoasa
+              label: "Cantemir — Flocoasa"
+            - name: floricica
+              label: "Cantemir — Floricica"
+            - name: ghioltosu
+              label: "Cantemir — Ghioltosu"
+            - name: gotesti
+              label: "Cantemir — Gotești"
+            - name: hanaseni
+              label: "Cantemir — Hănăseni"
+            - name: haragis
+              label: "Cantemir — Haragîș"
+            - name: hirtop
+              label: "Cantemir — Hîrtop"
+            - name: iepureni
+              label: "Cantemir — Iepureni"
+            - name: larguta
+              label: "Cantemir — Lărguța"
+            - name: leca
+              label: "Cantemir — Leca"
+            - name: lingura
+              label: "Cantemir — Lingura"
+            - name: pleseni
+              label: "Cantemir — Pleșeni"
+            - name: plopi
+              label: "Cantemir — Plopi"
+            - name: popovca
+              label: "Cantemir — Popovca"
+            - name: porumbesti
+              label: "Cantemir — Porumbești"
+            - name: sadic
+              label: "Cantemir — Sadîc"
+            - name: samalia
+              label: "Cantemir — Șamalia"
+            - name: sofranovca
+              label: "Cantemir — Șofranovca"
+            - name: stoianovca
+              label: "Cantemir — Stoianovca"
+            - name: suhat
+              label: "Cantemir — Suhat"
+            - name: taraclia-sadic
+              label: "Cantemir — Taraclia"
+            - name: taraclia-plopi
+              label: "Cantemir — Taraclia"
+            - name: tarancuta
+              label: "Cantemir — Țărăncuța"
+            - name: tartaul
+              label: "Cantemir — Tartaul"
+            - name: tataraseni
+              label: "Cantemir — Tătărășeni"
+            - name: tiganca
+              label: "Cantemir — Țiganca"
+            - name: tiganca-noua
+              label: "Cantemir — Țiganca Nouă"
+            - name: toceni
+              label: "Cantemir — Toceni"
+            - name: tolica
+              label: "Cantemir — Țolica"
+            - name: victorovca
+              label: "Cantemir — Victorovca"
+            - name: vilcele
+              label: "Cantemir — Vîlcele"
+            - name: visniovca
+              label: "Cantemir — Vișniovca"
+            - name: cainari
+              label: "Căușeni — Căinari"
+            - name: causeni
+              label: "Căușeni — Căușeni"
+            - name: baccealia
+              label: "Căușeni — Baccealia"
+            - name: baimaclia
+              label: "Căușeni — Baimaclia"
+            - name: baurci
+              label: "Căușeni — Baurci"
+            - name: cainari-statia-cf
+              label: "Căușeni — Căinari (stație c.f.)"
+            - name: chircaiesti
+              label: "Căușeni — Chircăiești"
+            - name: chircaiestii-noi
+              label: "Căușeni — Chircăieștii Noi"
+            - name: chitcani
+              label: "Căușeni — Chițcani"
+            - name: cirnateni
+              label: "Căușeni — Cîrnățeni"
+            - name: cirnatenii-noi
+              label: "Căușeni — Cîrnățenii Noi"
+            - name: ciuflesti
+              label: "Căușeni — Ciuflești"
+            - name: constantinovca
+              label: "Căușeni — Constantinovca"
+            - name: copanca
+              label: "Căușeni — Copanca"
+            - name: coscalia
+              label: "Căușeni — Coșcalia"
+            - name: cremenciug
+              label: "Căușeni — Cremenciug"
+            - name: firladeni
+              label: "Căușeni — Fîrlădeni"
+            - name: firladenii-noi
+              label: "Căușeni — Fîrlădenii Noi"
+            - name: florica
+              label: "Căușeni — Florica"
+            - name: gisca
+              label: "Căușeni — Gîsca"
+            - name: gradinita
+              label: "Căușeni — Grădinița"
+            - name: grigorievca
+              label: "Căușeni — Grigorievca"
+            - name: hagimus
+              label: "Căușeni — Hagimus"
+            - name: leuntea
+              label: "Căușeni — Leuntea"
+            - name: marianca-de-sus
+              label: "Căușeni — Marianca de Sus"
+            - name: merenesti
+              label: "Căușeni — Merenești"
+            - name: opaci
+              label: "Căușeni — Opaci"
+            - name: pervomaisc
+              label: "Căușeni — Pervomaisc"
+            - name: plop
+              label: "Căușeni — Plop"
+            - name: plop-stiubei
+              label: "Căușeni — Plop-Știubei"
+            - name: saiti
+              label: "Căușeni — Săiți"
+            - name: salcuta
+              label: "Căușeni — Sălcuța"
+            - name: salcuta-noua
+              label: "Căușeni — Sălcuța Nouă"
+            - name: stefanesti
+              label: "Căușeni — Ștefănești"
+            - name: surchiceni
+              label: "Căușeni — Surchiceni"
+            - name: tanatari
+              label: "Căușeni — Tănătari"
+            - name: tanatarii-noi
+              label: "Căușeni — Tănătarii Noi"
+            - name: taraclia
+              label: "Căușeni — Taraclia"
+            - name: tocuz
+              label: "Căușeni — Tocuz"
+            - name: tricolici
+              label: "Căușeni — Tricolici"
+            - name: ucrainca
+              label: "Căușeni — Ucrainca"
+            - name: ursoaia
+              label: "Căușeni — Ursoaia"
+            - name: ursoaia-noua
+              label: "Căușeni — Ursoaia Nouă"
+            - name: valea-verde
+              label: "Căușeni — Valea Verde"
+            - name: zahorna
+              label: "Căușeni — Zahorna"
+            - name: zaim
+              label: "Căușeni — Zaim"
+            - name: zaim-statia-cf
+              label: "Căușeni — Zaim (stație c.f.)"
+            - name: zviozdocica
+              label: "Căușeni — Zviozdocica"
+            - name: chisinau
+              label: "Chișinău — Chișinău"
+            - name: codru
+              label: "Chișinău — Codru"
+            - name: cricova
+              label: "Chișinău — Cricova"
+            - name: durlesti
+              label: "Chișinău — Durlești"
+            - name: singera
+              label: "Chișinău — Sîngera"
+            - name: stauceni
+              label: "Chișinău — Stăuceni"
+            - name: vadul-lui-voda
+              label: "Chișinău — Vadul lui Vodă"
+            - name: vatra
+              label: "Chișinău — Vatra"
+            - name: bacioi
+              label: "Chișinău — Băcioi"
+            - name: bic
+              label: "Chișinău — Bîc"
+            - name: braila
+              label: "Chișinău — Brăila"
+            - name: bubuieci
+              label: "Chișinău — Bubuieci"
+            - name: budesti
+              label: "Chișinău — Budești"
+            - name: buneti
+              label: "Chișinău — Buneți"
+            - name: ceroborta
+              label: "Chișinău — Ceroborta"
+            - name: cheltuitori
+              label: "Chișinău — Cheltuitori"
+            - name: ciorescu
+              label: "Chișinău — Ciorescu"
+            - name: colonita
+              label: "Chișinău — Colonița"
+            - name: condrita
+              label: "Chișinău — Condrița"
+            - name: cruzesti
+              label: "Chișinău — Cruzești"
+            - name: dobrogea
+              label: "Chișinău — Dobrogea"
+            - name: dumbrava
+              label: "Chișinău — Dumbrava"
+            - name: fauresti
+              label: "Chișinău — Făurești"
+            - name: frumusica
+              label: "Chișinău — Frumușica"
+            - name: ghidighici
+              label: "Chișinău — Ghidighici"
+            - name: goian
+              label: "Chișinău — Goian"
+            - name: goianul-nou
+              label: "Chișinău — Goianul Nou"
+            - name: gratiesti
+              label: "Chișinău — Grătiești"
+            - name: hulboaca
+              label: "Chișinău — Hulboaca"
+            - name: humulesti
+              label: "Chișinău — Humulești"
+            - name: revaca
+              label: "Chișinău — Revaca"
+            - name: straisteni
+              label: "Chișinău — Străisteni"
+            - name: tohatin
+              label: "Chișinău — Tohatin"
+            - name: truseni
+              label: "Chișinău — Trușeni"
+            - name: vaduleni
+              label: "Chișinău — Văduleni"
+            - name: cimislia
+              label: "Cimișlia — Cimișlia"
+            - name: albina
+              label: "Cimișlia — Albina"
+            - name: artimonovca
+              label: "Cimișlia — Artimonovca"
+            - name: batir
+              label: "Cimișlia — Batîr"
+            - name: bogdanovca-noua
+              label: "Cimișlia — Bogdanovca Nouă"
+            - name: bogdanovca-veche
+              label: "Cimișlia — Bogdanovca Veche"
+            - name: cenac
+              label: "Cimișlia — Cenac"
+            - name: ciucur-mingir
+              label: "Cimișlia — Ciucur-Mingir"
+            - name: codreni
+              label: "Cimișlia — Codreni"
+            - name: costangalia
+              label: "Cimișlia — Coștangalia"
+            - name: dimitrovca
+              label: "Cimișlia — Dimitrovca"
+            - name: ecaterinovca
+              label: "Cimișlia — Ecaterinovca"
+            - name: fetita
+              label: "Cimișlia — Fetița"
+            - name: gradiste
+              label: "Cimișlia — Gradiște"
+            - name: gura-galbenei
+              label: "Cimișlia — Gura Galbenei"
+            - name: hirtop
+              label: "Cimișlia — Hîrtop"
+            - name: ialpug
+              label: "Cimișlia — Ialpug"
+            - name: ialpujeni
+              label: "Cimișlia — Ialpujeni"
+            - name: iurievca
+              label: "Cimișlia — Iurievca"
+            - name: ivanovca-noua
+              label: "Cimișlia — Ivanovca Nouă"
+            - name: javgur
+              label: "Cimișlia — Javgur"
+            - name: lipoveni
+              label: "Cimișlia — Lipoveni"
+            - name: marienfeld
+              label: "Cimișlia — Marienfeld"
+            - name: maximeni
+              label: "Cimișlia — Maximeni"
+            - name: mereni
+              label: "Cimișlia — Mereni"
+            - name: mihailovca
+              label: "Cimișlia — Mihailovca"
+            - name: munteni
+              label: "Cimișlia — Munteni"
+            - name: porumbrei
+              label: "Cimișlia — Porumbrei"
+            - name: prisaca
+              label: "Cimișlia — Prisaca"
+            - name: sagaidac
+              label: "Cimișlia — Sagaidac"
+            - name: sagaidacul-nou
+              label: "Cimișlia — Sagaidacul Nou"
+            - name: satul-nou
+              label: "Cimișlia — Satul Nou"
+            - name: schinosica
+              label: "Cimișlia — Schinoșica"
+            - name: selemet
+              label: "Cimișlia — Selemet"
+            - name: suric
+              label: "Cimișlia — Suric"
+            - name: topala
+              label: "Cimișlia — Topala"
+            - name: troitcoe
+              label: "Cimișlia — Troițcoe"
+            - name: valea-perjei
+              label: "Cimișlia — Valea Perjei"
+            - name: zloti-statia-cf
+              label: "Cimișlia — Zloți (stație c.f.)"
+            - name: criuleni
+              label: "Criuleni — Criuleni"
+            - name: balabanesti
+              label: "Criuleni — Bălăbănești"
+            - name: balasesti
+              label: "Criuleni — Bălășești"
+            - name: baltata
+              label: "Criuleni — Bălțata"
+            - name: baltata-de-sus
+              label: "Criuleni — Bălțata de Sus"
+            - name: boscana
+              label: "Criuleni — Boșcana"
+            - name: chetroasa
+              label: "Criuleni — Chetroasa"
+            - name: cimiseni
+              label: "Criuleni — Cimișeni"
+            - name: ciopleni
+              label: "Criuleni — Ciopleni"
+            - name: corjova
+              label: "Criuleni — Corjova"
+            - name: cosernita
+              label: "Criuleni — Coșernița"
+            - name: cruglic
+              label: "Criuleni — Cruglic"
+            - name: dolinnoe
+              label: "Criuleni — Dolinnoe"
+            - name: drasliceni
+              label: "Criuleni — Drăsliceni"
+            - name: dubasarii-vechi
+              label: "Criuleni — Dubăsarii Vechi"
+            - name: hirtopul-mare
+              label: "Criuleni — Hîrtopul Mare"
+            - name: hirtopul-mic
+              label: "Criuleni — Hîrtopul Mic"
+            - name: hrusova
+              label: "Criuleni — Hrușova"
+            - name: isnovat
+              label: "Criuleni — Ișnovăț"
+            - name: izbiste
+              label: "Criuleni — Izbiște"
+            - name: jevreni
+              label: "Criuleni — Jevreni"
+            - name: loganesti
+              label: "Criuleni — Logănești"
+            - name: magdacesti
+              label: "Criuleni — Măgdăcești"
+            - name: malaiesti
+              label: "Criuleni — Mălăiești"
+            - name: malaiestii-noi
+              label: "Criuleni — Mălăieștii Noi"
+            - name: mardareuca
+              label: "Criuleni — Mărdăreuca"
+            - name: mascauti
+              label: "Criuleni — Mașcăuți"
+            - name: miclesti
+              label: "Criuleni — Miclești"
+            - name: ohrincea
+              label: "Criuleni — Ohrincea"
+            - name: onitcani
+              label: "Criuleni — Onițcani"
+            - name: pascani
+              label: "Criuleni — Pașcani"
+            - name: porumbeni
+              label: "Criuleni — Porumbeni"
+            - name: raculesti
+              label: "Criuleni — Răculești"
+            - name: ratus
+              label: "Criuleni — Ratuș"
+            - name: riscova
+              label: "Criuleni — Rîșcova"
+            - name: sagaidac
+              label: "Criuleni — Sagaidac"
+            - name: sagaidacul-de-sus
+              label: "Criuleni — Sagaidacul de Sus"
+            - name: slobozia-dusca
+              label: "Criuleni — Slobozia-Dușca"
+            - name: stetcani
+              label: "Criuleni — Stețcani"
+            - name: valea-colonitei
+              label: "Criuleni — Valea Coloniței"
+            - name: valea-satului
+              label: "Criuleni — Valea Satului"
+            - name: zaicana
+              label: "Criuleni — Zăicana"
+            - name: zolonceni
+              label: "Criuleni — Zolonceni"
+            - name: donduseni
+              label: "Dondușeni — Dondușeni"
+            - name: arionesti
+              label: "Dondușeni — Arionești"
+            - name: baraboi
+              label: "Dondușeni — Baraboi"
+            - name: boroseni
+              label: "Dondușeni — Boroseni"
+            - name: braicau
+              label: "Dondușeni — Braicău"
+            - name: briceni
+              label: "Dondușeni — Briceni"
+            - name: briceva
+              label: "Dondușeni — Briceva"
+            - name: caraiman
+              label: "Dondușeni — Caraiman"
+            - name: cernoleuca
+              label: "Dondușeni — Cernoleuca"
+            - name: climauti
+              label: "Dondușeni — Climăuți"
+            - name: codrenii-noi
+              label: "Dondușeni — Codrenii Noi"
+            - name: corbu
+              label: "Dondușeni — Corbu"
+            - name: criscauti
+              label: "Dondușeni — Crișcăuți"
+            - name: donduseni-sat
+              label: "Dondușeni — Dondușeni"
+            - name: elenovca
+              label: "Dondușeni — Elenovca"
+            - name: elizavetovca
+              label: "Dondușeni — Elizavetovca"
+            - name: frasin
+              label: "Dondușeni — Frasin"
+            - name: horodiste
+              label: "Dondușeni — Horodiște"
+            - name: mosana
+              label: "Dondușeni — Moșana"
+            - name: octeabriscoe
+              label: "Dondușeni — Octeabriscoe"
+            - name: pivniceni
+              label: "Dondușeni — Pivniceni"
+            - name: plop
+              label: "Dondușeni — Plop"
+            - name: pocrovca
+              label: "Dondușeni — Pocrovca"
+            - name: rediul-mare
+              label: "Dondușeni — Rediul Mare"
+            - name: scaieni
+              label: "Dondușeni — Scăieni"
+            - name: sudarca
+              label: "Dondușeni — Sudarca"
+            - name: taul
+              label: "Dondușeni — Țaul"
+            - name: teleseuca
+              label: "Dondușeni — Teleșeuca"
+            - name: teleseuca-noua
+              label: "Dondușeni — Teleșeuca Nouă"
+            - name: tirnova
+              label: "Dondușeni — Tîrnova"
+            - name: drochia
+              label: "Drochia — Drochia"
+            - name: antoneuca
+              label: "Drochia — Antoneuca"
+            - name: baroncea
+              label: "Drochia — Baroncea"
+            - name: baroncea-noua
+              label: "Drochia — Baroncea Nouă"
+            - name: ceapaevca
+              label: "Drochia — Ceapaevca"
+            - name: chetrosu
+              label: "Drochia — Chetrosu"
+            - name: cotova
+              label: "Drochia — Cotova"
+            - name: dominteni
+              label: "Drochia — Dominteni"
+            - name: drochia-sat
+              label: "Drochia — Drochia"
+            - name: fintinita
+              label: "Drochia — Fîntînița"
+            - name: ghizdita-statia-cf
+              label: "Drochia — Ghizdita (stație c.f.)"
+            - name: gribova
+              label: "Drochia — Gribova"
+            - name: hasnasenii-mari
+              label: "Drochia — Hăsnășenii Mari"
+            - name: hasnasenii-noi
+              label: "Drochia — Hăsnășenii Noi"
+            - name: holosnita-noua
+              label: "Drochia — Holoșnița Nouă"
+            - name: iliciovca
+              label: "Drochia — Iliciovca"
+            - name: lazo
+              label: "Drochia — Lazo"
+            - name: macareuca
+              label: "Drochia — Măcăreuca"
+            - name: maramonovca
+              label: "Drochia — Maramonovca"
+            - name: miciurin
+              label: "Drochia — Miciurin"
+            - name: mindic
+              label: "Drochia — Mîndîc"
+            - name: moara-de-piatra
+              label: "Drochia — Moara de Piatră"
+            - name: nicoreni
+              label: "Drochia — Nicoreni"
+            - name: ochiul-alb
+              label: "Drochia — Ochiul Alb"
+            - name: palanca
+              label: "Drochia — Palanca"
+            - name: pelinia
+              label: "Drochia — Pelinia"
+            - name: pelinia-statia-cf
+              label: "Drochia — Pelinia (stație c.f.)"
+            - name: pervomaiscoe
+              label: "Drochia — Pervomaiscoe"
+            - name: petreni
+              label: "Drochia — Petreni"
+            - name: popestii-de-jos
+              label: "Drochia — Popeștii de Jos"
+            - name: popestii-de-sus
+              label: "Drochia — Popeștii de Sus"
+            - name: popestii-noi
+              label: "Drochia — Popeștii Noi"
+            - name: salvirii-noi
+              label: "Drochia — Șalvirii Noi"
+            - name: salvirii-vechi
+              label: "Drochia — Șalvirii Vechi"
+            - name: sergheuca
+              label: "Drochia — Sergheuca"
+            - name: sofia
+              label: "Drochia — Sofia"
+            - name: suri
+              label: "Drochia — Șuri"
+            - name: surii-noi
+              label: "Drochia — Șurii Noi"
+            - name: tarigrad
+              label: "Drochia — Țarigrad"
+            - name: zgurita
+              label: "Drochia — Zgurița"
+            - name: cocieri
+              label: "Dubăsari — Cocieri"
+            - name: corjova
+              label: "Dubăsari — Corjova"
+            - name: cosnita
+              label: "Dubăsari — Coșnița"
+            - name: dorotcaia
+              label: "Dubăsari — Doroțcaia"
+            - name: holercani
+              label: "Dubăsari — Holercani"
+            - name: mahala
+              label: "Dubăsari — Mahala"
+            - name: marcauti
+              label: "Dubăsari — Marcăuți"
+            - name: molovata
+              label: "Dubăsari — Molovata"
+            - name: molovata-noua
+              label: "Dubăsari — Molovata Nouă"
+            - name: oxentea
+              label: "Dubăsari — Oxentea"
+            - name: pirita
+              label: "Dubăsari — Pîrîta"
+            - name: pohrebea
+              label: "Dubăsari — Pohrebea"
+            - name: roghi
+              label: "Dubăsari — Roghi"
+            - name: ustia
+              label: "Dubăsari — Ustia"
+            - name: vasilievca
+              label: "Dubăsari — Vasilievca"
+            - name: cupcini
+              label: "Edineț — Cupcini"
+            - name: edinet
+              label: "Edineț — Edineț"
+            - name: alexandreni
+              label: "Edineț — Alexăndreni"
+            - name: alexeevca
+              label: "Edineț — Alexeevca"
+            - name: badragii-noi
+              label: "Edineț — Bădragii Noi"
+            - name: badragii-vechi
+              label: "Edineț — Bădragii Vechi"
+            - name: blesteni
+              label: "Edineț — Bleșteni"
+            - name: bratuseni
+              label: "Edineț — Brătușeni"
+            - name: bratusenii-noi
+              label: "Edineț — Brătușenii Noi"
+            - name: brinzeni
+              label: "Edineț — Brînzeni"
+            - name: burlanesti
+              label: "Edineț — Burlănești"
+            - name: buzdugeni
+              label: "Edineț — Buzdugeni"
+            - name: cepeleuti
+              label: "Edineț — Cepeleuți"
+            - name: chetrosica-noua
+              label: "Edineț — Chetroșica Nouă"
+            - name: chetrosica-veche
+              label: "Edineț — Chetroșica Veche"
+            - name: chiurt
+              label: "Edineț — Chiurt"
+            - name: cliscauti
+              label: "Edineț — Clișcăuți"
+            - name: constantinovca
+              label: "Edineț — Constantinovca"
+            - name: corpaci
+              label: "Edineț — Corpaci"
+            - name: cuconestii-noi
+              label: "Edineț — Cuconeștii Noi"
+            - name: cuconestii-vechi
+              label: "Edineț — Cuconeștii Vechi"
+            - name: fetesti
+              label: "Edineț — Fetești"
+            - name: fintina-alba
+              label: "Edineț — Fîntîna Albă"
+            - name: gaspar
+              label: "Edineț — Gașpar"
+            - name: goleni
+              label: "Edineț — Goleni"
+            - name: gordinesti
+              label: "Edineț — Gordinești"
+            - name: gordinestii-noi
+              label: "Edineț — Gordineștii Noi"
+            - name: hancauti
+              label: "Edineț — Hancăuți"
+            - name: hincauti
+              label: "Edineț — Hincăuți"
+            - name: hlinaia
+              label: "Edineț — Hlinaia"
+            - name: hlinaia-mica
+              label: "Edineț — Hlinaia Mică"
+            - name: iachimeni
+              label: "Edineț — Iachimeni"
+            - name: lopatnic
+              label: "Edineț — Lopatnic"
+            - name: onesti
+              label: "Edineț — Onești"
+            - name: parcova
+              label: "Edineț — Parcova"
+            - name: poiana
+              label: "Edineț — Poiana"
+            - name: ringaci
+              label: "Edineț — Rîngaci"
+            - name: rotunda
+              label: "Edineț — Rotunda"
+            - name: ruseni
+              label: "Edineț — Ruseni"
+            - name: slobodca
+              label: "Edineț — Slobodca"
+            - name: sofrincani
+              label: "Edineț — Șofrîncani"
+            - name: stolniceni
+              label: "Edineț — Stolniceni"
+            - name: terebna
+              label: "Edineț — Terebna"
+            - name: tirnova
+              label: "Edineț — Tîrnova"
+            - name: trinca
+              label: "Edineț — Trinca"
+            - name: vancicauti
+              label: "Edineț — Vancicăuți"
+            - name: viisoara
+              label: "Edineț — Viișoara"
+            - name: volodeni
+              label: "Edineț — Volodeni"
+            - name: zabriceni
+              label: "Edineț — Zăbriceni"
+            - name: falesti
+              label: "Fălești — Fălești"
+            - name: albinetul-nou
+              label: "Fălești — Albinețul Nou"
+            - name: albinetul-vechi
+              label: "Fălești — Albinețul Vechi"
+            - name: beleuti
+              label: "Fălești — Beleuți"
+            - name: bocani
+              label: "Fălești — Bocani"
+            - name: bocsa
+              label: "Fălești — Bocșa"
+            - name: burghelea
+              label: "Fălești — Burghelea"
+            - name: calinesti
+              label: "Fălești — Călinești"
+            - name: calugar
+              label: "Fălești — Călugăr"
+            - name: catranic
+              label: "Fălești — Catranîc"
+            - name: catranic-statia-cf
+              label: "Fălești — Catranîc (stație c.f.)"
+            - name: chetris
+              label: "Fălești — Chetriș"
+            - name: chetrisul-nou
+              label: "Fălești — Chetrișul Nou"
+            - name: ciolacu-nou
+              label: "Fălești — Ciolacu Nou"
+            - name: ciolacu-vechi
+              label: "Fălești — Ciolacu Vechi"
+            - name: ciuluc
+              label: "Fălești — Ciuluc"
+            - name: comarovca
+              label: "Fălești — Comarovca"
+            - name: cuzmenii-vechi
+              label: "Fălești — Cuzmenii Vechi"
+            - name: doltu
+              label: "Fălești — Doltu"
+            - name: drujineni
+              label: "Fălești — Drujineni"
+            - name: egorovca
+              label: "Fălești — Egorovca"
+            - name: fabrica-de-zahar
+              label: "Fălești — Fabrica de Zahăr"
+            - name: fagadau
+              label: "Fălești — Făgădău"
+            - name: falestii-noi
+              label: "Fălești — Făleștii Noi"
+            - name: frumusica
+              label: "Fălești — Frumușica"
+            - name: glinjeni
+              label: "Fălești — Glinjeni"
+            - name: hiliuti
+              label: "Fălești — Hiliuți"
+            - name: hincesti
+              label: "Fălești — Hîncești"
+            - name: hirtop
+              label: "Fălești — Hîrtop"
+            - name: hitresti
+              label: "Fălești — Hitrești"
+            - name: horesti
+              label: "Fălești — Horești"
+            - name: hrubna-noua
+              label: "Fălești — Hrubna Nouă"
+            - name: ilenuta
+              label: "Fălești — Ilenuța"
+            - name: iscalau
+              label: "Fălești — Ișcălău"
+            - name: ivanovca
+              label: "Fălești — Ivanovca"
+            - name: izvoare
+              label: "Fălești — Izvoare"
+            - name: logofteni
+              label: "Fălești — Logofteni"
+            - name: lucaceni
+              label: "Fălești — Lucăceni"
+            - name: magura
+              label: "Fălești — Măgura"
+            - name: magura-noua
+              label: "Fălești — Măgura Nouă"
+            - name: magureanca
+              label: "Fălești — Măgureanca"
+            - name: marandeni
+              label: "Fălești — Mărăndeni"
+            - name: moldoveanca
+              label: "Fălești — Moldoveanca"
+            - name: musteata
+              label: "Fălești — Musteața"
+            - name: natalievca
+              label: "Fălești — Natalievca"
+            - name: navirnet
+              label: "Fălești — Năvîrneț"
+            - name: nicolaevca
+              label: "Fălești — Nicolaevca"
+            - name: obreja-noua
+              label: "Fălești — Obreja Nouă"
+            - name: obreja-veche
+              label: "Fălești — Obreja Veche"
+            - name: pervomaisc
+              label: "Fălești — Pervomaisc"
+            - name: pietrosu
+              label: "Fălești — Pietrosu"
+            - name: pietrosul-nou
+              label: "Fălești — Pietrosul Nou"
+            - name: pinzareni
+              label: "Fălești — Pînzăreni"
+            - name: pinzarenii-noi
+              label: "Fălești — Pînzărenii Noi"
+            - name: pirlita
+              label: "Fălești — Pîrlița"
+            - name: pocrovca
+              label: "Fălești — Pocrovca"
+            - name: pompa
+              label: "Fălești — Pompa"
+            - name: popovca
+              label: "Fălești — Popovca"
+            - name: pruteni
+              label: "Fălești — Pruteni"
+            - name: rautel
+              label: "Fălești — Răuțel"
+            - name: rautelul-nou
+              label: "Fălești — Răuțelul Nou"
+            - name: rediul-de-jos
+              label: "Fălești — Rediul de Jos"
+            - name: rediul-de-sus
+              label: "Fălești — Rediul de Sus"
+            - name: risipeni
+              label: "Fălești — Risipeni"
+            - name: sarata-noua
+              label: "Fălești — Sărata Nouă"
+            - name: sarata-veche
+              label: "Fălești — Sărata Veche"
+            - name: scumpia
+              label: "Fălești — Scumpia"
+            - name: socii-noi
+              label: "Fălești — Socii Noi"
+            - name: socii-vechi
+              label: "Fălești — Socii Vechi"
+            - name: soltoaia
+              label: "Fălești — Șoltoaia"
+            - name: suvorovca
+              label: "Fălești — Suvorovca"
+            - name: tapoc
+              label: "Fălești — Țapoc"
+            - name: taxobeni
+              label: "Fălești — Taxobeni"
+            - name: unteni
+              label: "Fălești — Unteni"
+            - name: valea-rusului
+              label: "Fălești — Valea Rusului"
+            - name: vranesti
+              label: "Fălești — Vrănești"
+            - name: floresti
+              label: "Florești — Florești"
+            - name: ghindesti
+              label: "Florești — Ghindești"
+            - name: marculesti
+              label: "Florești — Mărculești"
+            - name: alexandrovca
+              label: "Florești — Alexandrovca"
+            - name: alexeevca
+              label: "Florești — Alexeevca"
+            - name: antonovca
+              label: "Florești — Antonovca"
+            - name: bahrinesti
+              label: "Florești — Băhrinești"
+            - name: bezeni
+              label: "Florești — Bezeni"
+            - name: bobulesti
+              label: "Florești — Bobulești"
+            - name: bursuc
+              label: "Florești — Bursuc"
+            - name: capresti
+              label: "Florești — Căprești"
+            - name: casunca
+              label: "Florești — Cașunca"
+            - name: cenusa
+              label: "Florești — Cenușa"
+            - name: cernita
+              label: "Florești — Cernița"
+            - name: chirilovca
+              label: "Florești — Chirilovca"
+            - name: ciripcau
+              label: "Florești — Ciripcău"
+            - name: ciutulesti
+              label: "Florești — Ciutulești"
+            - name: cosernita
+              label: "Florești — Coșernița"
+            - name: cuhurestii-de-jos
+              label: "Florești — Cuhureștii de Jos"
+            - name: cuhurestii-de-sus
+              label: "Florești — Cuhureștii de Sus"
+            - name: cunicea
+              label: "Florești — Cunicea"
+            - name: domulgeni
+              label: "Florești — Domulgeni"
+            - name: dumitreni
+              label: "Florești — Dumitreni"
+            - name: fagadau
+              label: "Florești — Făgădău"
+            - name: frumusica
+              label: "Florești — Frumușica"
+            - name: frumusica-noua
+              label: "Florești — Frumușica Nouă"
+            - name: frunzesti
+              label: "Florești — Frunzești"
+            - name: ghindesti-sat
+              label: "Florești — Ghindești"
+            - name: gura-cainarului
+              label: "Florești — Gura Căinarului"
+            - name: gura-camencii
+              label: "Florești — Gura Camencii"
+            - name: gvozdova
+              label: "Florești — Gvozdova"
+            - name: hirtop
+              label: "Florești — Hîrtop"
+            - name: iliciovca
+              label: "Florești — Iliciovca"
+            - name: ion-voda
+              label: "Florești — Ion Vodă"
+            - name: ivanovca
+              label: "Florești — Ivanovca"
+            - name: izvoare
+              label: "Florești — Izvoare"
+            - name: japca
+              label: "Florești — Japca"
+            - name: lunga
+              label: "Florești — Lunga"
+            - name: maiscoe
+              label: "Florești — Maiscoe"
+            - name: marculesti-sat
+              label: "Florești — Mărculești"
+            - name: marinesti
+              label: "Florești — Mărinești"
+            - name: mihailovca
+              label: "Florești — Mihailovca"
+            - name: napadova
+              label: "Florești — Năpadova"
+            - name: nicolaevca
+              label: "Florești — Nicolaevca"
+            - name: nicolaevca-cuhurestii-de-sus
+              label: "Florești — Nicolaevca"
+            - name: octeabriscoe
+              label: "Florești — Octeabriscoe"
+            - name: prajila
+              label: "Florești — Prajila"
+            - name: prodanesti
+              label: "Florești — Prodănești"
+            - name: prodanestii-vechi
+              label: "Florești — Prodăneștii Vechi"
+            - name: putinesti
+              label: "Florești — Putinești"
+            - name: radulenii-noi
+              label: "Florești — Rădulenii Noi"
+            - name: radulenii-vechi
+              label: "Florești — Rădulenii Vechi"
+            - name: rosietici
+              label: "Florești — Roșietici"
+            - name: rosieticii-vechi
+              label: "Florești — Roșieticii Vechi"
+            - name: sanatauca
+              label: "Florești — Sănătăuca"
+            - name: scaieni
+              label: "Florești — Scăieni"
+            - name: sevirova
+              label: "Florești — Sevirova"
+            - name: sirbesti
+              label: "Florești — Sîrbești"
+            - name: stefanesti
+              label: "Florești — Ștefănești"
+            - name: stirceni
+              label: "Florești — Stîrceni"
+            - name: temeleuti
+              label: "Florești — Temeleuți"
+            - name: tipordei
+              label: "Florești — Țipordei"
+            - name: tira
+              label: "Florești — Țîra"
+            - name: tira-statia-cf
+              label: "Florești — Țîra (stație c.f.)"
+            - name: tirgul-vertiujeni
+              label: "Florești — Tîrgul-Vertiujeni"
+            - name: trifanesti
+              label: "Florești — Trifănești"
+            - name: unchitesti
+              label: "Florești — Unchitești"
+            - name: unchitesti-statia-cf
+              label: "Florești — Unchitești (stație c.f.)"
+            - name: valea-radoaiei
+              label: "Florești — Valea Rădoaiei"
+            - name: varvareuca
+              label: "Florești — Vărvăreuca"
+            - name: vascauti
+              label: "Florești — Văscăuți"
+            - name: vertiujeni
+              label: "Florești — Vertiujeni"
+            - name: zaluceni
+              label: "Florești — Zăluceni"
+            - name: zarojeni
+              label: "Florești — Zarojeni"
+            - name: ceadir-lunga
+              label: "Găgăuzia — Ceadîr-Lunga"
+            - name: comrat
+              label: "Găgăuzia — Comrat"
+            - name: vulcanesti
+              label: "Găgăuzia — Vulcănești"
+            - name: alexeevca
+              label: "Găgăuzia — Alexeevca"
+            - name: avdarma
+              label: "Găgăuzia — Avdarma"
+            - name: baurci
+              label: "Găgăuzia — Baurci"
+            - name: besalma
+              label: "Găgăuzia — Beșalma"
+            - name: besghioz
+              label: "Găgăuzia — Beșghioz"
+            - name: bugeac
+              label: "Găgăuzia — Bugeac"
+            - name: carbalia
+              label: "Găgăuzia — Carbalia"
+            - name: cazaclia
+              label: "Găgăuzia — Cazaclia"
+            - name: chioselia-rusa
+              label: "Găgăuzia — Chioselia Rusă"
+            - name: chiriet-lunga
+              label: "Găgăuzia — Chiriet-Lunga"
+            - name: chirsova
+              label: "Găgăuzia — Chirsova"
+            - name: cioc-maidan
+              label: "Găgăuzia — Cioc-Maidan"
+            - name: cismichioi
+              label: "Găgăuzia — Cișmichioi"
+            - name: congaz
+              label: "Găgăuzia — Congaz"
+            - name: congazcicul-de-jos
+              label: "Găgăuzia — Congazcicul de Jos"
+            - name: congazcicul-de-sus
+              label: "Găgăuzia — Congazcicul de Sus"
+            - name: copceac
+              label: "Găgăuzia — Copceac"
+            - name: cotovscoe
+              label: "Găgăuzia — Cotovscoe"
+            - name: dezghingea
+              label: "Găgăuzia — Dezghingea"
+            - name: dudulesti
+              label: "Găgăuzia — Dudulești"
+            - name: etulia
+              label: "Găgăuzia — Etulia"
+            - name: etulia-noua
+              label: "Găgăuzia — Etulia Nouă"
+            - name: etulia-statia-cf
+              label: "Găgăuzia — Etulia (stație c.f.)"
+            - name: ferapontievca
+              label: "Găgăuzia — Ferapontievca"
+            - name: gaidar
+              label: "Găgăuzia — Gaidar"
+            - name: joltai
+              label: "Găgăuzia — Joltai"
+            - name: svetlii
+              label: "Găgăuzia — Svetlîi"
+            - name: tomai
+              label: "Găgăuzia — Tomai"
+            - name: vulcanesti-statia-cf
+              label: "Găgăuzia — Vulcănești (stație c.f.)"
+            - name: glodeni
+              label: "Glodeni — Glodeni"
+            - name: balatina
+              label: "Glodeni — Balatina"
+            - name: bisericani
+              label: "Glodeni — Bisericani"
+            - name: brinzeni
+              label: "Glodeni — Brînzeni"
+            - name: butesti
+              label: "Glodeni — Butești"
+            - name: cajba
+              label: "Glodeni — Cajba"
+            - name: camenca
+              label: "Glodeni — Camenca"
+            - name: camencuta
+              label: "Glodeni — Camencuța"
+            - name: ciuciulea
+              label: "Glodeni — Ciuciulea"
+            - name: clococenii-vechi
+              label: "Glodeni — Clococenii Vechi"
+            - name: cobani
+              label: "Glodeni — Cobani"
+            - name: cot
+              label: "Glodeni — Cot"
+            - name: cuhnesti
+              label: "Glodeni — Cuhnești"
+            - name: danu
+              label: "Glodeni — Danu"
+            - name: dusmani
+              label: "Glodeni — Dușmani"
+            - name: fundurii-noi
+              label: "Glodeni — Fundurii Noi"
+            - name: fundurii-vechi
+              label: "Glodeni — Fundurii Vechi"
+            - name: hijdieni
+              label: "Glodeni — Hîjdieni"
+            - name: iabloana
+              label: "Glodeni — Iabloana"
+            - name: limbenii-noi
+              label: "Glodeni — Limbenii Noi"
+            - name: limbenii-vechi
+              label: "Glodeni — Limbenii Vechi"
+            - name: lipovat
+              label: "Glodeni — Lipovăț"
+            - name: moara-domneasca
+              label: "Glodeni — Moara Domnească"
+            - name: molesti
+              label: "Glodeni — Molești"
+            - name: movileni
+              label: "Glodeni — Movileni"
+            - name: nicolaevca
+              label: "Glodeni — Nicolaevca"
+            - name: petrunea
+              label: "Glodeni — Petrunea"
+            - name: serghieni
+              label: "Glodeni — Serghieni"
+            - name: soroca
+              label: "Glodeni — Soroca"
+            - name: stircea
+              label: "Glodeni — Stîrcea"
+            - name: sturzovca
+              label: "Glodeni — Sturzovca"
+            - name: tomestii-noi
+              label: "Glodeni — Tomeștii Noi"
+            - name: tomestii-vechi
+              label: "Glodeni — Tomeștii Vechi"
+            - name: ustia
+              label: "Glodeni — Ustia"
+            - name: viisoara
+              label: "Glodeni — Viișoara"
+            - name: hincesti
+              label: "Hîncești — Hîncești"
+            - name: anini
+              label: "Hîncești — Anini"
+            - name: balceana
+              label: "Hîncești — Bălceana"
+            - name: bobeica
+              label: "Hîncești — Bobeica"
+            - name: boghiceni
+              label: "Hîncești — Boghiceni"
+            - name: bozieni
+              label: "Hîncești — Bozieni"
+            - name: bratianovca
+              label: "Hîncești — Brătianovca"
+            - name: bujor
+              label: "Hîncești — Bujor"
+            - name: buteni
+              label: "Hîncești — Buțeni"
+            - name: calmatui
+              label: "Hîncești — Călmățui"
+            - name: caracui
+              label: "Hîncești — Caracui"
+            - name: carpineanca
+              label: "Hîncești — Cărpineanca"
+            - name: carpineni
+              label: "Hîncești — Cărpineni"
+            - name: cateleni
+              label: "Hîncești — Cățeleni"
+            - name: chetroseni
+              label: "Hîncești — Chetroșeni"
+            - name: cioara
+              label: "Hîncești — Cioara"
+            - name: ciuciuleni
+              label: "Hîncești — Ciuciuleni"
+            - name: cornesti
+              label: "Hîncești — Cornești"
+            - name: coroliovca
+              label: "Hîncești — Coroliovca"
+            - name: costesti
+              label: "Hîncești — Costești"
+            - name: cotul-morii
+              label: "Hîncești — Cotul Morii"
+            - name: crasnoarmeiscoe
+              label: "Hîncești — Crasnoarmeiscoe"
+            - name: dahnovici
+              label: "Hîncești — Dahnovici"
+            - name: dancu
+              label: "Hîncești — Dancu"
+            - name: draguseni
+              label: "Hîncești — Drăgușeni"
+            - name: dragusenii-noi
+              label: "Hîncești — Drăgușenii Noi"
+            - name: dubovca
+              label: "Hîncești — Dubovca"
+            - name: feteasca
+              label: "Hîncești — Feteasca"
+            - name: firladeni
+              label: "Hîncești — Fîrlădeni"
+            - name: frasin
+              label: "Hîncești — Frasin"
+            - name: fundul-galbenei
+              label: "Hîncești — Fundul Galbenei"
+            - name: horjesti
+              label: "Hîncești — Horjești"
+            - name: horodca
+              label: "Hîncești — Horodca"
+            - name: ivanovca
+              label: "Hîncești — Ivanovca"
+            - name: lapusna
+              label: "Hîncești — Lăpușna"
+            - name: leuseni
+              label: "Hîncești — Leușeni"
+            - name: loganesti
+              label: "Hîncești — Logănești"
+            - name: marchet
+              label: "Hîncești — Marchet"
+            - name: mereseni
+              label: "Hîncești — Mereșeni"
+            - name: mingir
+              label: "Hîncești — Mingir"
+            - name: miresti
+              label: "Hîncești — Mirești"
+            - name: negrea
+              label: "Hîncești — Negrea"
+            - name: nemteni
+              label: "Hîncești — Nemțeni"
+            - name: obileni
+              label: "Hîncești — Obileni"
+            - name: onesti
+              label: "Hîncești — Onești"
+            - name: pascani
+              label: "Hîncești — Pașcani"
+            - name: pereni
+              label: "Hîncești — Pereni"
+            - name: pervomaiscoe
+              label: "Hîncești — Pervomaiscoe"
+            - name: poganesti
+              label: "Hîncești — Pogănești"
+            - name: rusca
+              label: "Hîncești — Rusca"
+            - name: sarata-galbena
+              label: "Hîncești — Sărata-Galbenă"
+            - name: sarata-mereseni
+              label: "Hîncești — Sărata-Mereșeni"
+            - name: sarateni
+              label: "Hîncești — Sărăteni"
+            - name: secareni
+              label: "Hîncești — Secăreni"
+            - name: secarenii-noi
+              label: "Hîncești — Secărenii Noi"
+            - name: semionovca
+              label: "Hîncești — Semionovca"
+            - name: sipoteni
+              label: "Hîncești — Șipoteni"
+            - name: sofia
+              label: "Hîncești — Sofia"
+            - name: stolniceni
+              label: "Hîncești — Stolniceni"
+            - name: strimbeni
+              label: "Hîncești — Strîmbeni"
+            - name: talaiesti
+              label: "Hîncești — Tălăiești"
+            - name: valea-florii
+              label: "Hîncești — Valea Florii"
+            - name: voinescu
+              label: "Hîncești — Voinescu"
+            - name: ialoveni
+              label: "Ialoveni — Ialoveni"
+            - name: alexandrovca
+              label: "Ialoveni — Alexandrovca"
+            - name: baltati
+              label: "Ialoveni — Bălțați"
+            - name: bardar
+              label: "Ialoveni — Bardar"
+            - name: budai
+              label: "Ialoveni — Budăi"
+            - name: carbuna
+              label: "Ialoveni — Cărbuna"
+            - name: cigirleni
+              label: "Ialoveni — Cigîrleni"
+            - name: costesti
+              label: "Ialoveni — Costești"
+            - name: danceni
+              label: "Ialoveni — Dănceni"
+            - name: gangura
+              label: "Ialoveni — Gangura"
+            - name: gaureni
+              label: "Ialoveni — Găureni"
+            - name: hansca
+              label: "Ialoveni — Hansca"
+            - name: homuteanovca
+              label: "Ialoveni — Homuteanovca"
+            - name: horesti
+              label: "Ialoveni — Horești"
+            - name: horodca
+              label: "Ialoveni — Horodca"
+            - name: malcoci
+              label: "Ialoveni — Malcoci"
+            - name: milestii-mici
+              label: "Ialoveni — Mileștii Mici"
+            - name: milestii-noi
+              label: "Ialoveni — Mileștii Noi"
+            - name: misovca
+              label: "Ialoveni — Misovca"
+            - name: molesti
+              label: "Ialoveni — Molești"
+            - name: nimoreni
+              label: "Ialoveni — Nimoreni"
+            - name: piatra-alba
+              label: "Ialoveni — Piatra Albă"
+            - name: pojareni
+              label: "Ialoveni — Pojăreni"
+            - name: puhoi
+              label: "Ialoveni — Puhoi"
+            - name: razeni
+              label: "Ialoveni — Răzeni"
+            - name: rusestii-noi
+              label: "Ialoveni — Ruseștii Noi"
+            - name: rusestii-vechi
+              label: "Ialoveni — Ruseștii Vechi"
+            - name: sociteni
+              label: "Ialoveni — Sociteni"
+            - name: suruceni
+              label: "Ialoveni — Suruceni"
+            - name: tipala
+              label: "Ialoveni — Țipala"
+            - name: ulmu
+              label: "Ialoveni — Ulmu"
+            - name: varatic
+              label: "Ialoveni — Văratic"
+            - name: vasieni
+              label: "Ialoveni — Văsieni"
+            - name: zimbreni
+              label: "Ialoveni — Zîmbreni"
+            - name: iargara
+              label: "Leova — Iargara"
+            - name: leova
+              label: "Leova — Leova"
+            - name: baius
+              label: "Leova — Băiuș"
+            - name: bestemac
+              label: "Leova — Beștemac"
+            - name: borogani
+              label: "Leova — Borogani"
+            - name: bulgarica
+              label: "Leova — Bulgărica"
+            - name: cazangic
+              label: "Leova — Cazangic"
+            - name: ceadir
+              label: "Leova — Ceadîr"
+            - name: cimpul-drept
+              label: "Leova — Cîmpul Drept"
+            - name: cizlar
+              label: "Leova — Cîzlar"
+            - name: cneazevca
+              label: "Leova — Cneazevca"
+            - name: cociulia-noua
+              label: "Leova — Cociulia Nouă"
+            - name: colibabovca
+              label: "Leova — Colibabovca"
+            - name: covurlui
+              label: "Leova — Covurlui"
+            - name: cupcui
+              label: "Leova — Cupcui"
+            - name: cuporani
+              label: "Leova — Cuporani"
+            - name: filipeni
+              label: "Leova — Filipeni"
+            - name: frumusica
+              label: "Leova — Frumușica"
+            - name: hanasenii-noi
+              label: "Leova — Hănăsenii Noi"
+            - name: hirtop
+              label: "Leova — Hîrtop"
+            - name: meseni
+              label: "Leova — Meșeni"
+            - name: nicolaevca
+              label: "Leova — Nicolaevca"
+            - name: orac
+              label: "Leova — Orac"
+            - name: pitesti
+              label: "Leova — Pitești"
+            - name: romanovca
+              label: "Leova — Romanovca"
+            - name: sarata-noua
+              label: "Leova — Sărata Nouă"
+            - name: sarata-razesi
+              label: "Leova — Sărata-Răzeși"
+            - name: sarateni
+              label: "Leova — Sărăteni"
+            - name: saratica-noua
+              label: "Leova — Sărățica Nouă"
+            - name: saratica-veche
+              label: "Leova — Sărățica Veche"
+            - name: seliste
+              label: "Leova — Seliște"
+            - name: sirma
+              label: "Leova — Sîrma"
+            - name: tigheci
+              label: "Leova — Tigheci"
+            - name: tochile-raducani
+              label: "Leova — Tochile-Răducani"
+            - name: tomai
+              label: "Leova — Tomai"
+            - name: tomaiul-nou
+              label: "Leova — Tomaiul Nou"
+            - name: troian
+              label: "Leova — Troian"
+            - name: troita
+              label: "Leova — Troița"
+            - name: victoria
+              label: "Leova — Victoria"
+            - name: vozneseni
+              label: "Leova — Vozneseni"
+            - name: nisporeni
+              label: "Nisporeni — Nisporeni"
+            - name: bacseni
+              label: "Nisporeni — Băcșeni"
+            - name: balanesti
+              label: "Nisporeni — Bălănești"
+            - name: balauresti
+              label: "Nisporeni — Bălăurești"
+            - name: barboieni
+              label: "Nisporeni — Bărboieni"
+            - name: bolduresti
+              label: "Nisporeni — Boldurești"
+            - name: boltun
+              label: "Nisporeni — Bolțun"
+            - name: bratuleni
+              label: "Nisporeni — Brătuleni"
+            - name: bursuc
+              label: "Nisporeni — Bursuc"
+            - name: calimanesti
+              label: "Nisporeni — Călimănești"
+            - name: chilisoaia
+              label: "Nisporeni — Chilișoaia"
+            - name: cioresti
+              label: "Nisporeni — Ciorești"
+            - name: cirnesti
+              label: "Nisporeni — Cîrnești"
+            - name: ciutesti
+              label: "Nisporeni — Ciutești"
+            - name: cristesti
+              label: "Nisporeni — Cristești"
+            - name: drojdieni
+              label: "Nisporeni — Drojdieni"
+            - name: gaureni
+              label: "Nisporeni — Găureni"
+            - name: grozesti
+              label: "Nisporeni — Grozești"
+            - name: helesteni
+              label: "Nisporeni — Heleșteni"
+            - name: isaicani
+              label: "Nisporeni — Isăicani"
+            - name: iurceni
+              label: "Nisporeni — Iurceni"
+            - name: luminita
+              label: "Nisporeni — Luminița"
+            - name: marinici
+              label: "Nisporeni — Marinici"
+            - name: milesti
+              label: "Nisporeni — Milești"
+            - name: mirzoaia
+              label: "Nisporeni — Mîrzoaia"
+            - name: odaia
+              label: "Nisporeni — Odaia"
+            - name: odobesti
+              label: "Nisporeni — Odobești"
+            - name: paruceni
+              label: "Nisporeni — Păruceni"
+            - name: seliste
+              label: "Nisporeni — Seliște"
+            - name: selisteni
+              label: "Nisporeni — Selișteni"
+            - name: sendreni
+              label: "Nisporeni — Șendreni"
+            - name: siscani
+              label: "Nisporeni — Șișcani"
+            - name: soltanesti
+              label: "Nisporeni — Soltănești"
+            - name: valea-nirnovei
+              label: "Nisporeni — Valea Nîrnovei"
+            - name: valea-trestieni
+              label: "Nisporeni — Valea-Trestieni"
+            - name: varzaresti
+              label: "Nisporeni — Vărzărești"
+            - name: vinatori
+              label: "Nisporeni — Vînători"
+            - name: vulcanesti
+              label: "Nisporeni — Vulcănești"
+            - name: zberoaia
+              label: "Nisporeni — Zberoaia"
+            - name: frunza
+              label: "Ocnița — Frunză"
+            - name: ocnita
+              label: "Ocnița — Ocnița"
+            - name: otaci
+              label: "Ocnița — Otaci"
+            - name: berezovca
+              label: "Ocnița — Berezovca"
+            - name: birladeni
+              label: "Ocnița — Bîrlădeni"
+            - name: birnova
+              label: "Ocnița — Bîrnova"
+            - name: calarasovca
+              label: "Ocnița — Calarașovca"
+            - name: clocusna
+              label: "Ocnița — Clocușna"
+            - name: codreni
+              label: "Ocnița — Codreni"
+            - name: corestauti
+              label: "Ocnița — Corestăuți"
+            - name: dingeni
+              label: "Ocnița — Dîngeni"
+            - name: girbova
+              label: "Ocnița — Gîrbova"
+            - name: grinauti-mihalaseni
+              label: "Ocnița — Grinăuți"
+            - name: grinauti-dingeni
+              label: "Ocnița — Grinăuți"
+            - name: grinauti-moldova
+              label: "Ocnița — Grinăuți-Moldova"
+            - name: grinauti-raia
+              label: "Ocnița — Grinăuți-Raia"
+            - name: hadarauti
+              label: "Ocnița — Hădărăuți"
+            - name: lencauti
+              label: "Ocnița — Lencăuți"
+            - name: lipnic
+              label: "Ocnița — Lipnic"
+            - name: maiovca
+              label: "Ocnița — Maiovca"
+            - name: mereseuca
+              label: "Ocnița — Mereșeuca"
+            - name: mihalaseni
+              label: "Ocnița — Mihălășeni"
+            - name: naslavcea
+              label: "Ocnița — Naslavcea"
+            - name: ocnita-sat
+              label: "Ocnița — Ocnița"
+            - name: paladea
+              label: "Ocnița — Paladea"
+            - name: paustova
+              label: "Ocnița — Paustova"
+            - name: rediul-mare
+              label: "Ocnița — Rediul Mare"
+            - name: rujnita
+              label: "Ocnița — Rujnița"
+            - name: sauca
+              label: "Ocnița — Sauca"
+            - name: stalinesti
+              label: "Ocnița — Stălinești"
+            - name: unguri
+              label: "Ocnița — Unguri"
+            - name: valcinet
+              label: "Ocnița — Vălcineț"
+            - name: verejeni
+              label: "Ocnița — Verejeni"
+            - name: orhei
+              label: "Orhei — Orhei"
+            - name: andreevca
+              label: "Orhei — Andreevca"
+            - name: berezlogi
+              label: "Orhei — Berezlogi"
+            - name: biesti
+              label: "Orhei — Biești"
+            - name: bolohan
+              label: "Orhei — Bolohan"
+            - name: branesti
+              label: "Orhei — Brănești"
+            - name: braviceni
+              label: "Orhei — Brăviceni"
+            - name: breanova
+              label: "Orhei — Breanova"
+            - name: budai
+              label: "Orhei — Budăi"
+            - name: bulaiesti
+              label: "Orhei — Bulăiești"
+            - name: butuceni
+              label: "Orhei — Butuceni"
+            - name: camencea
+              label: "Orhei — Camencea"
+            - name: chiperceni
+              label: "Orhei — Chiperceni"
+            - name: cihoreni
+              label: "Orhei — Cihoreni"
+            - name: ciocilteni
+              label: "Orhei — Ciocîlteni"
+            - name: cismea
+              label: "Orhei — Cișmea"
+            - name: clisova
+              label: "Orhei — Clișova"
+            - name: clisova-noua
+              label: "Orhei — Clișova Nouă"
+            - name: crihana
+              label: "Orhei — Crihana"
+            - name: cucuruzeni
+              label: "Orhei — Cucuruzeni"
+            - name: cucuruzenii-de-sus
+              label: "Orhei — Cucuruzenii de Sus"
+            - name: curchi
+              label: "Orhei — Curchi"
+            - name: discova
+              label: "Orhei — Dișcova"
+            - name: donici
+              label: "Orhei — Donici"
+            - name: fedoreuca
+              label: "Orhei — Fedoreuca"
+            - name: furceni
+              label: "Orhei — Furceni"
+            - name: ghetlova
+              label: "Orhei — Ghetlova"
+            - name: hijdieni
+              label: "Orhei — Hîjdieni"
+            - name: hulboaca
+              label: "Orhei — Hulboaca"
+            - name: inculet
+              label: "Orhei — Inculeț"
+            - name: isacova
+              label: "Orhei — Isacova"
+            - name: ivancea
+              label: "Orhei — Ivancea"
+            - name: izvoare
+              label: "Orhei — Izvoare"
+            - name: jeloboc
+              label: "Orhei — Jeloboc"
+            - name: jora-de-jos
+              label: "Orhei — Jora de Jos"
+            - name: jora-de-mijloc
+              label: "Orhei — Jora de Mijloc"
+            - name: jora-de-sus
+              label: "Orhei — Jora de Sus"
+            - name: lopatna
+              label: "Orhei — Lopatna"
+            - name: lucaseuca
+              label: "Orhei — Lucășeuca"
+            - name: malaiesti
+              label: "Orhei — Mălăiești"
+            - name: mana
+              label: "Orhei — Mana"
+            - name: mirzaci
+              label: "Orhei — Mîrzaci"
+            - name: mirzesti
+              label: "Orhei — Mîrzești"
+            - name: mitoc
+              label: "Orhei — Mitoc"
+            - name: morovaia
+              label: "Orhei — Morovaia"
+            - name: morozeni
+              label: "Orhei — Morozeni"
+            - name: neculaieuca
+              label: "Orhei — Neculăieuca"
+            - name: noroceni
+              label: "Orhei — Noroceni"
+            - name: ocnita-razesi
+              label: "Orhei — Ocnița-Răzeși"
+            - name: ocnita-tarani
+              label: "Orhei — Ocnița-Țărani"
+            - name: pelivan
+              label: "Orhei — Pelivan"
+            - name: peresecina
+              label: "Orhei — Peresecina"
+            - name: piatra
+              label: "Orhei — Piatra"
+            - name: pocsesti
+              label: "Orhei — Pocșești"
+            - name: podgoreni
+              label: "Orhei — Podgoreni"
+            - name: pohorniceni
+              label: "Orhei — Pohorniceni"
+            - name: pohrebeni
+              label: "Orhei — Pohrebeni"
+            - name: putintei
+              label: "Orhei — Puțintei"
+            - name: samananca
+              label: "Orhei — Sămănanca"
+            - name: seliste
+              label: "Orhei — Seliște"
+            - name: sercani
+              label: "Orhei — Șercani"
+            - name: sirota
+              label: "Orhei — Sirota"
+            - name: slobozia-hodorogea
+              label: "Orhei — Slobozia-Hodorogea"
+            - name: step-soci
+              label: "Orhei — Step-Soci"
+            - name: susleni
+              label: "Orhei — Susleni"
+            - name: tabara
+              label: "Orhei — Tabăra"
+            - name: teleseu
+              label: "Orhei — Teleșeu"
+            - name: tirzieni
+              label: "Orhei — Tîrzieni"
+            - name: trebujeni
+              label: "Orhei — Trebujeni"
+            - name: vatici
+              label: "Orhei — Vatici"
+            - name: viprova
+              label: "Orhei — Vîprova"
+            - name: viscauti
+              label: "Orhei — Vîșcăuți"
+            - name: vorotet
+              label: "Orhei — Voroteț"
+            - name: zahoreni
+              label: "Orhei — Zahoreni"
+            - name: zorile
+              label: "Orhei — Zorile"
+            - name: rezina
+              label: "Rezina — Rezina"
+            - name: bosernita
+              label: "Rezina — Boșernița"
+            - name: buciusca
+              label: "Rezina — Buciușca"
+            - name: busauca
+              label: "Rezina — Bușăuca"
+            - name: ciniseuti
+              label: "Rezina — Cinișeuți"
+            - name: ciorna
+              label: "Rezina — Ciorna"
+            - name: cogilniceni
+              label: "Rezina — Cogîlniceni"
+            - name: cuizauca
+              label: "Rezina — Cuizăuca"
+            - name: echimauti
+              label: "Rezina — Echimăuți"
+            - name: ghiduleni
+              label: "Rezina — Ghiduleni"
+            - name: gordinesti
+              label: "Rezina — Gordinești"
+            - name: horodiste
+              label: "Rezina — Horodiște"
+            - name: ignatei
+              label: "Rezina — Ignăței"
+            - name: lalova
+              label: "Rezina — Lalova"
+            - name: lipceni
+              label: "Rezina — Lipceni"
+            - name: mateuti
+              label: "Rezina — Mateuți"
+            - name: meseni
+              label: "Rezina — Meșeni"
+            - name: mincenii-de-jos
+              label: "Rezina — Mincenii de Jos"
+            - name: mincenii-de-sus
+              label: "Rezina — Mincenii de Sus"
+            - name: nistreni
+              label: "Rezina — Nistreni"
+            - name: otac
+              label: "Rezina — Otac"
+            - name: papauti
+              label: "Rezina — Păpăuți"
+            - name: peciste
+              label: "Rezina — Peciște"
+            - name: pereni
+              label: "Rezina — Pereni"
+            - name: piscaresti
+              label: "Rezina — Piscărești"
+            - name: pripiceni-curchi
+              label: "Rezina — Pripiceni-Curchi"
+            - name: pripiceni-razesi
+              label: "Rezina — Pripiceni-Răzeși"
+            - name: roscani
+              label: "Rezina — Roșcani"
+            - name: roscanii-de-jos
+              label: "Rezina — Roșcanii de Jos"
+            - name: roscanii-de-sus
+              label: "Rezina — Roșcanii de Sus"
+            - name: saharna
+              label: "Rezina — Saharna"
+            - name: saharna-noua
+              label: "Rezina — Saharna Nouă"
+            - name: sircova
+              label: "Rezina — Sîrcova"
+            - name: slobozia-horodiste
+              label: "Rezina — Slobozia-Horodiște"
+            - name: solonceni
+              label: "Rezina — Solonceni"
+            - name: stohnaia
+              label: "Rezina — Stohnaia"
+            - name: tahnauti
+              label: "Rezina — Țahnăuți"
+            - name: tarasova
+              label: "Rezina — Tarasova"
+            - name: tareuca
+              label: "Rezina — Țareuca"
+            - name: tipova
+              label: "Rezina — Țipova"
+            - name: trifesti
+              label: "Rezina — Trifești"
+            - name: costesti
+              label: "Rîșcani — Costești"
+            - name: riscani
+              label: "Rîșcani — Rîșcani"
+            - name: alexandresti
+              label: "Rîșcani — Alexăndrești"
+            - name: alunis
+              label: "Rîșcani — Aluniș"
+            - name: armanca
+              label: "Rîșcani — Armanca"
+            - name: avrameni
+              label: "Rîșcani — Avrămeni"
+            - name: balanul-nou
+              label: "Rîșcani — Balanul Nou"
+            - name: borosenii-noi
+              label: "Rîșcani — Borosenii Noi"
+            - name: braniste
+              label: "Rîșcani — Braniște"
+            - name: bulhac
+              label: "Rîșcani — Bulhac"
+            - name: ceparia
+              label: "Rîșcani — Cepăria"
+            - name: ciobanovca
+              label: "Rîșcani — Ciobanovca"
+            - name: ciubara
+              label: "Rîșcani — Ciubara"
+            - name: corlateni
+              label: "Rîșcani — Corlăteni"
+            - name: cucuietii-noi
+              label: "Rîșcani — Cucuieții Noi"
+            - name: cucuietii-vechi
+              label: "Rîșcani — Cucuieții Vechi"
+            - name: damascani
+              label: "Rîșcani — Dămășcani"
+            - name: druta
+              label: "Rîșcani — Druța"
+            - name: dumeni
+              label: "Rîșcani — Dumeni"
+            - name: duruitoarea
+              label: "Rîșcani — Duruitoarea"
+            - name: duruitoarea-noua
+              label: "Rîșcani — Duruitoarea Nouă"
+            - name: galaseni
+              label: "Rîșcani — Gălășeni"
+            - name: grinauti
+              label: "Rîșcani — Grinăuți"
+            - name: hiliuti
+              label: "Rîșcani — Hiliuți"
+            - name: horodiste
+              label: "Rîșcani — Horodiște"
+            - name: ivanesti
+              label: "Rîșcani — Ivănești"
+            - name: luparia
+              label: "Rîșcani — Lupăria"
+            - name: malaiesti
+              label: "Rîșcani — Mălăiești"
+            - name: malinovscoe
+              label: "Rîșcani — Malinovscoe"
+            - name: mihaileni
+              label: "Rîșcani — Mihăileni"
+            - name: mihailenii-noi
+              label: "Rîșcani — Mihăilenii Noi"
+            - name: moseni
+              label: "Rîșcani — Moșeni"
+            - name: nihoreni
+              label: "Rîșcani — Nihoreni"
+            - name: pascauti
+              label: "Rîșcani — Păscăuți"
+            - name: petruseni
+              label: "Rîșcani — Petrușeni"
+            - name: pirjota
+              label: "Rîșcani — Pîrjota"
+            - name: pociumbauti
+              label: "Rîșcani — Pociumbăuți"
+            - name: pociumbeni
+              label: "Rîșcani — Pociumbeni"
+            - name: proscureni
+              label: "Rîșcani — Proscureni"
+            - name: racaria
+              label: "Rîșcani — Răcăria"
+            - name: ramazan
+              label: "Rîșcani — Rămăzan"
+            - name: recea
+              label: "Rîșcani — Recea"
+            - name: reteni
+              label: "Rîșcani — Reteni"
+            - name: reteni-vasileuti
+              label: "Rîșcani — Reteni-Vasileuți"
+            - name: saptebani
+              label: "Rîșcani — Șaptebani"
+            - name: singureni
+              label: "Rîșcani — Singureni"
+            - name: slobozia-recea
+              label: "Rîșcani — Slobozia-Recea"
+            - name: stiubeieni
+              label: "Rîșcani — Știubeieni"
+            - name: sturzeni
+              label: "Rîșcani — Sturzeni"
+            - name: sumna
+              label: "Rîșcani — Șumna"
+            - name: sverdiac
+              label: "Rîșcani — Sverdiac"
+            - name: usurei
+              label: "Rîșcani — Ușurei"
+            - name: varatic
+              label: "Rîșcani — Văratic"
+            - name: vasileuti
+              label: "Rîșcani — Vasileuți"
+            - name: zaicani
+              label: "Rîșcani — Zăicani"
+            - name: biruinta
+              label: "Sîngerei — Biruința"
+            - name: singerei
+              label: "Sîngerei — Sîngerei"
+            - name: alexandreni
+              label: "Sîngerei — Alexăndreni"
+            - name: alexeuca
+              label: "Sîngerei — Alexeuca"
+            - name: antonovca
+              label: "Sîngerei — Antonovca"
+            - name: balasesti
+              label: "Sîngerei — Bălășești"
+            - name: bilicenii-noi
+              label: "Sîngerei — Bilicenii Noi"
+            - name: bilicenii-vechi
+              label: "Sîngerei — Bilicenii Vechi"
+            - name: bobletici
+              label: "Sîngerei — Bobletici"
+            - name: bocancea-schit
+              label: "Sîngerei — Bocancea-Schit"
+            - name: brejeni
+              label: "Sîngerei — Brejeni"
+            - name: bursuceni
+              label: "Sîngerei — Bursuceni"
+            - name: chirileni
+              label: "Sîngerei — Chirileni"
+            - name: chiscareni
+              label: "Sîngerei — Chișcăreni"
+            - name: ciuciuieni
+              label: "Sîngerei — Ciuciuieni"
+            - name: cliscauti
+              label: "Sîngerei — Clișcăuți"
+            - name: coada-iazului
+              label: "Sîngerei — Coada Iazului"
+            - name: copaceni
+              label: "Sîngerei — Copăceni"
+            - name: coscodeni
+              label: "Sîngerei — Coșcodeni"
+            - name: cotiujenii-mici
+              label: "Sîngerei — Cotiujenii Mici"
+            - name: cotovca
+              label: "Sîngerei — Cotovca"
+            - name: cozesti
+              label: "Sîngerei — Cozești"
+            - name: cubolta
+              label: "Sîngerei — Cubolta"
+            - name: dobrogea-noua
+              label: "Sîngerei — Dobrogea Nouă"
+            - name: dobrogea-veche
+              label: "Sîngerei — Dobrogea Veche"
+            - name: draganesti
+              label: "Sîngerei — Drăgănești"
+            - name: dumbravita
+              label: "Sîngerei — Dumbrăvița"
+            - name: evghenievca
+              label: "Sîngerei — Evghenievca"
+            - name: flaminzeni
+              label: "Sîngerei — Flămînzeni"
+            - name: gavrilovca
+              label: "Sîngerei — Gavrilovca"
+            - name: grigorauca
+              label: "Sîngerei — Grigorăuca"
+            - name: grigoresti
+              label: "Sîngerei — Grigorești"
+            - name: gura-oituz
+              label: "Sîngerei — Gura-Oituz"
+            - name: heciul-nou
+              label: "Sîngerei — Heciul Nou"
+            - name: heciul-vechi
+              label: "Sîngerei — Heciul Vechi"
+            - name: iezarenii-noi
+              label: "Sîngerei — Iezărenii Noi"
+            - name: iezarenii-vechi
+              label: "Sîngerei — Iezărenii Vechi"
+            - name: izvoare
+              label: "Sîngerei — Izvoare"
+            - name: lipovanca
+              label: "Sîngerei — Lipovanca"
+            - name: marasesti
+              label: "Sîngerei — Mărășești"
+            - name: marinesti
+              label: "Sîngerei — Mărinești"
+            - name: mihailovca
+              label: "Sîngerei — Mihailovca"
+            - name: mindrestii-noi
+              label: "Sîngerei — Mîndreștii Noi"
+            - name: nicolaevca
+              label: "Sîngerei — Nicolaevca"
+            - name: octeabriscoe
+              label: "Sîngerei — Octeabriscoe"
+            - name: palaria
+              label: "Sîngerei — Pălăria"
+            - name: pepeni
+              label: "Sîngerei — Pepeni"
+            - name: pepenii-noi
+              label: "Sîngerei — Pepenii Noi"
+            - name: petropavlovca
+              label: "Sîngerei — Petropavlovca"
+            - name: petrovca
+              label: "Sîngerei — Petrovca"
+            - name: prepelita
+              label: "Sîngerei — Prepelița"
+            - name: radoaia
+              label: "Sîngerei — Rădoaia"
+            - name: razalai
+              label: "Sîngerei — Răzălăi"
+            - name: romanovca
+              label: "Sîngerei — Romanovca"
+            - name: sacarovca
+              label: "Sîngerei — Sacarovca"
+            - name: sestaci
+              label: "Sîngerei — Șestaci"
+            - name: singereii-noi
+              label: "Sîngerei — Sîngereii Noi"
+            - name: slobozia-chiscareni
+              label: "Sîngerei — Slobozia-Chișcăreni"
+            - name: slobozia-magura
+              label: "Sîngerei — Slobozia-Măgura"
+            - name: sloveanca
+              label: "Sîngerei — Sloveanca"
+            - name: tambula
+              label: "Sîngerei — Țambula"
+            - name: taura-noua
+              label: "Sîngerei — Tăura Nouă"
+            - name: taura-veche
+              label: "Sîngerei — Tăura Veche"
+            - name: tiplesti
+              label: "Sîngerei — Țiplești"
+            - name: tipletesti
+              label: "Sîngerei — Țipletești"
+            - name: trifanesti
+              label: "Sîngerei — Trifănești"
+            - name: valea-lui-vlad
+              label: "Sîngerei — Valea lui Vlad"
+            - name: valea-norocului
+              label: "Sîngerei — Valea Norocului"
+            - name: vladimireuca
+              label: "Sîngerei — Vladimireuca"
+            - name: vranesti
+              label: "Sîngerei — Vrănești"
+            - name: soldanesti
+              label: "Șoldănești — Șoldănești"
+            - name: alcedar
+              label: "Șoldănești — Alcedar"
+            - name: chipesca
+              label: "Șoldănești — Chipeșca"
+            - name: climautii-de-jos
+              label: "Șoldănești — Climăuții de Jos"
+            - name: cobilea
+              label: "Șoldănești — Cobîlea"
+            - name: cobilea-statia-cf
+              label: "Șoldănești — Cobîlea (stație c.f.)"
+            - name: cot
+              label: "Șoldănești — Cot"
+            - name: cotiujenii-mari
+              label: "Șoldănești — Cotiujenii Mari"
+            - name: curatura
+              label: "Șoldănești — Curătura"
+            - name: cuselauca
+              label: "Șoldănești — Cușelăuca"
+            - name: cusmirca
+              label: "Șoldănești — Cușmirca"
+            - name: dobrusa
+              label: "Șoldănești — Dobrușa"
+            - name: fuzauca
+              label: "Șoldănești — Fuzăuca"
+            - name: gauzeni
+              label: "Șoldănești — Găuzeni"
+            - name: glinjeni
+              label: "Șoldănești — Glinjeni"
+            - name: lelina
+              label: "Șoldănești — Lelina"
+            - name: mihuleni
+              label: "Șoldănești — Mihuleni"
+            - name: odaia
+              label: "Șoldănești — Odaia"
+            - name: oliscani
+              label: "Șoldănești — Olișcani"
+            - name: parcani
+              label: "Șoldănești — Parcani"
+            - name: pohoarna
+              label: "Șoldănești — Pohoarna"
+            - name: poiana
+              label: "Șoldănești — Poiana"
+            - name: raspopeni
+              label: "Șoldănești — Răspopeni"
+            - name: recesti
+              label: "Șoldănești — Recești"
+            - name: rogojeni
+              label: "Șoldănești — Rogojeni"
+            - name: rogojeni-statia-cf
+              label: "Șoldănești — Rogojeni (stație c.f.)"
+            - name: salcia
+              label: "Șoldănești — Salcia"
+            - name: samascani
+              label: "Șoldănești — Sămășcani"
+            - name: sestaci
+              label: "Șoldănești — Șestaci"
+            - name: sipca
+              label: "Șoldănești — Șipca"
+            - name: socola
+              label: "Șoldănești — Socola"
+            - name: vadul-rascov
+              label: "Șoldănești — Vadul-Rașcov"
+            - name: zahorna
+              label: "Șoldănești — Zahorna"
+            - name: soroca
+              label: "Soroca — Soroca"
+            - name: alexandru-cel-bun
+              label: "Soroca — Alexandru cel Bun"
+            - name: badiceni
+              label: "Soroca — Bădiceni"
+            - name: balinti
+              label: "Soroca — Balinți"
+            - name: balintii-noi
+              label: "Soroca — Balinții Noi"
+            - name: baxani
+              label: "Soroca — Băxani"
+            - name: bulboci
+              label: "Soroca — Bulboci"
+            - name: bulbocii-noi
+              label: "Soroca — Bulbocii Noi"
+            - name: cainarii-vechi
+              label: "Soroca — Căinarii Vechi"
+            - name: cerlina
+              label: "Soroca — Cerlina"
+            - name: cosauti
+              label: "Soroca — Cosăuți"
+            - name: cremenciug
+              label: "Soroca — Cremenciug"
+            - name: curesnita
+              label: "Soroca — Cureșnița"
+            - name: curesnita-noua
+              label: "Soroca — Cureșnița Nouă"
+            - name: darcauti
+              label: "Soroca — Dărcăuți"
+            - name: darcautii-noi
+              label: "Soroca — Dărcăuții Noi"
+            - name: decebal
+              label: "Soroca — Decebal"
+            - name: dubna
+              label: "Soroca — Dubna"
+            - name: dumbraveni
+              label: "Soroca — Dumbrăveni"
+            - name: egoreni
+              label: "Soroca — Egoreni"
+            - name: floriceni
+              label: "Soroca — Floriceni"
+            - name: grigorauca
+              label: "Soroca — Grigorăuca"
+            - name: holosnita
+              label: "Soroca — Holoșnița"
+            - name: hristici
+              label: "Soroca — Hristici"
+            - name: iarova
+              label: "Soroca — Iarova"
+            - name: inundeni
+              label: "Soroca — Inundeni"
+            - name: iorjnita
+              label: "Soroca — Iorjnița"
+            - name: livezi
+              label: "Soroca — Livezi"
+            - name: lugovoe
+              label: "Soroca — Lugovoe"
+            - name: malcauti
+              label: "Soroca — Mălcăuți"
+            - name: nimereuca
+              label: "Soroca — Nimereuca"
+            - name: niorcani
+              label: "Soroca — Niorcani"
+            - name: oclanda
+              label: "Soroca — Oclanda"
+            - name: ocolina
+              label: "Soroca — Ocolina"
+            - name: parcani
+              label: "Soroca — Parcani"
+            - name: pirlita
+              label: "Soroca — Pîrlița"
+            - name: racovat
+              label: "Soroca — Racovăț"
+            - name: redi-ceresnovat
+              label: "Soroca — Redi-Cereșnovăț"
+            - name: regina-maria
+              label: "Soroca — Regina Maria"
+            - name: rublenita
+              label: "Soroca — Rublenița"
+            - name: rublenita-noua
+              label: "Soroca — Rublenița Nouă"
+            - name: rudi
+              label: "Soroca — Rudi"
+            - name: ruslanovca
+              label: "Soroca — Ruslanovca"
+            - name: schineni
+              label: "Soroca — Schineni"
+            - name: schinenii-noi
+              label: "Soroca — Schinenii Noi"
+            - name: septelici
+              label: "Soroca — Șeptelici"
+            - name: slobozia-noua
+              label: "Soroca — Slobozia Nouă"
+            - name: slobozia-cremene
+              label: "Soroca — Slobozia-Cremene"
+            - name: slobozia-varancau
+              label: "Soroca — Slobozia-Vărăncău"
+            - name: sobari
+              label: "Soroca — Sobari"
+            - name: solcani
+              label: "Soroca — Șolcani"
+            - name: solonet
+              label: "Soroca — Soloneț"
+            - name: stoicani
+              label: "Soroca — Stoicani"
+            - name: tatarauca-noua
+              label: "Soroca — Tătărăuca Nouă"
+            - name: tatarauca-veche
+              label: "Soroca — Tătărăuca Veche"
+            - name: tepilova
+              label: "Soroca — Țepilova"
+            - name: tolocanesti
+              label: "Soroca — Tolocănești"
+            - name: trifauti
+              label: "Soroca — Trifăuți"
+            - name: vadeni
+              label: "Soroca — Vădeni"
+            - name: valea
+              label: "Soroca — Valea"
+            - name: vantina
+              label: "Soroca — Vanțina"
+            - name: vantina-mica
+              label: "Soroca — Vanțina Mică"
+            - name: varancau
+              label: "Soroca — Vărăncău"
+            - name: vasilcau
+              label: "Soroca — Vasilcău"
+            - name: visoca
+              label: "Soroca — Visoca"
+            - name: voloave
+              label: "Soroca — Voloave"
+            - name: volovita
+              label: "Soroca — Volovița"
+            - name: zastinca
+              label: "Soroca — Zastînca"
+            - name: stefan-voda
+              label: "Ștefan Vodă — Ștefan Vodă"
+            - name: alava
+              label: "Ștefan Vodă — Alava"
+            - name: antonesti
+              label: "Ștefan Vodă — Antonești"
+            - name: brezoaia
+              label: "Ștefan Vodă — Brezoaia"
+            - name: caplani
+              label: "Ștefan Vodă — Căplani"
+            - name: carahasani
+              label: "Ștefan Vodă — Carahasani"
+            - name: cioburciu
+              label: "Ștefan Vodă — Cioburciu"
+            - name: copceac
+              label: "Ștefan Vodă — Copceac"
+            - name: crocmaz
+              label: "Ștefan Vodă — Crocmaz"
+            - name: ermoclia
+              label: "Ștefan Vodă — Ermoclia"
+            - name: festelita
+              label: "Ștefan Vodă — Feștelița"
+            - name: lazo
+              label: "Ștefan Vodă — Lazo"
+            - name: marianca-de-jos
+              label: "Ștefan Vodă — Marianca de Jos"
+            - name: olanesti
+              label: "Ștefan Vodă — Olănești"
+            - name: palanca
+              label: "Ștefan Vodă — Palanca"
+            - name: popeasca
+              label: "Ștefan Vodă — Popeasca"
+            - name: purcari
+              label: "Ștefan Vodă — Purcari"
+            - name: rascaieti
+              label: "Ștefan Vodă — Răscăieți"
+            - name: rascaietii-noi
+              label: "Ștefan Vodă — Răscăieții Noi"
+            - name: semionovca
+              label: "Ștefan Vodă — Semionovca"
+            - name: slobozia
+              label: "Ștefan Vodă — Slobozia"
+            - name: stefanesti
+              label: "Ștefan Vodă — Ștefănești"
+            - name: talmaza
+              label: "Ștefan Vodă — Talmaza"
+            - name: tudora
+              label: "Ștefan Vodă — Tudora"
+            - name: viisoara
+              label: "Ștefan Vodă — Viișoara"
+            - name: volintiri
+              label: "Ștefan Vodă — Volintiri"
+            - name: bucovat
+              label: "Strășeni — Bucovăț"
+            - name: straseni
+              label: "Strășeni — Strășeni"
+            - name: capriana
+              label: "Strășeni — Căpriana"
+            - name: chirianca
+              label: "Strășeni — Chirianca"
+            - name: ciobanca
+              label: "Strășeni — Ciobanca"
+            - name: codreanca
+              label: "Strășeni — Codreanca"
+            - name: cojusna
+              label: "Strășeni — Cojușna"
+            - name: dolna
+              label: "Strășeni — Dolna"
+            - name: draguseni
+              label: "Strășeni — Drăgușeni"
+            - name: fagureni
+              label: "Strășeni — Făgureni"
+            - name: galesti
+              label: "Strășeni — Gălești"
+            - name: galestii-noi
+              label: "Strășeni — Găleștii Noi"
+            - name: ghelauza
+              label: "Strășeni — Ghelăuza"
+            - name: gornoe
+              label: "Strășeni — Gornoe"
+            - name: greblesti
+              label: "Strășeni — Greblești"
+            - name: huzun
+              label: "Strășeni — Huzun"
+            - name: lozova
+              label: "Strășeni — Lozova"
+            - name: lupa-recea
+              label: "Strășeni — Lupa-Recea"
+            - name: martinesti
+              label: "Strășeni — Mărtinești"
+            - name: micauti
+              label: "Strășeni — Micăuți"
+            - name: micleuseni
+              label: "Strășeni — Micleușeni"
+            - name: negresti
+              label: "Strășeni — Negrești"
+            - name: onesti
+              label: "Strășeni — Onești"
+            - name: panasesti
+              label: "Strășeni — Pănășești"
+            - name: radeni
+              label: "Strășeni — Rădeni"
+            - name: rassvet
+              label: "Strășeni — Rassvet"
+            - name: recea
+              label: "Strășeni — Recea"
+            - name: romanesti
+              label: "Strășeni — Romănești"
+            - name: roscani
+              label: "Strășeni — Roșcani"
+            - name: saca
+              label: "Strășeni — Saca"
+            - name: scoreni
+              label: "Strășeni — Scoreni"
+            - name: sireti
+              label: "Strășeni — Sireți"
+            - name: stejareni
+              label: "Strășeni — Stejăreni"
+            - name: tataresti
+              label: "Strășeni — Tătărești"
+            - name: tiganesti
+              label: "Strășeni — Țigănești"
+            - name: voinova
+              label: "Strășeni — Voinova"
+            - name: vorniceni
+              label: "Strășeni — Vorniceni"
+            - name: zamcioji
+              label: "Strășeni — Zamcioji"
+            - name: zubresti
+              label: "Strășeni — Zubrești"
+            - name: taraclia
+              label: "Taraclia — Taraclia"
+            - name: tvardita
+              label: "Taraclia — Tvardița"
+            - name: albota-de-jos
+              label: "Taraclia — Albota de Jos"
+            - name: albota-de-sus
+              label: "Taraclia — Albota de Sus"
+            - name: aluatu
+              label: "Taraclia — Aluatu"
+            - name: balabanu
+              label: "Taraclia — Balabanu"
+            - name: budai
+              label: "Taraclia — Budăi"
+            - name: cairaclia
+              label: "Taraclia — Cairaclia"
+            - name: cealic
+              label: "Taraclia — Cealîc"
+            - name: chirilovca
+              label: "Taraclia — Chirilovca"
+            - name: ciumai
+              label: "Taraclia — Ciumai"
+            - name: corten
+              label: "Taraclia — Corten"
+            - name: cortenul-nou
+              label: "Taraclia — Cortenul Nou"
+            - name: dermengi
+              label: "Taraclia — Dermengi"
+            - name: hagichioi
+              label: "Taraclia — Hagichioi"
+            - name: hirtop
+              label: "Taraclia — Hîrtop"
+            - name: mirnoe
+              label: "Taraclia — Mirnoe"
+            - name: musaitu
+              label: "Taraclia — Musaitu"
+            - name: novosiolovca
+              label: "Taraclia — Novosiolovca"
+            - name: orehovca
+              label: "Taraclia — Orehovca"
+            - name: rosita
+              label: "Taraclia — Roșița"
+            - name: salcia
+              label: "Taraclia — Salcia"
+            - name: samurza
+              label: "Taraclia — Samurza"
+            - name: sofievca
+              label: "Taraclia — Sofievca"
+            - name: valea-perjei
+              label: "Taraclia — Valea Perjei"
+            - name: vinogradovca
+              label: "Taraclia — Vinogradovca"
+            - name: telenesti
+              label: "Telenești — Telenești"
+            - name: banesti
+              label: "Telenești — Bănești"
+            - name: banestii-noi
+              label: "Telenești — Băneștii Noi"
+            - name: bogzesti
+              label: "Telenești — Bogzești"
+            - name: bondareuca
+              label: "Telenești — Bondareuca"
+            - name: brinzenii-noi
+              label: "Telenești — Brînzenii Noi"
+            - name: brinzenii-vechi
+              label: "Telenești — Brînzenii Vechi"
+            - name: budai
+              label: "Telenești — Budăi"
+            - name: cazanesti
+              label: "Telenești — Căzănești"
+            - name: chersac
+              label: "Telenești — Chersac"
+            - name: chistelnita
+              label: "Telenești — Chiștelnița"
+            - name: chitcanii-noi
+              label: "Telenești — Chițcanii Noi"
+            - name: chitcanii-vechi
+              label: "Telenești — Chițcanii Vechi"
+            - name: ciofu
+              label: "Telenești — Ciofu"
+            - name: cisla
+              label: "Telenești — Cîșla"
+            - name: ciulucani
+              label: "Telenești — Ciulucani"
+            - name: codru
+              label: "Telenești — Codru"
+            - name: codrul-nou
+              label: "Telenești — Codrul Nou"
+            - name: coropceni
+              label: "Telenești — Coropceni"
+            - name: crasnaseni
+              label: "Telenești — Crăsnășeni"
+            - name: cucioaia
+              label: "Telenești — Cucioaia"
+            - name: cucioaia-noua
+              label: "Telenești — Cucioaia Nouă"
+            - name: dobrusa
+              label: "Telenești — Dobrușa"
+            - name: flutura
+              label: "Telenești — Flutura"
+            - name: ghermanesti
+              label: "Telenești — Ghermănești"
+            - name: ghiliceni
+              label: "Telenești — Ghiliceni"
+            - name: hiriseni
+              label: "Telenești — Hirișeni"
+            - name: hirtop
+              label: "Telenești — Hîrtop"
+            - name: inesti
+              label: "Telenești — Inești"
+            - name: leuseni
+              label: "Telenești — Leușeni"
+            - name: mihalasa
+              label: "Telenești — Mihălașa"
+            - name: mihalasa-noua
+              label: "Telenești — Mihălașa Nouă"
+            - name: mindra
+              label: "Telenești — Mîndra"
+            - name: mindresti
+              label: "Telenești — Mîndrești"
+            - name: negureni
+              label: "Telenești — Negureni"
+            - name: nucareni
+              label: "Telenești — Nucăreni"
+            - name: ordasei
+              label: "Telenești — Ordășei"
+            - name: pistruieni
+              label: "Telenești — Pistruieni"
+            - name: pistruienii-noi
+              label: "Telenești — Pistruienii Noi"
+            - name: ratus
+              label: "Telenești — Ratuș"
+            - name: saratenii-noi
+              label: "Telenești — Sărătenii Noi"
+            - name: saratenii-vechi
+              label: "Telenești — Sărătenii Vechi"
+            - name: scorteni
+              label: "Telenești — Scorțeni"
+            - name: suhuluceni
+              label: "Telenești — Suhuluceni"
+            - name: tintareni
+              label: "Telenești — Țînțăreni"
+            - name: tirsitei
+              label: "Telenești — Tîrșiței"
+            - name: vadul-leca
+              label: "Telenești — Vadul-Leca"
+            - name: vadul-leca-nou
+              label: "Telenești — Vadul-Leca Nou"
+            - name: vasieni
+              label: "Telenești — Văsieni"
+            - name: verejeni
+              label: "Telenești — Verejeni"
+            - name: zahareuca
+              label: "Telenești — Zahareuca"
+            - name: zaicani
+              label: "Telenești — Zăicani"
+            - name: zaicanii-noi
+              label: "Telenești — Zăicanii Noi"
+            - name: zgardesti
+              label: "Telenești — Zgărdești"
+            - name: camenca
+              label: "Transnistria — Camenca"
+            - name: crasnoe
+              label: "Transnistria — Crasnoe"
+            - name: dnestrovsc
+              label: "Transnistria — Dnestrovsc"
+            - name: dubasari
+              label: "Transnistria — Dubăsari"
+            - name: grigoriopol
+              label: "Transnistria — Grigoriopol"
+            - name: maiac
+              label: "Transnistria — Maiac"
+            - name: ribnita
+              label: "Transnistria — Rîbnița"
+            - name: slobozia
+              label: "Transnistria — Slobozia"
+            - name: tiraspol
+              label: "Transnistria — Tiraspol"
+            - name: tiraspolul-nou
+              label: "Transnistria — Tiraspolul Nou"
+            - name: afanasievca
+              label: "Transnistria — Afanasievca"
+            - name: alexandrovca
+              label: "Transnistria — Alexandrovca"
+            - name: alexandrovca-noua
+              label: "Transnistria — Alexandrovca Nouă"
+            - name: andreevca
+              label: "Transnistria — Andreevca"
+            - name: andriasevca-noua
+              label: "Transnistria — Andriașevca Nouă"
+            - name: andriasevca-veche
+              label: "Transnistria — Andriașevca Veche"
+            - name: basarabca
+              label: "Transnistria — Basarabca"
+            - name: beloci
+              label: "Transnistria — Beloci"
+            - name: bicioc
+              label: "Transnistria — Bîcioc"
+            - name: blijnii-hutor
+              label: "Transnistria — Blijnii Hutor"
+            - name: bodeni
+              label: "Transnistria — Bodeni"
+            - name: bosca
+              label: "Transnistria — Bosca"
+            - name: brosteni
+              label: "Transnistria — Broșteni"
+            - name: bruslachi
+              label: "Transnistria — Bruslachi"
+            - name: buschi
+              label: "Transnistria — Buschi"
+            - name: butor
+              label: "Transnistria — Butor"
+            - name: butuceni
+              label: "Transnistria — Butuceni"
+            - name: calinovca
+              label: "Transnistria — Calinovca"
+            - name: caragas
+              label: "Transnistria — Caragaș"
+            - name: carmanova
+              label: "Transnistria — Carmanova"
+            - name: caterinovca
+              label: "Transnistria — Caterinovca"
+            - name: cernita
+              label: "Transnistria — Cernița"
+            - name: chirov
+              label: "Transnistria — Chirov"
+            - name: cioburciu
+              label: "Transnistria — Cioburciu"
+            - name: cobasna
+              label: "Transnistria — Cobasna"
+            - name: cobasna-statia-cf
+              label: "Transnistria — Cobasna (stație c.f.)"
+            - name: coicova
+              label: "Transnistria — Coicova"
+            - name: colosova
+              label: "Transnistria — Colosova"
+            - name: comisarovca-noua
+              label: "Transnistria — Comisarovca Nouă"
+            - name: constantinovca-vladimirovca
+              label: "Transnistria — Constantinovca"
+            - name: constantinovca-valea-adinca
+              label: "Transnistria — Constantinovca"
+            - name: corotna
+              label: "Transnistria — Corotna"
+            - name: cosnita-noua
+              label: "Transnistria — Coșnița Nouă"
+            - name: cotovca
+              label: "Transnistria — Cotovca"
+            - name: crasnaia-besarabia
+              label: "Transnistria — Crasnaia Besarabia"
+            - name: crasnaia-gorca
+              label: "Transnistria — Crasnaia Gorca"
+            - name: crasnencoe
+              label: "Transnistria — Crasnencoe"
+            - name: crasnii-octeabri
+              label: "Transnistria — Crasnîi Octeabri"
+            - name: crasnii-vinogradari
+              label: "Transnistria — Crasnîi Vinogradari"
+            - name: crasnoe-grigoriopol
+              label: "Transnistria — Crasnoe"
+            - name: crasnogorca
+              label: "Transnistria — Crasnogorca"
+            - name: cuzmin
+              label: "Transnistria — Cuzmin"
+            - name: delacau
+              label: "Transnistria — Delacău"
+            - name: dimitrova
+              label: "Transnistria — Dimitrova"
+            - name: doibani-i
+              label: "Transnistria — Doibani I"
+            - name: doibani-ii
+              label: "Transnistria — Doibani II"
+            - name: dubau
+              label: "Transnistria — Dubău"
+            - name: dzerjinscoe
+              label: "Transnistria — Dzerjinscoe"
+            - name: fedoseevca
+              label: "Transnistria — Fedoseevca"
+            - name: frunza
+              label: "Transnistria — Frunză"
+            - name: frunzauca
+              label: "Transnistria — Frunzăuca"
+            - name: ghersunovca
+              label: "Transnistria — Gherșunovca"
+            - name: ghidirim
+              label: "Transnistria — Ghidirim"
+            - name: goian
+              label: "Transnistria — Goian"
+            - name: goianul-nou
+              label: "Transnistria — Goianul Nou"
+            - name: haraba
+              label: "Transnistria — Haraba"
+            - name: harmatca
+              label: "Transnistria — Harmațca"
+            - name: hirjau
+              label: "Transnistria — Hîrjău"
+            - name: hirtop
+              label: "Transnistria — Hîrtop"
+            - name: hlinaia-slobozia
+              label: "Transnistria — Hlinaia"
+            - name: hlinaia-grigoriopol
+              label: "Transnistria — Hlinaia"
+            - name: hristovaia
+              label: "Transnistria — Hristovaia"
+            - name: hrusca
+              label: "Transnistria — Hrușca"
+            - name: iagorlic
+              label: "Transnistria — Iagorlîc"
+            - name: iantarnoe
+              label: "Transnistria — Iantarnoe"
+            - name: india
+              label: "Transnistria — India"
+            - name: ivanovca
+              label: "Transnistria — Ivanovca"
+            - name: jura
+              label: "Transnistria — Jura"
+            - name: lenin
+              label: "Transnistria — Lenin"
+            - name: lisaia-gora
+              label: "Transnistria — Lîsaia Gora"
+            - name: lunga
+              label: "Transnistria — Lunga"
+            - name: lunga-noua
+              label: "Transnistria — Lunga Nouă"
+            - name: malaiesti
+              label: "Transnistria — Mălăiești"
+            - name: marian
+              label: "Transnistria — Marian"
+            - name: mihailovca
+              label: "Transnistria — Mihailovca"
+            - name: mihailovca-noua
+              label: "Transnistria — Mihailovca Nouă"
+            - name: mocearovca
+              label: "Transnistria — Mocearovca"
+            - name: mocra
+              label: "Transnistria — Mocra"
+            - name: mocreachi
+              label: "Transnistria — Mocreachi"
+            - name: molochisul-mare
+              label: "Transnistria — Molochișul Mare"
+            - name: molochisul-mic
+              label: "Transnistria — Molochișul Mic"
+            - name: nezavertailovca
+              label: "Transnistria — Nezavertailovca"
+            - name: nicolscoe
+              label: "Transnistria — Nicolscoe"
+            - name: novaia-jizni
+              label: "Transnistria — Novaia Jizni"
+            - name: novocotovsc
+              label: "Transnistria — Novocotovsc"
+            - name: novosavitcaia-statia-cf
+              label: "Transnistria — Novosavițcaia (stație c.f.)"
+            - name: novovladimirovca
+              label: "Transnistria — Novovladimirovca"
+            - name: ocnita
+              label: "Transnistria — Ocnița"
+            - name: ofatinti
+              label: "Transnistria — Ofatinți"
+            - name: parcani
+              label: "Transnistria — Parcani"
+            - name: pervomaisc
+              label: "Transnistria — Pervomaisc"
+            - name: pervomaisc-lenin
+              label: "Transnistria — Pervomaisc"
+            - name: picalova
+              label: "Transnistria — Pîcalova"
+            - name: plopi
+              label: "Transnistria — Plopi"
+            - name: pobeda-lenin
+              label: "Transnistria — Pobeda"
+            - name: pobeda-colosova
+              label: "Transnistria — Pobeda"
+            - name: podoima
+              label: "Transnistria — Podoima"
+            - name: podoimita
+              label: "Transnistria — Podoimița"
+            - name: pohrebea-noua
+              label: "Transnistria — Pohrebea Nouă"
+            - name: popencu
+              label: "Transnistria — Popencu"
+            - name: prioziornoe
+              label: "Transnistria — Prioziornoe"
+            - name: rascov
+              label: "Transnistria — Rașcov"
+            - name: rotari
+              label: "Transnistria — Rotari"
+            - name: sadchi
+              label: "Transnistria — Sadchi"
+            - name: saratei
+              label: "Transnistria — Sărăței"
+            - name: sevcenco
+              label: "Transnistria — Șevcenco"
+            - name: severinovca
+              label: "Transnistria — Severinovca"
+            - name: sipca
+              label: "Transnistria — Șipca"
+            - name: slobozia-rascov
+              label: "Transnistria — Slobozia-Rașcov"
+            - name: smalena
+              label: "Transnistria — Șmalena"
+            - name: socolovca
+              label: "Transnistria — Socolovca"
+            - name: solnecinoe
+              label: "Transnistria — Solnecinoe"
+            - name: sovietscoe
+              label: "Transnistria — Sovietscoe"
+            - name: speia
+              label: "Transnistria — Speia"
+            - name: stanislavca
+              label: "Transnistria — Stanislavca"
+            - name: stroiesti
+              label: "Transnistria — Stroiești"
+            - name: sucleia
+              label: "Transnistria — Sucleia"
+            - name: suhaia-ribnita
+              label: "Transnistria — Suhaia Rîbnița"
+            - name: taslic
+              label: "Transnistria — Tașlîc"
+            - name: teiu
+              label: "Transnistria — Teiu"
+            - name: tibuleuca
+              label: "Transnistria — Țîbuleuca"
+            - name: tirnauca
+              label: "Transnistria — Tîrnauca"
+            - name: tocmagiu
+              label: "Transnistria — Tocmagiu"
+            - name: uiutnoe
+              label: "Transnistria — Uiutnoe"
+            - name: ulmu
+              label: "Transnistria — Ulmu"
+            - name: ulmul-mic
+              label: "Transnistria — Ulmul Mic"
+            - name: vadul-turcului
+              label: "Transnistria — Vadul Turcului"
+            - name: valea-adinca
+              label: "Transnistria — Valea Adîncă"
+            - name: varancau
+              label: "Transnistria — Vărăncău"
+            - name: vasilievca
+              label: "Transnistria — Vasilievca"
+            - name: vesioloe
+              label: "Transnistria — Vesioloe"
+            - name: vinogradnoe
+              label: "Transnistria — Vinogradnoe"
+            - name: vladimirovca
+              label: "Transnistria — Vladimirovca"
+            - name: vladimirovca-popencu
+              label: "Transnistria — Vladimirovca"
+            - name: voitovca
+              label: "Transnistria — Voitovca"
+            - name: zaporojet
+              label: "Transnistria — Zaporojeț"
+            - name: zazuleni
+              label: "Transnistria — Zăzuleni"
+            - name: cornesti
+              label: "Ungheni — Cornești"
+            - name: ungheni
+              label: "Ungheni — Ungheni"
+            - name: agronomovca
+              label: "Ungheni — Agronomovca"
+            - name: alexeevca
+              label: "Ungheni — Alexeevca"
+            - name: blindesti
+              label: "Ungheni — Blindești"
+            - name: boghenii-noi
+              label: "Ungheni — Boghenii Noi"
+            - name: boghenii-vechi
+              label: "Ungheni — Boghenii Vechi"
+            - name: buciumeni
+              label: "Ungheni — Buciumeni"
+            - name: buciumeni-statia-cf
+              label: "Ungheni — Buciumeni (stație c.f.)"
+            - name: bulhac
+              label: "Ungheni — Bulhac"
+            - name: bumbata
+              label: "Ungheni — Bumbăta"
+            - name: busila
+              label: "Ungheni — Bușila"
+            - name: buzduganii-de-jos
+              label: "Ungheni — Buzduganii de Jos"
+            - name: buzduganii-de-sus
+              label: "Ungheni — Buzduganii de Sus"
+            - name: cetireni
+              label: "Ungheni — Cetireni"
+            - name: chirileni
+              label: "Ungheni — Chirileni"
+            - name: cioropcani
+              label: "Ungheni — Cioropcani"
+            - name: condratesti
+              label: "Ungheni — Condrătești"
+            - name: cornesti-sat
+              label: "Ungheni — Cornești"
+            - name: cornova
+              label: "Ungheni — Cornova"
+            - name: coseni
+              label: "Ungheni — Coșeni"
+            - name: costuleni
+              label: "Ungheni — Costuleni"
+            - name: curtoaia
+              label: "Ungheni — Curtoaia"
+            - name: drujba
+              label: "Ungheni — Drujba"
+            - name: elizavetovca
+              label: "Ungheni — Elizavetovca"
+            - name: floreni
+              label: "Ungheni — Floreni"
+            - name: floresti
+              label: "Ungheni — Florești"
+            - name: floritoaia-noua
+              label: "Ungheni — Florițoaia Nouă"
+            - name: floritoaia-veche
+              label: "Ungheni — Florițoaia Veche"
+            - name: frasinesti
+              label: "Ungheni — Frăsinești"
+            - name: gherman
+              label: "Ungheni — Gherman"
+            - name: graseni
+              label: "Ungheni — Grăseni"
+            - name: grozasca
+              label: "Ungheni — Grozasca"
+            - name: hircesti
+              label: "Ungheni — Hîrcești"
+            - name: hristoforovca
+              label: "Ungheni — Hristoforovca"
+            - name: izvoreni
+              label: "Ungheni — Izvoreni"
+            - name: leordoaia
+              label: "Ungheni — Leordoaia"
+            - name: lidovca
+              label: "Ungheni — Lidovca"
+            - name: macaresti
+              label: "Ungheni — Măcărești"
+            - name: magurele
+              label: "Ungheni — Măgurele"
+            - name: manoilesti
+              label: "Ungheni — Mănoilești"
+            - name: medeleni
+              label: "Ungheni — Medeleni"
+            - name: minzatesti
+              label: "Ungheni — Mînzătești"
+            - name: mircesti
+              label: "Ungheni — Mircești"
+            - name: morenii-noi
+              label: "Ungheni — Morenii Noi"
+            - name: morenii-vechi
+              label: "Ungheni — Morenii Vechi"
+            - name: napadeni
+              label: "Ungheni — Năpădeni"
+            - name: negurenii-noi
+              label: "Ungheni — Negurenii Noi"
+            - name: negurenii-vechi
+              label: "Ungheni — Negurenii Vechi"
+            - name: novaia-nicolaevca
+              label: "Ungheni — Novaia Nicolaevca"
+            - name: petresti
+              label: "Ungheni — Petrești"
+            - name: petresti-statia-cf
+              label: "Ungheni — Petrești (stație c.f.)"
+            - name: pirlita
+              label: "Ungheni — Pîrlița"
+            - name: poiana
+              label: "Ungheni — Poiana"
+            - name: pojarna
+              label: "Ungheni — Pojarna"
+            - name: radenii-vechi
+              label: "Ungheni — Rădenii Vechi"
+            - name: rezina
+              label: "Ungheni — Rezina"
+            - name: romanovca
+              label: "Ungheni — Romanovca"
+            - name: saghieni
+              label: "Ungheni — Săghieni"
+            - name: sculeni
+              label: "Ungheni — Sculeni"
+            - name: semeni
+              label: "Ungheni — Semeni"
+            - name: sicovat
+              label: "Ungheni — Șicovăț"
+            - name: sinesti
+              label: "Ungheni — Sinești"
+            - name: stolniceni
+              label: "Ungheni — Stolniceni"
+            - name: tescureni
+              label: "Ungheni — Teșcureni"
+            - name: tighira
+              label: "Ungheni — Țîghira"
+            - name: todiresti
+              label: "Ungheni — Todirești"
+            - name: untesti
+              label: "Ungheni — Unțești"
+            - name: valea-mare
+              label: "Ungheni — Valea Mare"
+            - name: veverita
+              label: "Ungheni — Veverița"
+            - name: vulpesti
+              label: "Ungheni — Vulpești"
+            - name: zagarancea
+              label: "Ungheni — Zagarancea"
+            - name: zazulenii-noi
+              label: "Ungheni — Zăzulenii Noi"
+            - name: zazulenii-vechi
+              label: "Ungheni — Zăzulenii Vechi"
+            # SATE-GENERAT-END
+
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      create: "content(create): {path} via Pages CMS"
+      update: "content(update): {path} via Pages CMS"
+      delete: "content(delete): {path} via Pages CMS"
