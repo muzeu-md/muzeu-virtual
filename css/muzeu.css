@@ -79,10 +79,105 @@ body.usile-deschise .poarta-usi span:last-child{transform:translateX(102%);filte
   font-family:var(--font-corp);font-style:italic;font-size:16px;padding:8px 20px;opacity:0;pointer-events:none;
   transition:opacity .3s,transform .3s;text-align:center}
 .toast-poarta.arata{opacity:1;transform:translate(-50%,0)}
-/* raioane pergament ars: hașură aurie la hover (fără mișcare de geometrie) */
-.raion path{fill:#f1e3c2;stroke:#4a3418;stroke-width:1;stroke-linejoin:round;cursor:pointer;transition:stroke-width .25s}
-.raion:hover path,.raion:focus-visible path{fill:url(#hasura);stroke-width:2}
+/* raioane pergament ars: border clar, hașură aurie la hover (fără mișcare de geometrie) */
+/* grosimi în pixeli reali (non-scaling-stroke): border de 1.4px atât pe telefon cât și pe desktop */
+.raion path{fill:#f1e3c2;stroke:none;cursor:pointer}
+/* hover doar cu mouse: pe touch borderul nu mai rămâne „lipit" după tap */
+@media (hover:hover){
+  .raion:hover path{fill:url(#hasura)}
+}
+/* navigare cu tastatura: aceeași hașură, pe orice dispozitiv */
+.raion:focus-visible path{fill:url(#hasura)}
 .raion:focus-visible{outline:none}
+/* frontierele: fiecare muchie desenată o singură dată, deasupra umpluturilor */
+/* grosimi în pixeli reali (non-scaling-stroke): 0.9px normal, 3px la hover */
+#harta-frontiere{pointer-events:none}
+#harta-frontiere path{fill:none;stroke:#4a3418;stroke-width:0.9px;vector-effect:non-scaling-stroke;
+  stroke-linejoin:round;stroke-linecap:round;transition:stroke-width .25s ease}
+/* o singură regulă pentru toate cele 37 de regiuni: îngroașă exact frontierele atinse */
+/* hover doar cu mouse: pe touch borderul nu rămâne „lipit" după tap */
+@media (hover:hover){
+.raion[data-id="anenii-noi"]:hover ~ #harta-frontiere path[data-owners~="anenii-noi"],
+.raion[data-id="balti"]:hover ~ #harta-frontiere path[data-owners~="balti"],
+.raion[data-id="basarabeasca"]:hover ~ #harta-frontiere path[data-owners~="basarabeasca"],
+.raion[data-id="bender"]:hover ~ #harta-frontiere path[data-owners~="bender"],
+.raion[data-id="briceni"]:hover ~ #harta-frontiere path[data-owners~="briceni"],
+.raion[data-id="cahul"]:hover ~ #harta-frontiere path[data-owners~="cahul"],
+.raion[data-id="calarasi"]:hover ~ #harta-frontiere path[data-owners~="calarasi"],
+.raion[data-id="cantemir"]:hover ~ #harta-frontiere path[data-owners~="cantemir"],
+.raion[data-id="causeni"]:hover ~ #harta-frontiere path[data-owners~="causeni"],
+.raion[data-id="chisinau"]:hover ~ #harta-frontiere path[data-owners~="chisinau"],
+.raion[data-id="cimislia"]:hover ~ #harta-frontiere path[data-owners~="cimislia"],
+.raion[data-id="criuleni"]:hover ~ #harta-frontiere path[data-owners~="criuleni"],
+.raion[data-id="donduseni"]:hover ~ #harta-frontiere path[data-owners~="donduseni"],
+.raion[data-id="drochia"]:hover ~ #harta-frontiere path[data-owners~="drochia"],
+.raion[data-id="dubasari"]:hover ~ #harta-frontiere path[data-owners~="dubasari"],
+.raion[data-id="edinet"]:hover ~ #harta-frontiere path[data-owners~="edinet"],
+.raion[data-id="falesti"]:hover ~ #harta-frontiere path[data-owners~="falesti"],
+.raion[data-id="floresti"]:hover ~ #harta-frontiere path[data-owners~="floresti"],
+.raion[data-id="gagauzia"]:hover ~ #harta-frontiere path[data-owners~="gagauzia"],
+.raion[data-id="glodeni"]:hover ~ #harta-frontiere path[data-owners~="glodeni"],
+.raion[data-id="hincesti"]:hover ~ #harta-frontiere path[data-owners~="hincesti"],
+.raion[data-id="ialoveni"]:hover ~ #harta-frontiere path[data-owners~="ialoveni"],
+.raion[data-id="leova"]:hover ~ #harta-frontiere path[data-owners~="leova"],
+.raion[data-id="nisporeni"]:hover ~ #harta-frontiere path[data-owners~="nisporeni"],
+.raion[data-id="ocnita"]:hover ~ #harta-frontiere path[data-owners~="ocnita"],
+.raion[data-id="orhei"]:hover ~ #harta-frontiere path[data-owners~="orhei"],
+.raion[data-id="rezina"]:hover ~ #harta-frontiere path[data-owners~="rezina"],
+.raion[data-id="riscani"]:hover ~ #harta-frontiere path[data-owners~="riscani"],
+.raion[data-id="singerei"]:hover ~ #harta-frontiere path[data-owners~="singerei"],
+.raion[data-id="soldanesti"]:hover ~ #harta-frontiere path[data-owners~="soldanesti"],
+.raion[data-id="soroca"]:hover ~ #harta-frontiere path[data-owners~="soroca"],
+.raion[data-id="stefan-voda"]:hover ~ #harta-frontiere path[data-owners~="stefan-voda"],
+.raion[data-id="straseni"]:hover ~ #harta-frontiere path[data-owners~="straseni"],
+.raion[data-id="taraclia"]:hover ~ #harta-frontiere path[data-owners~="taraclia"],
+.raion[data-id="telenesti"]:hover ~ #harta-frontiere path[data-owners~="telenesti"],
+.raion[data-id="transnistria"]:hover ~ #harta-frontiere path[data-owners~="transnistria"],
+.raion[data-id="ungheni"]:hover ~ #harta-frontiere path[data-owners~="ungheni"]
+  {stroke-width:3px}
+}
+/* navigare cu tastatura: aceeași îngroșare, pe orice dispozitiv */
+.raion[data-id="anenii-noi"]:focus-visible ~ #harta-frontiere path[data-owners~="anenii-noi"],
+.raion[data-id="balti"]:focus-visible ~ #harta-frontiere path[data-owners~="balti"],
+.raion[data-id="basarabeasca"]:focus-visible ~ #harta-frontiere path[data-owners~="basarabeasca"],
+.raion[data-id="bender"]:focus-visible ~ #harta-frontiere path[data-owners~="bender"],
+.raion[data-id="briceni"]:focus-visible ~ #harta-frontiere path[data-owners~="briceni"],
+.raion[data-id="cahul"]:focus-visible ~ #harta-frontiere path[data-owners~="cahul"],
+.raion[data-id="calarasi"]:focus-visible ~ #harta-frontiere path[data-owners~="calarasi"],
+.raion[data-id="cantemir"]:focus-visible ~ #harta-frontiere path[data-owners~="cantemir"],
+.raion[data-id="causeni"]:focus-visible ~ #harta-frontiere path[data-owners~="causeni"],
+.raion[data-id="chisinau"]:focus-visible ~ #harta-frontiere path[data-owners~="chisinau"],
+.raion[data-id="cimislia"]:focus-visible ~ #harta-frontiere path[data-owners~="cimislia"],
+.raion[data-id="criuleni"]:focus-visible ~ #harta-frontiere path[data-owners~="criuleni"],
+.raion[data-id="donduseni"]:focus-visible ~ #harta-frontiere path[data-owners~="donduseni"],
+.raion[data-id="drochia"]:focus-visible ~ #harta-frontiere path[data-owners~="drochia"],
+.raion[data-id="dubasari"]:focus-visible ~ #harta-frontiere path[data-owners~="dubasari"],
+.raion[data-id="edinet"]:focus-visible ~ #harta-frontiere path[data-owners~="edinet"],
+.raion[data-id="falesti"]:focus-visible ~ #harta-frontiere path[data-owners~="falesti"],
+.raion[data-id="floresti"]:focus-visible ~ #harta-frontiere path[data-owners~="floresti"],
+.raion[data-id="gagauzia"]:focus-visible ~ #harta-frontiere path[data-owners~="gagauzia"],
+.raion[data-id="glodeni"]:focus-visible ~ #harta-frontiere path[data-owners~="glodeni"],
+.raion[data-id="hincesti"]:focus-visible ~ #harta-frontiere path[data-owners~="hincesti"],
+.raion[data-id="ialoveni"]:focus-visible ~ #harta-frontiere path[data-owners~="ialoveni"],
+.raion[data-id="leova"]:focus-visible ~ #harta-frontiere path[data-owners~="leova"],
+.raion[data-id="nisporeni"]:focus-visible ~ #harta-frontiere path[data-owners~="nisporeni"],
+.raion[data-id="ocnita"]:focus-visible ~ #harta-frontiere path[data-owners~="ocnita"],
+.raion[data-id="orhei"]:focus-visible ~ #harta-frontiere path[data-owners~="orhei"],
+.raion[data-id="rezina"]:focus-visible ~ #harta-frontiere path[data-owners~="rezina"],
+.raion[data-id="riscani"]:focus-visible ~ #harta-frontiere path[data-owners~="riscani"],
+.raion[data-id="singerei"]:focus-visible ~ #harta-frontiere path[data-owners~="singerei"],
+.raion[data-id="soldanesti"]:focus-visible ~ #harta-frontiere path[data-owners~="soldanesti"],
+.raion[data-id="soroca"]:focus-visible ~ #harta-frontiere path[data-owners~="soroca"],
+.raion[data-id="stefan-voda"]:focus-visible ~ #harta-frontiere path[data-owners~="stefan-voda"],
+.raion[data-id="straseni"]:focus-visible ~ #harta-frontiere path[data-owners~="straseni"],
+.raion[data-id="taraclia"]:focus-visible ~ #harta-frontiere path[data-owners~="taraclia"],
+.raion[data-id="telenesti"]:focus-visible ~ #harta-frontiere path[data-owners~="telenesti"],
+.raion[data-id="transnistria"]:focus-visible ~ #harta-frontiere path[data-owners~="transnistria"],
+.raion[data-id="ungheni"]:focus-visible ~ #harta-frontiere path[data-owners~="ungheni"]
+{stroke-width:3px}
+/* conturul gros al țării: trasat sub harta, nu interceptează click/Hover */
+#harta-contur{pointer-events:none}
+#harta-contur path{fill:none}
 #harta-svg{background:transparent;cursor:default}
 #harta-svg:focus{outline:none}
 .harta-placuta{position:absolute;z-index:5;pointer-events:none;opacity:0;transform:translate(-50%,-115%) scale(.9);
