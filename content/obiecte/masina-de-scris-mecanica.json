@@ -1,5 +1,6 @@
 {
   "id": "masina-de-scris-mecanica",
+  "dosarId": "DOS-00025",
   "titlu": "Mașină de scris mecanică",
   "sala": "sala-documentelor",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/masina-de-scris-mecanica/o01tw6b5upwtpldv8b1s.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/masina-de-scris-mecanica/rp8oxnhjumkt95g9zo4r.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/masina-de-scris-mecanica/xlhyvdo55vkqiiyghoek.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
