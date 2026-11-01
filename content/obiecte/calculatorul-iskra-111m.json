@@ -1,5 +1,6 @@
 {
   "id": "Calculatorul-ИСКРА-111М",
+  "dosarId": "DOS-00032",
   "titlu": "Calculatorul ИСКРА-111М",
   "sala": "sala-documentelor",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/Calculatorul-%D0%98%D0%A1%D0%9A%D0%A0%D0%90-111%D0%9C/do78n88j6k2gtjjlq0tp.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/Calculatorul-%D0%98%D0%A1%D0%9A%D0%A0%D0%90-111%D0%9C/ryvmeuxlkclpoe7c9zgo.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/Calculatorul-%D0%98%D0%A1%D0%9A%D0%A0%D0%90-111%D0%9C/zx8gcy3yzftqyg90jexg.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
