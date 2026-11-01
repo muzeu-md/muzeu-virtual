@@ -1,5 +1,6 @@
 {
   "id": "telefon-fix-cu-disc-rotativ",
+  "dosarId": "DOS-00026",
   "titlu": "Telefon fix cu disc rotativ",
   "sala": "sala-documentelor",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/telefon-fix-cu-disc-rotativ/ggjbe4c5krg8xbsuzqnm.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/telefon-fix-cu-disc-rotativ/h2pyyyrelgcvsdg6b3mb.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/telefon-fix-cu-disc-rotativ/omlwubancsjtggk12sjg.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
