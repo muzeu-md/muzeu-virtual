@@ -1,5 +1,6 @@
 {
   "id": "aparat-foto-de-epocă-sony-v-3000",
+  "dosarId": "DOS-00024",
   "titlu": "Aparat foto de epocă Sony V-3000 (Model tip „Toy Camera”)",
   "sala": "sala-documentelor",
   "perioada": "Contemporană",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aparat-foto-de-epoca%CC%86-sony-v-3000/gsfck7bdc0gfxgs44rwc.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aparat-foto-de-epoca%CC%86-sony-v-3000/jtvhfxwmkt9pnzyb61r5.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aparat-foto-de-epoca%CC%86-sony-v-3000/yzzaon6pthw1aladrgql.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
