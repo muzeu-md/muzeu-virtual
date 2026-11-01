@@ -4,6 +4,7 @@
     "aparat-foto-de-epoca-sony-v-3000.json",
     "aritmometru.json",
     "filmoscop.json",
+    "lampa-cu-petrol.json",
     "mangalau.json",
     "masina-de-cusut-cu-pedala.json",
     "masina-de-scris-mecanica.json",
@@ -16,6 +17,6 @@
     "telefon-fix-cu-disc-rotativ.json",
     "virtelnita.json"
   ],
-  "count": 15,
-  "updatedAt": "2026-11-01T17:42:14.947346+00:00"
+  "count": 16,
+  "updatedAt": "2026-11-01T18:06:13.043575+00:00"
 }

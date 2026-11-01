@@ -1,5 +1,6 @@
 {
   "id": "lampă-cu-petrol",
+  "dosarId": "DOS-00029",
   "titlu": "Lampă cu petrol",
   "sala": "sala-gospodariei",
   "perioada": "Epoca contemporană",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/lampa%CC%86-cu-petrol/ialsf2spj5zwapeelp0d.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/lampa%CC%86-cu-petrol/oxw668jpl51q4whzje8c.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/lampa%CC%86-cu-petrol/wmfyajv8d7gkri1uvdcv.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
