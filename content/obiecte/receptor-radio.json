@@ -1,5 +1,6 @@
 {
   "id": "receptor-radio",
+  "dosarId": "DOS-00023",
   "titlu": "Receptor radio",
   "sala": "sala-gospodariei",
   "perioada": "Comunism",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/receptor-radio/qwulnmulnvgxlflltljp.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/receptor-radio/wfm0pzmcgojmwbnirfay.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/receptor-radio/ycgzfsgltdy0zpp1fuw5.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
