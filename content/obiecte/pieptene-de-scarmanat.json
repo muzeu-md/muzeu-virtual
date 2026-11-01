@@ -1,5 +1,6 @@
 {
   "id": "pieptene-de-scarmanat",
+  "dosarId": "DOS-00030",
   "titlu": "Pieptene de scărmânat",
   "sala": "sala-mestesugurilor",
   "perioada": "Epoca modernă - contemporană",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/pieptene-de-scarmanat/px4j0trgd1qbmqccmcj5.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/pieptene-de-scarmanat/whutuww0vpkn2btka4oz.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/pieptene-de-scarmanat/xxvjgwxx40zsxr9bwhvv.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
