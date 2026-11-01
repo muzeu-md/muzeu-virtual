@@ -1,6 +1,7 @@
 {
   "files": [
     "aritmometru.json",
+    "filmoscop.json",
     "mangalau.json",
     "masina-de-cusut-cu-pedala.json",
     "piatra-penteu-treerat.json",
@@ -9,6 +10,6 @@
     "semanatoare-manuala.json",
     "virtelnita.json"
   ],
-  "count": 8,
-  "updatedAt": "2026-11-01T15:52:43.109232+00:00"
+  "count": 9,
+  "updatedAt": "2026-11-01T16:23:43.548000+00:00"
 }

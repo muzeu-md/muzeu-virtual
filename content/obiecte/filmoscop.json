@@ -1,5 +1,6 @@
 {
   "id": "filmoscop",
+  "dosarId": "DOS-00022",
   "titlu": "Filmoscop",
   "sala": "sala-scolii",
   "perioada": "Comunism",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/filmoscop/e65t5s1eocpglr9qgutp.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/filmoscop/ipeq69qfl8xxxvnnjjdr.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/filmoscop/w535xz3bd34yvsumkmth.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
