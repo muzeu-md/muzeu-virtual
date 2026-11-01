@@ -2,11 +2,12 @@
   "files": [
     "aritmometru.json",
     "masina-de-cusut-cu-pedala.json",
+    "piatra-penteu-treerat.json",
     "radiogramofon-rekord-314.json",
     "roata-de-tors-traditionala.json",
     "semanatoare-manuala.json",
     "virtelnita.json"
   ],
-  "count": 6,
-  "updatedAt": "2026-11-01T15:33:55.317500+00:00"
+  "count": 7,
+  "updatedAt": "2026-11-01T15:43:49.705713+00:00"
 }

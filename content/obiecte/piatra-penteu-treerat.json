@@ -1,5 +1,6 @@
 {
   "id": "piatra-penteu-treerat",
+  "dosarId": "DOS-00020",
   "titlu": "Piatră penteu treerat",
   "sala": "sala-gospodariei",
   "perioada": "Interbelică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/piatra-penteu-treerat/lilbremqifpv4gdoawlh.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/piatra-penteu-treerat/rg5obccetquxatfht6gp.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/piatra-penteu-treerat/zycyygazmecdexha4rqe.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
