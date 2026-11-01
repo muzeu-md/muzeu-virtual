@@ -1,5 +1,6 @@
 {
   "id": "radioreceptor-portabil-sovietic",
+  "dosarId": "DOS-00031",
   "titlu": "Radioreceptor portabil sovietic (Rusia 203)",
   "sala": "sala-gospodariei",
   "perioada": "Epoca contemporană",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/radioreceptor-portabil-sovietic/rneecjdmhjzfoxqpmhzv.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/radioreceptor-portabil-sovietic/s7btpngai6sdr9cvqakj.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/radioreceptor-portabil-sovietic/wykgytzawlsnv4yimxvv.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
