@@ -1,5 +1,6 @@
 {
   "id": "mangalau",
+  "dosarId": "DOS-00021",
   "titlu": "Măngălău",
   "sala": "sala-gospodariei",
   "perioada": "Interbelică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/mangalau/ocv8sjiph3lcx62nahiu.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/mangalau/ospxmpoqemwnaczlpoox.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/mangalau/tlhdxevqa0yejddkkdvh.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
