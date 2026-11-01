@@ -1,5 +1,6 @@
 {
   "id": "aritmometru",
+  "dosarId": "DOS-00018",
   "titlu": "Aritmometru",
   "sala": "sala-documentelor",
   "perioada": "Comunism",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aritmometru/fpcrczwxgsq6ewcxrign.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aritmometru/lwvp393ypgwgmdzagss6.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aritmometru/za91bippkzjmj16x8xr4.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
