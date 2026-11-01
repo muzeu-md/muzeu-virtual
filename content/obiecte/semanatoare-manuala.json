@@ -1,5 +1,6 @@
 {
   "id": "semanatoare-manuala",
+  "dosarId": "DOS-00019",
   "titlu": "Semănătoare manuală",
   "sala": "sala-gospodariei",
   "perioada": "Epoca modernă",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/semanatoare-manuala/gtthiu8bn7zvbuoluuq5.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/semanatoare-manuala/ow8r7gyaf5gzpooiw3t1.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/semanatoare-manuala/zsjcfvkbegaxarhrhd7l.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
