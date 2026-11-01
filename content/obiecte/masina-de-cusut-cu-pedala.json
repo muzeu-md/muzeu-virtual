@@ -1,5 +1,6 @@
 {
   "id": "masina-de-cusut-cu-pedală",
+  "dosarId": "DOS-00014",
   "titlu": "Mașina de cusut cu pedală",
   "sala": "sala-mestesugurilor",
   "perioada": "Interbelică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/Mas%CC%A6ina%20de%20cusut%20cu%20pedala%CC%86/rpbezukwpryvtvm7iffz.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/Mas%CC%A6ina%20de%20cusut%20cu%20pedala%CC%86/tnord4naeschsyfhxsbj.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/Mas%CC%A6ina%20de%20cusut%20cu%20pedala%CC%86/znz24ilotlxfzxhaamwi.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
