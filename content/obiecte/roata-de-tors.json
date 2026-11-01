@@ -1,5 +1,6 @@
 {
   "id": "roata-de-tors",
+  "dosarId": "DOS-00027",
   "titlu": "Roata de tors",
   "sala": "sala-mestesugurilor",
   "perioada": "Evul mediu",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/roata-de-tors/qprzlewofs3site60ab6.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/roata-de-tors/ukhn6mp4xndpczyr17dg.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/roata-de-tors/zwv3uln9lyzpyplvja3t.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
