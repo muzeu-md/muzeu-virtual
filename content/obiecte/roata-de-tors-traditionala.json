@@ -1,5 +1,6 @@
 {
   "id": "roata-de-tors-traditionala",
+  "dosarId": "DOS-00016",
   "titlu": "Roata de tors traditională",
   "sala": "sala-mestesugurilor",
   "perioada": "Interbelică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/Roata%20de%20tors%20traditionala%CC%86/gidmfre8mkfctbmtqykh.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/Roata%20de%20tors%20traditionala%CC%86/otaxlrgrqp37vn9hqxgu.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/Roata%20de%20tors%20traditionala%CC%86/uocdl8vpwpe3zs4pdh7n.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
