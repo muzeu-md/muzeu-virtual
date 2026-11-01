@@ -1,5 +1,6 @@
 {
   "id": "virtelnita",
+  "dosarId": "DOS-00017",
   "titlu": "Vîrtelniță",
   "sala": "sala-mestesugurilor",
   "perioada": "Interbielică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/virtelnita/n2j5vgtrdhztio9ewkxd.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/virtelnita/yii2wilm2lr4efkael3w.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/virtelnita/zqwxvhoehahpgryl1ewx.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
