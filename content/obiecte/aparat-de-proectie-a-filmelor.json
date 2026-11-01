@@ -1,5 +1,6 @@
 {
   "id": "aparat-de-proectie-a-filmelor",
+  "dosarId": "DOS-00028",
   "titlu": "Aparat de proecție a filmelor",
   "sala": "sala-scolii",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aparat-de-proectie-a-filmelor/blbz9t1aucc2xv5xllwd.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aparat-de-proectie-a-filmelor/c7za4mplnev7ppsmmxlo.avif",
   "img_4": "https://github.com/muzeu-md/img-muzeu/blob/main/aparat-de-proectie-a-filmelor/j8xale6naelnpg47h9kc.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
