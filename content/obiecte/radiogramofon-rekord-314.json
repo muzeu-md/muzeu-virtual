@@ -1,5 +1,6 @@
 {
   "id": "radiogramofon-Рекорд-314",
+  "dosarId": "DOS-00015",
   "titlu": "radiogramofon „Рекорд 314”",
   "sala": "sala-gospodariei",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/radiogramofon%20%E2%80%9E%D0%A0%D0%B5%D0%BA%D0%BE%D1%80%D0%B4%20314%E2%80%9D/kdr4en20eqgosivnofkz.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/radiogramofon%20%E2%80%9E%D0%A0%D0%B5%D0%BA%D0%BE%D1%80%D0%B4%20314%E2%80%9D/mger3gbos53raub1byvp.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/radiogramofon%20%E2%80%9E%D0%A0%D0%B5%D0%BA%D0%BE%D1%80%D0%B4%20314%E2%80%9D/wmydfrisifeznobiljvw.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
