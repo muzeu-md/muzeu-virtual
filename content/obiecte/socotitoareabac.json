@@ -1,0 +1,18 @@
+{
+  "id": "socotitoareabac",
+  "titlu": "Socotitoare(abac)",
+  "sala": "sala-scolii",
+  "perioada": "Sovietică",
+  "an": "XX (1940-1980)",
+  "material": "Lemn,fier",
+  "dimensiuni": "20 × 15 cm",
+  "autor": "Rapcea Rafaela",
+  "locatie_fizica": "Colecție personală",
+  "descriere": "Obiectul este un abac tradițional, un instrument arhaic de calcul format dintr-un cadru robust din lemn în care sunt fixate tije metalice cu bile mobile, tot din lemn. Ea a fost folosită de oameni, care ținea socotelile comunității într-o epocă în care matematica se făcea prin mișcarea rapidă a bilelor, nu pe ecrane digitale. Astăzi, abacul a devenit o prețioasă amintire de familie și o autentică capsulă a timpului. El păstrează vie memoria unei epoci a corectitudinii și a muncii minuțioase, amintindu-ne de rădăcinile noastre și de modul ingenios în care generațiile trecute gestionau viața de zi cu zi.",
+  "imagine_principala": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/socotitoareabac/contributie-principala.avif",
+  "img_1": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/socotitoareabac/contributie-suplimentara-1.avif",
+  "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/socotitoareabac/contributie-suplimentara-2.avif",
+  "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/socotitoareabac/contributie-suplimentara-3.avif",
+  "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/socotitoareabac/contributie-suplimentara-4.avif",
+  "sat": "puhoi"
+}
