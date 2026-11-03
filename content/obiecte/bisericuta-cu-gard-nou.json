@@ -1,5 +1,6 @@
 {
   "id": "bisericuta-cu-gard-nou",
+  "dosarId": "DOS-00052",
   "titlu": "Bisericuța cu gard nou",
   "sala": "sala-documentelor",
   "perioada": "Contemporană",
@@ -12,5 +13,6 @@
   "imagine_principala": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/bisericuta-cu-gard-nou/contributie-principala.avif",
   "img_1": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/bisericuta-cu-gard-nou/contributie-suplimentara-1.avif",
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/bisericuta-cu-gard-nou/contributie-suplimentara-4.avif",
-  "sat": "hincesti"
+  "sat": "hincesti",
+  "raion": "falesti"
 }
