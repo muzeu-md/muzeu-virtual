@@ -22,6 +22,7 @@
     "masina-de-scris-mecanica.json",
     "masina-de-tunsmanuala-mecanica.json",
     "mosin-nagant.json",
+    "os-de-rinocer-lanos.json",
     "piatra-penteu-treerat.json",
     "pick-up-cu-disc-lider-306mono.json",
     "piedicazabala.json",
@@ -45,6 +46,6 @@
     "ulcior-de-lut.json",
     "virtelnita.json"
   ],
-  "count": 44,
-  "updatedAt": "2026-11-03T14:53:55.932287+00:00"
+  "count": 45,
+  "updatedAt": "2026-11-03T15:00:53.186177+00:00"
 }
