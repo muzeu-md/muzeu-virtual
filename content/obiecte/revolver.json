@@ -1,5 +1,6 @@
 {
   "id": "revolver",
+  "dosarId": "DOS-00053",
   "titlu": "Revolver",
   "sala": "sala-marturiilor",
   "perioada": "Al doilea Razboi Mondial",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/revolver/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/revolver/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/revolver/contributie-suplimentara-4.avif",
-  "sat": "hincesti"
+  "sat": "hincesti",
+  "raion": "falesti"
 }

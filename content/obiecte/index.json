@@ -30,6 +30,7 @@
     "radioreceptor-portabil-sovietic.json",
     "rasnita-manuala-din-piatra.json",
     "receptor-radio.json",
+    "revolver.json",
     "roata-de-tors-traditionala.json",
     "roata-de-tors.json",
     "sapaliga-manuala.json",
@@ -40,6 +41,6 @@
     "ulcior-de-lut.json",
     "virtelnita.json"
   ],
-  "count": 39,
-  "updatedAt": "2026-11-03T14:25:15.722089+00:00"
+  "count": 40,
+  "updatedAt": "2026-11-03T14:29:15.578868+00:00"
 }
