@@ -12,6 +12,7 @@
     "masina-de-cusut-cu-pedala.json",
     "masina-de-scris-mecanica.json",
     "piatra-penteu-treerat.json",
+    "pick-up-cu-disc-lider-306mono.json",
     "pieptene-de-scarmanat.json",
     "radiogramofon-rekord-314.json",
     "radioreceptor-portabil-sovietic.json",
@@ -22,6 +23,6 @@
     "telefon-fix-cu-disc-rotativ.json",
     "virtelnita.json"
   ],
-  "count": 21,
-  "updatedAt": "2026-11-03T10:43:36.274621+00:00"
+  "count": 22,
+  "updatedAt": "2026-11-03T10:46:52.642190+00:00"
 }
