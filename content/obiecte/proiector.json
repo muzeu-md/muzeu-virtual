@@ -1,5 +1,6 @@
 {
   "id": "proiector",
+  "dosarId": "DOS-00038",
   "titlu": "Proiector",
   "sala": "sala-scolii",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/proiector/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/proiector/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/proiector/contributie-suplimentara-4.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }

@@ -16,6 +16,7 @@
     "piatra-penteu-treerat.json",
     "pick-up-cu-disc-lider-306mono.json",
     "pieptene-de-scarmanat.json",
+    "proiector.json",
     "radiogramofon-rekord-314.json",
     "radioreceptor-portabil-sovietic.json",
     "receptor-radio.json",
@@ -25,6 +26,6 @@
     "telefon-fix-cu-disc-rotativ.json",
     "virtelnita.json"
   ],
-  "count": 24,
-  "updatedAt": "2026-11-03T11:11:32.339630+00:00"
+  "count": 25,
+  "updatedAt": "2026-11-03T11:18:46.315348+00:00"
 }
