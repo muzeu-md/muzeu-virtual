@@ -1,5 +1,6 @@
 {
   "id": "foarfece-de-tuns-oile",
+  "dosarId": "DOS-00048",
   "titlu": "Foarfece de tuns oile",
   "sala": "sala-mestesugurilor",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/foarfece-de-tuns-oile/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/foarfece-de-tuns-oile/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/foarfece-de-tuns-oile/contributie-suplimentara-4.avif",
-  "sat": "puhoi"
+  "sat": "puhoi",
+  "raion": "ialoveni"
 }
