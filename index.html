@@ -95,82 +95,161 @@
 <div class="form-contribuie-fundal" id="form-contribuie-fundal" hidden></div>
 <section class="form-contribuie" id="form-contribuie" role="dialog" aria-modal="true" aria-label="Adaugă un obiect în colecție" hidden>
   <div class="contribuie-card">
-    <div class="f-dosar-antet">
-      <span class="f-badge">CONTRIBUIRE EXPOZIȚIE</span>
-      <button type="button" class="f-inchide" id="form-contribuie-inchide" aria-label="Închide formularul" title="Închide">✕</button>
-    </div>
+    <button type="button" class="f-inchide contribuie-inchide" id="form-contribuie-inchide" aria-label="Închide formularul" title="Închide"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
     <div id="contribuie-zona-form">
-    <h2>Adaugă un obiect în muzeu</h2>
-    <p class="contribuie-nota">Completează fișa obiectului și atașează cele 5 imagini obligatorii - ajung direct la arhivarii muzeului, care le vor verifica și publica.</p>
-    <form id="contribuie-form" action="https://formsubmit.co/razvan332rb@gmail.com" method="POST" enctype="multipart/form-data" novalidate>
-      <div class="f-fisa">
-        <label class="camp-eticheta" for="contribuie-titlu">1. Denumirea obiectului *</label>
-        <input type="text" id="contribuie-titlu" name="1-Denumirea obiectului" required maxlength="120" placeholder="Numele obiectului" autocomplete="off">
-        <label class="camp-eticheta" for="contribuie-descriere">2. Descrierea obiectului *</label>
-        <textarea id="contribuie-descriere" name="2-Descrierea obiectului" rows="4" required maxlength="2000" placeholder="Povestea obiectului: de unde e, cine l-a folosit, ce amintiri are"></textarea>
-        <label class="camp-eticheta" for="contribuie-material">3. Materialul obiectului *</label>
-        <input type="text" id="contribuie-material" name="3-Materialul obiectului" required maxlength="120" placeholder="Ex: hârtie / ceramică / lemn" autocomplete="off">
-        <label class="camp-eticheta" for="contribuie-an">4. Anul obiectului *</label>
-        <input type="text" id="contribuie-an" name="4-Anul obiectului" required maxlength="20" placeholder="Ex: 1932 / cca 1900 / sec. XIX" autocomplete="off">
-        <small class="camp-hint">Scrie un an (1932) sau aproximativ (cca 1900, sec. XIX).</small>
-        <label class="camp-eticheta" for="contribuie-perioada">5. Perioada obiectului *</label>
-        <input type="text" id="contribuie-perioada" name="5-Perioada obiectului" required maxlength="60" placeholder="Ex: Interbelic, Comunism, Contemporan" autocomplete="off">
-        <span class="camp-eticheta" id="dim-tip-label">6. Dimensiunile obiectului *</span>
-        <small class="camp-hint">Lungime × lățime sau lungime × lățime × înălțime.</small>
-        <div class="dim-tip" role="radiogroup" aria-labelledby="dim-tip-label">
-          <label class="dim-opt"><input type="radio" name="Tip dimensiuni" value="2d" checked> Lungime × Lățime</label>
-          <label class="dim-opt"><input type="radio" name="Tip dimensiuni" value="3d"> Lungime × Lățime × Înălțime</label>
+      <div class="contribuie-intro">
+        <h2 id="contribuie-titlu-form">Adaugă un obiect în muzeu</h2>
+        <p class="contribuie-nota">Completează fișa obiectului și atașează între 2 și 5 imagini. Contribuția ajunge direct la arhivarii muzeului, care o verifică și o publică.</p>
+        <p class="contribuie-obligatorii"><span class="obligatoriu" aria-hidden="true">*</span> Câmpuri obligatorii</p>
+      </div>
+      <form id="contribuie-form" action="https://formsubmit.co/razvan332rb@gmail.com" method="POST" enctype="multipart/form-data" novalidate>
+        <section class="f-sectiune" aria-labelledby="f-sect-date">
+          <div class="f-sectiune-antet">
+            <h3 id="f-sect-date">Date generale</h3>
+            <p>Ce este obiectul, din ce materiale e făcut și cine l-a păstrat.</p>
+          </div>
+          <div class="f-grila">
+            <div class="camp camp-larg">
+              <label class="camp-eticheta" for="contribuie-titlu">Denumirea obiectului <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <input type="text" id="contribuie-titlu" name="1-Denumirea obiectului" required maxlength="120" placeholder="Numele obiectului" autocomplete="off">
+              <p class="camp-eroare" id="eroare-titlu" hidden></p>
+            </div>
+            <div class="camp camp-larg">
+              <label class="camp-eticheta" for="contribuie-descriere">Descrierea obiectului <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <textarea id="contribuie-descriere" name="2-Descrierea obiectului" rows="4" required maxlength="2000" placeholder="Povestea obiectului: de unde e, cine l-a folosit, ce amintiri are"></textarea>
+              <p class="camp-eroare" id="eroare-descriere" hidden></p>
+            </div>
+            <div class="camp">
+              <label class="camp-eticheta" for="contribuie-material">Materialul obiectului <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <input type="text" id="contribuie-material" name="3-Materialul obiectului" required maxlength="120" placeholder="Ex: hârtie / ceramică / lemn" autocomplete="off">
+              <p class="camp-eroare" id="eroare-material" hidden></p>
+            </div>
+            <div class="camp">
+              <label class="camp-eticheta" for="contribuie-an">Anul obiectului <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <input type="text" id="contribuie-an" name="4-Anul obiectului" required maxlength="20" placeholder="Ex: 1932 / cca 1900 / sec. XIX" autocomplete="off" aria-describedby="ajutor-an">
+              <p class="camp-hint" id="ajutor-an">Scrie un an (1932) sau aproximativ (cca 1900, sec. XIX).</p>
+              <p class="camp-eroare" id="eroare-an" hidden></p>
+            </div>
+            <div class="camp">
+              <label class="camp-eticheta" for="contribuie-perioada">Perioada obiectului <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <input type="text" id="contribuie-perioada" name="5-Perioada obiectului" required maxlength="60" placeholder="Ex: Interbelic, Comunism, Contemporan" autocomplete="off">
+              <p class="camp-eroare" id="eroare-perioada" hidden></p>
+            </div>
+            <div class="camp">
+              <label class="camp-eticheta" for="contribuie-autor">Autor (nume / prenume) <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <input type="text" id="contribuie-autor" name="7-Autor (nume / prenume)" required maxlength="120" placeholder="Introduceți numele dumneavoastră" autocomplete="name">
+              <p class="camp-eroare" id="eroare-autor" hidden></p>
+            </div>
+            <div class="camp camp-larg">
+              <label class="camp-eticheta" for="contribuie-email">Email <span class="camp-optional">(opțional)</span></label>
+              <input type="email" id="contribuie-email" name="email" maxlength="160" placeholder="Ex: nume.prenume@example.com" autocomplete="email" aria-describedby="ajutor-email">
+              <p class="camp-hint" id="ajutor-email">Îl folosim doar dacă apar întrebări despre dosarul trimis.</p>
+              <p class="camp-eroare" id="eroare-email" hidden></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="f-sectiune" aria-labelledby="f-sect-dimensiuni">
+          <div class="f-sectiune-antet">
+            <h3 id="f-sect-dimensiuni">Dimensiuni</h3>
+            <p>Alege forma de măsurare și completează valorile în unitatea potrivită.</p>
+          </div>
+          <span class="camp-eticheta" id="dim-tip-label">Tip de măsurare</span>
+          <div class="dim-tip" role="radiogroup" aria-labelledby="dim-tip-label">
+            <label class="dim-opt"><input type="radio" name="Tip dimensiuni" value="2d" checked><span>Lungime × Lățime</span></label>
+            <label class="dim-opt"><input type="radio" name="Tip dimensiuni" value="3d"><span>Lungime × Lățime × Înălțime</span></label>
+          </div>
+          <div class="dim-campuri">
+            <label class="dim-camp" for="contribuie-lungime"><span>Lungime</span><input type="text" id="contribuie-lungime" maxlength="12" placeholder="Ex: 45" autocomplete="off" inputmode="decimal"></label>
+            <label class="dim-camp" for="contribuie-latime"><span>Lățime</span><input type="text" id="contribuie-latime" maxlength="12" placeholder="Ex: 30" autocomplete="off" inputmode="decimal"></label>
+            <label class="dim-camp dim-camp-h" for="contribuie-inaltime" hidden><span>Înălțime</span><input type="text" id="contribuie-inaltime" maxlength="12" placeholder="Ex: 20" autocomplete="off" inputmode="decimal"></label>
+            <label class="dim-camp dim-unit" for="contribuie-unitate"><span>Unitate</span><select id="contribuie-unitate"><option value="cm" selected>cm</option><option value="mm">mm</option><option value="m">m</option></select></label>
+          </div>
+          <p class="camp-eroare" id="eroare-dimensiuni" hidden></p>
+        </section>
+
+        <section class="f-sectiune" aria-labelledby="f-sect-locatie">
+          <div class="f-sectiune-antet">
+            <h3 id="f-sect-locatie">Locație și sală</h3>
+            <p>Spune-ne unde se află obiectul și în ce sală a muzeului va fi expus.</p>
+          </div>
+          <div class="f-grila">
+            <div class="camp">
+              <label class="camp-eticheta" for="contribuie-sala">Sala <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <select id="contribuie-sala" name="Sala" required aria-describedby="ajutor-sala">
+                <option value="" selected disabled>— alege sala —</option>
+              </select>
+              <p class="camp-hint" id="ajutor-sala">Sala tematică în care va fi expus obiectul.</p>
+              <p class="camp-eroare" id="eroare-sala" hidden></p>
+            </div>
+            <div class="camp">
+              <label class="camp-eticheta" for="contribuie-locatie">Locația obiectului <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <input type="text" id="contribuie-locatie" name="8-Locatie obiectului" required maxlength="120" placeholder="Ex: muzeul școlar / colecție personală" autocomplete="off">
+              <p class="camp-eroare" id="eroare-locatie" hidden></p>
+            </div>
+            <div class="camp">
+              <label class="camp-eticheta" for="contribuie-raion">Raion / Municipiu <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <select id="contribuie-raion" name="Raion/Municipiu" required>
+                <option value="">— alege raionul / municipiul —</option>
+              </select>
+              <p class="camp-eroare" id="eroare-raion" hidden></p>
+            </div>
+            <div class="camp">
+              <label class="camp-eticheta" for="contribuie-sat">Satul <span class="obligatoriu" aria-hidden="true">*</span></label>
+              <select id="contribuie-sat" name="Satul" required disabled>
+                <option value="">— alege satul —</option>
+              </select>
+              <p class="camp-eroare" id="eroare-sat" hidden></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="f-sectiune" aria-labelledby="f-sect-imagini">
+          <div class="f-sectiune-antet">
+            <h3 id="f-sect-imagini">Imagini</h3>
+            <p>Adaugă 2–5 fotografii clare. Marchează cu stea imaginea principală.</p>
+          </div>
+          <div class="galerie-upload">
+            <label for="contribuie-imagini" class="upload-dropzone" id="contribuie-dropzone" role="button" tabindex="0">
+              <span class="upload-icona" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg>
+              </span>
+              <span class="upload-text">
+                <strong>ÎNCARCĂ IMAGINI (MINIM 2, MAXIM 5)</strong>
+                <small>JPG, PNG, WebP sau GIF · se optimizează automat</small>
+              </span>
+            </label>
+            <input type="file" id="contribuie-imagini" multiple accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+            <div class="upload-info">
+              <div id="contribuie-counter" role="status" aria-live="polite">0/5 imagini alese · mai adaugă 2 imagini</div>
+              <div class="upload-progres" id="contribuie-progres-bara" role="progressbar" aria-label="Imagini încărcate" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><span id="contribuie-progres"></span></div>
+            </div>
+            <p class="contribuie-ajutor">Fotografiile se comprimă automat. Steaua marchează imaginea care apare prima în dosar.</p>
+            <div id="contribuie-preview" aria-live="polite"></div>
+            <p class="camp-eroare" id="eroare-imagini" hidden></p>
+          </div>
+        </section>
+
+        <!-- câmpurile denumite de fișiere — exact un fișier fiecare (schema documentată FormSubmit) -->
+        <input type="file" name="Imagine principala" id="contribuie-fisier-0" hidden>
+        <input type="file" name="Imagine suplimentara 1" id="contribuie-fisier-1" hidden>
+        <input type="file" name="Imagine suplimentara 2" id="contribuie-fisier-2" hidden>
+        <input type="file" name="Imagine suplimentara 3" id="contribuie-fisier-3" hidden>
+        <input type="file" name="Imagine suplimentara 4" id="contribuie-fisier-4" hidden>
+        <!-- câmpuri FormSubmit + valori compuse de JS la trimitere -->
+        <input type="hidden" name="_subject" id="contribuie-subject" value="[MUZEU CONTRIBUȚIE]">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" id="contribuie-next" value="https://muzeu-md.github.io/muzeu-virtual/?contribuie=multumim">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="6-Dimensiunile obiectului" id="contribuie-dimensiuni-camp" value="">
+        <input type="hidden" name="Sala (cod)" id="contribuie-sala-cod" value="">
+        <input type="hidden" name="⭐-Imaginea_principala" id="contribuie-principala-info" value="">
+        <input type="text" name="_honey" class="contribuie-gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div id="contribuie-stare" class="contribuie-stare" role="alert" aria-live="polite" hidden></div>
+        <div class="contribuie-actiuni">
+          <button type="submit" class="btn-contribuie btn-trimite" id="contribuie-trimite">TRIMITE CONTRIBUȚIA</button>
         </div>
-        <div class="dim-campuri">
-          <label class="dim-camp"><span>Lungime</span><input type="text" id="contribuie-lungime" maxlength="12" placeholder="Ex: 45" autocomplete="off" inputmode="decimal"></label>
-          <span class="dim-x" aria-hidden="true">×</span>
-          <label class="dim-camp"><span>Lățime</span><input type="text" id="contribuie-latime" maxlength="12" placeholder="Ex: 30" autocomplete="off" inputmode="decimal"></label>
-          <span class="dim-x dim-x-h" aria-hidden="true" hidden>×</span>
-          <label class="dim-camp dim-camp-h" hidden><span>Înălțime</span><input type="text" id="contribuie-inaltime" maxlength="12" placeholder="Ex: 20" autocomplete="off" inputmode="decimal"></label>
-          <label class="dim-camp dim-unit"><span>Unitate</span><select id="contribuie-unitate"><option value="cm" selected>cm</option><option value="mm">mm</option><option value="m">m</option></select></label>
-        </div>
-        <label class="camp-eticheta" for="contribuie-autor">7. Autor (nume / prenume) *</label>
-        <input type="text" id="contribuie-autor" name="7-Autor (nume / prenume)" required maxlength="120" placeholder="Introduceți numele dumneavoastră" autocomplete="name">
-        <label class="camp-eticheta" for="contribuie-email">Email (opțional)</label>
-        <input type="email" id="contribuie-email" name="email" maxlength="160" placeholder="Ex: nume.prenume@example.com" autocomplete="email">
-        <small class="camp-hint">(opțional) Îl folosim doar dacă apar întrebări despre dosarul trimis.</small>
-        <label class="camp-eticheta" for="contribuie-locatie">8. Locația obiectului *</label>
-        <input type="text" id="contribuie-locatie" name="8-Locatie obiectului" required maxlength="120" placeholder="Ex: muzeul școlar / colecție personală" autocomplete="off">
-        <label class="camp-eticheta" for="contribuie-raion">Raion / Municipiu *</label>
-        <select id="contribuie-raion" name="Raion/Municipiu" required>
-          <option value="">— alege raionul / municipiul —</option>
-        </select>
-        <label class="camp-eticheta" for="contribuie-sat">Satul *</label>
-        <select id="contribuie-sat" name="Satul" required disabled>
-          <option value="">— alege satul —</option>
-        </select>
-      </div>
-      <div class="galerie-upload">
-        <label for="contribuie-imagini" class="btn-alege-imagini" role="button" tabindex="0">ÎNCARCĂ 5 IMAGINI (OBLIGATORIU)</label>
-        <input type="file" id="contribuie-imagini" multiple accept="image/jpeg,image/png,image/webp,image/gif" hidden>
-        <p class="contribuie-ajutor">Toate 5 imaginile sunt obligatorii și se optimizează automat ca să ajungă sigure la muzeu. ⭐ marchează imaginea principală - prima încărcată e cea principală implicit.</p>
-        <div id="contribuie-preview" aria-live="polite"></div>
-        <div id="contribuie-counter" role="status"></div>
-      </div>
-      <!-- câmpurile denumite de fișiere — exact un fișier fiecare (schema documentată FormSubmit) -->
-      <input type="file" name="Imagine principala" id="contribuie-fisier-0" hidden>
-      <input type="file" name="Imagine suplimentara 1" id="contribuie-fisier-1" hidden>
-      <input type="file" name="Imagine suplimentara 2" id="contribuie-fisier-2" hidden>
-      <input type="file" name="Imagine suplimentara 3" id="contribuie-fisier-3" hidden>
-      <input type="file" name="Imagine suplimentara 4" id="contribuie-fisier-4" hidden>
-      <!-- câmpuri FormSubmit + valori compuse de JS la trimitere -->
-      <input type="hidden" name="_subject" id="contribuie-subject" value="[MUZEU CONTRIBUȚIE]">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" id="contribuie-next" value="https://muzeu-md.github.io/muzeu-virtual/?contribuie=multumim">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="6-Dimensiunile obiectului" id="contribuie-dimensiuni-camp" value="">
-      <input type="hidden" name="⭐-Imaginea_principala" id="contribuie-principala-info" value="">
-      <input type="text" name="_honey" class="contribuie-gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div id="contribuie-stare" class="contribuie-stare" role="status" aria-live="polite" hidden></div>
-      <div class="contribuie-actiuni">
-        <button type="submit" class="btn-contribuie btn-trimite" id="contribuie-trimite">TRIMITE CONTRIBUȚIA</button>
-      </div>
-    </form>
+      </form>
     </div>
     <div id="contribuie-multumim" hidden>
       <div class="contribuie-multumim-pecete" aria-hidden="true">⚜</div>
@@ -178,7 +257,7 @@
       <p>Dosarul a ajuns la arhivarii muzeului și va fi verificat cu atenție în cel mai scurt timp.</p>
       <p>Reveniți mai târziu pe site — obiectul va apărea în colecția raionului său, cu propriul număr de dosar (DOS-XXXXX).</p>
       <div class="contribuie-multumim-actiuni">
-        <button type="button" class="btn-alege-imagini" id="contribuie-multumim-harta">← ÎNAPOI LA HARTĂ</button>
+        <button type="button" class="btn-alege-imagini" id="contribuie-multumim-harta">ÎNAPOI LA HARTĂ</button>
       </div>
     </div>
   </div>
