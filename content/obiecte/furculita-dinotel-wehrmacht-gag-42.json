@@ -1,5 +1,6 @@
 {
   "id": "furculita-dinotel-wehrmacht-gag-42",
+  "dosarId": "DOS-00062",
   "titlu": "Furculiță din oțel Wehrmacht (GAG 42)",
   "sala": "sala-marturiilor",
   "perioada": "Al Doilea Război Mondial",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/furculita-dinotel-wehrmacht-gag-42/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/furculita-dinotel-wehrmacht-gag-42/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/furculita-dinotel-wehrmacht-gag-42/contributie-suplimentara-4.avif",
-  "sat": "susleni"
+  "sat": "susleni",
+  "raion": "orhei"
 }
