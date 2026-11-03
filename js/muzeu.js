@@ -1479,19 +1479,9 @@ async function trimiteContribuie(e){
     btn.classList.add('loading'); 
   }
   setStareContribuie('Se trimite contribuția', false);
-  // Animație puncte
-  let dots = 0;
-  const loadingInterval = setInterval(() => {
-    dots = (dots + 1) % 4;
-    if(btn && btn.classList.contains('loading')) {
-      btn.textContent = 'SE TRIMITE' + '.'.repeat(dots);
-    } else {
-      clearInterval(loadingInterval);
-    }
-  }, 400);
 
   try {
-    await trimiteContribuieGAS();
+    await trimiteContribuieGAS(btn);
   } catch(err) {
     console.error(err);
     setStareContribuie('Eroare: ' + err.message, true);
@@ -1523,7 +1513,7 @@ function valideazaFisiereGAS(fisiere){
 }
 
 /* ---- Trimite JSON la GAS ---- */
-async function trimiteContribuieGAS(){
+async function trimiteContribuieGAS(btn){
   // 1. Fișiere -> base64 (nume standardizate pentru email)
   const files = await Promise.all(stareContribuie.fisiere.map(async (f, i) => {
     const base64 = await fileToBase64(f);
