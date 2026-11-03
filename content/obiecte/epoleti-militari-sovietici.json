@@ -1,5 +1,6 @@
 {
   "id": "epoleti-militari-sovietici",
+  "dosarId": "DOS-00041",
   "titlu": "Epoleți militari sovietici",
   "sala": "sala-marturiilor",
   "perioada": "Comunism",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/epoleti-militari-sovietici/contributie-suplimentara-1.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/epoleti-militari-sovietici/contributie-suplimentara-2.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/epoleti-militari-sovietici/contributie-suplimentara-4.avif",
-  "sat": "susleni"
+  "sat": "susleni",
+  "raion": "orhei"
 }
