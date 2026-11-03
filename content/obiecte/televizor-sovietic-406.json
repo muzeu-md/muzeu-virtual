@@ -1,5 +1,6 @@
 {
   "id": "televizor-sovietic-406",
+  "dosarId": "DOS-00039",
   "titlu": "Televizor sovietic Юность-406Д",
   "sala": "sala-gospodariei",
   "perioada": "Comunism",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/televizor-sovietic-406/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/televizor-sovietic-406/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/televizor-sovietic-406/contributie-suplimentara-4.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
