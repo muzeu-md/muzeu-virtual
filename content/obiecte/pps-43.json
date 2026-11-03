@@ -1,5 +1,6 @@
 {
   "id": "pps-43",
+  "dosarId": "DOS-00054",
   "titlu": "PPS-43",
   "sala": "sala-marturiilor",
   "perioada": "Al doilea Razboi Mondial",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/pps-43/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/pps-43/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/pps-43/contributie-suplimentara-4.avif",
-  "sat": "anini"
+  "sat": "anini",
+  "raion": "hincesti"
 }
