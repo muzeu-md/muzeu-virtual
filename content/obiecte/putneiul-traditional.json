@@ -1,5 +1,6 @@
 {
   "id": "putneiul-traditional",
+  "dosarId": "DOS-00056",
   "titlu": "Putneiul traditional",
   "sala": "sala-gospodariei",
   "perioada": "Tradițională / Etnografică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/putneiul-traditional/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/putneiul-traditional/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/putneiul-traditional/contributie-suplimentara-4.avif",
-  "sat": "susleni"
+  "sat": "susleni",
+  "raion": "orhei"
 }
