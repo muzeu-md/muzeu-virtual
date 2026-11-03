@@ -1,5 +1,6 @@
 {
   "id": "baioneta-germanas9805",
+  "dosarId": "DOS-00064",
   "titlu": "Baionetă germană S98/05",
   "sala": "sala-marturiilor",
   "perioada": "Primul Război Mondial",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/baioneta-germanas9805/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/baioneta-germanas9805/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/baioneta-germanas9805/contributie-suplimentara-4.avif",
-  "sat": "susleni"
+  "sat": "susleni",
+  "raion": "orhei"
 }
