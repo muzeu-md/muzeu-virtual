@@ -1,0 +1,18 @@
+{
+  "id": "aspirator-de-praf",
+  "titlu": "Aspirator de praf",
+  "sala": "sala-gospodariei",
+  "perioada": "Sovietică",
+  "an": "cca. 1980",
+  "material": "Metal",
+  "dimensiuni": "35 × 30 × 45 cm",
+  "autor": "Dovicenco Evelina",
+  "locatie_fizica": "Muzeul Liceului Teoretic „Alexandru cel bun”",
+  "descriere": "Acest aspirator este un obiect electrocasnic din perioada sovietică, aproximativ din anii 1970–1980. A fost folosit în gospodărie pentru curățarea locuinței și a făcut parte din viața de zi cu zi a unei familii. Pentru acea perioadă, un astfel de aparat reprezenta un ajutor important la treburile casnice. Aspectul și construcția lui sunt diferite de cele ale aspiratoarelor moderne, ceea ce ne permite să observăm cum au evoluat obiectele și tehnologia folosită în gospodării. Astăzi, aspiratorul este păstrat în muzeul școlii ca obiect cu valoare istorică și educativă, oferindu-le elevilor o imagine asupra vieții cotidiene din trecut.",
+  "imagine_principala": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aspirator-de-praf/contributie-principala.avif",
+  "img_1": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aspirator-de-praf/contributie-suplimentara-1.avif",
+  "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aspirator-de-praf/contributie-suplimentara-2.avif",
+  "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aspirator-de-praf/contributie-suplimentara-3.avif",
+  "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/aspirator-de-praf/contributie-suplimentara-4.avif",
+  "sat": "singera"
+}
