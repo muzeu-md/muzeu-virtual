@@ -1,5 +1,6 @@
 {
   "id": "sabie-veche",
+  "dosarId": "DOS-00057",
   "titlu": "Sabie veche",
   "sala": "sala-marturiilor",
   "perioada": "Istoria medievală",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/sabie-veche/contributie-suplimentara-1.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/sabie-veche/contributie-suplimentara-2.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/sabie-veche/contributie-suplimentara-3.avif",
-  "sat": "susleni"
+  "sat": "susleni",
+  "raion": "orhei"
 }
