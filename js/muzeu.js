@@ -978,14 +978,22 @@ function leagaHartaPoarta(){
     g.addEventListener('blur', ascunde);
   });
 }
-/* ---- contribuire: overlay peste hartă; trimitere via FormSubmit (gratuit, nelimitat) —
+/* ---- contribuire: overlay peste hartă; trimitere via Google Apps Script —
  * fișierele ajung ca ATAȘAMENTE în emailul arhivarului. Imaginile se comprimă în browser
- * (Canvas, max 1600px) ca totalul să stea sub limita de 10MB/trimitere a serviciului. ---- */
+ * (Canvas, max 1600px) și se trimită JSON base64. Limite Gmail-safe. ---- */
 const CONTRIBUTIE_MIN_POZE = 2;
 const CONTRIBUTIE_MAX_POZE = 5;
 const CONTRIBUTIE_MAX_ORIGINAL = 25 * 1024 * 1024; /* peste 25MB refuzăm înainte de decodare */
-const stareContribuie = { fisiere: [], indexPrincipal: 0, trimitere: false };
-/* fiecare câmp știe unde îi apare eroarea inline (aria-describedby se compune la nevoie) */
+
+/* Limite GAS / Gmail (sincronizate cu Code.gs) */
+const GAS_LIMITS = {
+  MAX_FILES: 5,
+  MAX_FILE_SIZE_MB: 8,
+  MAX_TOTAL_SIZE_MB: 20,
+  URL: 'https://script.google.com/macros/s/AKfycbwml1d4UgzOeJ-paCyJvYiOLm6wNIR6FFTrBUvqK0q9uCL4XL-k7r9CZCRoI4_L-8V59w/exec'
+};
+
+const stareContribuie = { fisiere: [], indexPrincipal: 0, trimitere: false };/* fiecare câmp știe unde îi apare eroarea inline (aria-describedby se compune la nevoie) */
 const EROARE_PE_CAMP = {
   'contribuie-titlu': 'eroare-titlu',
   'contribuie-descriere': 'eroare-descriere',
@@ -1180,12 +1188,23 @@ function randeazaPreviewContribuie(){
   }else{
     mesaj = ' · poți adăuga până la ' + CONTRIBUTIE_MAX_POZE;
   }
+  // Afișează și limita totală MB (GAS)
+  const totalMB = (total / 1024 / 1024).toFixed(1);
+  const maxMB = GAS_LIMITS.MAX_TOTAL_SIZE_MB;
+  const pctMB = total / (maxMB * 1024 * 1024);
   counterEl.textContent = nr + '/' + CONTRIBUTIE_MAX_POZE + ' imagini alese' + mesaj +
-    (total ? ' · ~' + dimensiuniUmane(total) : '');
+    (total ? ' · ' + totalMB + ' / ' + maxMB + ' MB' : '');
+  // Progress bar pentru număr fișiere
   const bara = document.getElementById('contribuie-progres-bara');
   const umplere = document.getElementById('contribuie-progres');
   if(bara) bara.setAttribute('aria-valuenow', String(nr));
   if(umplere) umplere.style.width = Math.round((nr / CONTRIBUTIE_MAX_POZE) * 100) + '%';
+  // Opțional: coloarează progress bar dacă e aproape de limită MB
+  if(umplere){
+    if(pctMB > 0.9) umplere.style.background = '#c00';
+    else if(pctMB > 0.7) umplere.style.background = '#c9a227';
+    else umplere.style.background = '';
+  }
 }
 /* Dimensiuni: 2 variante (2D = Lungime x Lățime, 3D = + Înălțime), câmpuri orizontale */
 function tipDimensiuni(){
@@ -1426,12 +1445,6 @@ async function trimiteContribuie(e){
     focusCamp(erori[0]);
     return;
   }
-  if(totalImaginiContribuie() > 9 * 1024 * 1024){
-    eroare(dropzone, 'Imaginile depășesc 9MB în total — scoate una și reîncearcă.');
-    setStareContribuie('Imaginile depășesc 9MB în total — scoate una și reîncearcă.', true);
-    focusCamp(dropzone);
-    return;
-  }
   const dimensiuni = e3d
     ? lungime + ' × ' + latime + ' × ' + inaltime + ' ' + unitate
     : lungime + ' × ' + latime + ' ' + unitate;
@@ -1447,38 +1460,83 @@ async function trimiteContribuie(e){
   if(nextEl) nextEl.value = location.origin + location.pathname + '?contribuie=multumim';
   const infoEl = document.getElementById('contribuie-principala-info');
   if(infoEl) infoEl.value = 'contributie-principala.jpg (vezi atașamentul nr. 1)';
-  if(!('DataTransfer' in window)){
-    eroare(dropzone, 'Browserul este prea vechi pentru încărcarea imaginilor — încearcă un browser recent.');
-    setStareContribuie('Browserul este prea vechi pentru încărcarea imaginilor — încearcă un browser recent.', true);
+  // Validare limite GAS (redundant cu validarea la selectare, dar siguranță extra)
+  const eroriGAS = valideazaFisiereGAS(stareContribuie.fisiere);
+  if(eroriGAS.length){
+    eroriGAS.forEach(msg => eroare(dropzone, msg));
+    setStareContribuie(eroriGAS.join('; '), true);
     focusCamp(dropzone);
     return;
   }
-  /* exact câte un fișier în fiecare input denumit — schema documentată FormSubmit;
-     slotul 0 primește ÎNTOTDEAUNA imaginea marcată cu ⭐; restul, în ordinea alegerii */
-  const poPrincipala = stareContribuie.indexPrincipal;
-  const restul = stareContribuie.fisiere.map((f, i) => i).filter(i => i !== poPrincipala);
-  for(let i = 0; i < CONTRIBUTIE_MAX_POZE; i++){
-    const inp = document.getElementById('contribuie-fisier-' + i);
-    if(!inp) continue;
-    const dt = new DataTransfer();
-    const f = (i === 0) ? stareContribuie.fisiere[poPrincipala] : stareContribuie.fisiere[restul[i - 1]];
-    if(f){
-      const numeFinal = (i === 0) ? 'contributie-principala.jpg' : 'contributie-suplimentara-' + i + '.jpg';
-      dt.items.add(new File([f], numeFinal, { type: f.type, lastModified: f.lastModified || Date.now() }));
-    }
-    try{ inp.files = dt.files; }catch(err){}
-    inp.disabled = !f; /* sloturile nefolosite nu pleacă în email ca atașamente goale */
-  }
+
   stareContribuie.trimitere = true;
   if(btn){ btn.disabled = true; btn.textContent = 'SE TRIMITE…'; }
   setStareContribuie('Se trimite contribuția…', false);
-  const form = document.getElementById('contribuie-form');
-  form.submit(); /* POST nativ → FormSubmit atașează fișierele → redirect _next (?contribuie=multumim) */
-  /* dacă navigarea nu are loc (ex. eroare de rețea), reactivăm butonul */
-  setTimeout(() => {
-    stareContribuie.trimitere = false;
+
+  try {
+    await trimiteContribuieGAS();
+  } catch(err) {
+    console.error(err);
+    setStareContribuie('Eroare: ' + err.message, true);
     if(btn){ btn.disabled = false; btn.textContent = 'TRIMITE CONTRIBUȚIA'; }
-  }, 4000);
+    stareContribuie.trimitere = false;
+  }
+}
+
+/* ---- Validare limite GAS (client-side) ---- */
+function valideazaFisiereGAS(fisiere){
+  const erori = [];
+  let total = 0;
+  for(const f of fisiere){
+    if(f.size > GAS_LIMITS.MAX_FILE_SIZE_MB * 1024 * 1024){
+      erori.push('"' + f.name + '" depășește ' + GAS_LIMITS.MAX_FILE_SIZE_MB + ' MB');
+    }
+    total += f.size;
+  }
+  if(fisiere.length > GAS_LIMITS.MAX_FILES){
+    erori.push('Maxim ' + GAS_LIMITS.MAX_FILES + ' imagini (ai ' + fisiere.length + ')');
+  }
+  if(total > GAS_LIMITS.MAX_TOTAL_SIZE_MB * 1024 * 1024){
+    erori.push('Total ' + (total/1024/1024).toFixed(1) + ' MB > ' + GAS_LIMITS.MAX_TOTAL_SIZE_MB + ' MB');
+  }
+  return erori;
+}
+
+/* ---- Trimite JSON la GAS ---- */
+async function trimiteContribuieGAS(){
+  // 1. Fișiere -> base64
+  const files = await Promise.all(stareContribuie.fisiere.map(async (f, i) => {
+    const base64 = await fileToBase64(f);
+    return { name: f.name, mime: f.type || 'image/jpeg', base64, size: f.size, isMain: i === stareContribuie.indexPrincipal };
+  }));
+
+  // 2. Câmpuri formular (colectează TOATE, inclusiv hidden)
+  const form = document.getElementById('contribuie-form');
+  const fields = {};
+  new FormData(form).forEach((v, k) => fields[k] = v);
+
+  // 3. POST JSON
+  const res = await fetch(GAS_LIMITS.URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ fields, files })
+  });
+
+  const result = await res.json();
+  if(result.status === 'success'){
+    window.location.href = result.redirect;
+  } else {
+    throw new Error(result.message || 'Eroare server');
+  }
+}
+
+function fileToBase64(file){
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result.split(',')[1]);
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
 }
 function leagaPoarta(sariDirect, fortzaHarta){
   const poarta = document.getElementById('poarta');
