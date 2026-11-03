@@ -7,6 +7,7 @@
     "calculatorul-iskra-111m.json",
     "filmoscop.json",
     "lampa-cu-petrol.json",
+    "magnitofon-cu-bobine.json",
     "mangalau.json",
     "masina-de-cusut-cu-pedala.json",
     "masina-de-scris-mecanica.json",
@@ -21,6 +22,6 @@
     "telefon-fix-cu-disc-rotativ.json",
     "virtelnita.json"
   ],
-  "count": 20,
-  "updatedAt": "2026-11-03T10:40:10.773085+00:00"
+  "count": 21,
+  "updatedAt": "2026-11-03T10:43:36.274621+00:00"
 }
