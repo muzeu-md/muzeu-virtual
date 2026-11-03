@@ -1,5 +1,6 @@
 {
   "id": "capcana-mecanica-cu-arc",
+  "dosarId": "DOS-00049",
   "titlu": "Capcana mecanica cu arc",
   "sala": "sala-mestesugurilor",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/capcana-mecanica-cu-arc/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/capcana-mecanica-cu-arc/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/capcana-mecanica-cu-arc/contributie-suplimentara-4.avif",
-  "sat": "puhoi"
+  "sat": "puhoi",
+  "raion": "ialoveni"
 }
