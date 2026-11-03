@@ -6,6 +6,7 @@
     "aspirator-de-praf.json",
     "calculatorul-iskra-111m.json",
     "filmoscop.json",
+    "juramant.json",
     "lampa-cu-petrol.json",
     "magnitofon-cu-bobine.json",
     "mangalau.json",
@@ -24,6 +25,6 @@
     "telefon-fix-cu-disc-rotativ.json",
     "virtelnita.json"
   ],
-  "count": 23,
-  "updatedAt": "2026-11-03T11:00:11.955258+00:00"
+  "count": 24,
+  "updatedAt": "2026-11-03T11:04:40.464978+00:00"
 }
