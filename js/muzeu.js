@@ -981,10 +981,78 @@ function leagaHartaPoarta(){
 /* ---- contribuire: overlay peste hartă; trimitere via FormSubmit (gratuit, nelimitat) —
  * fișierele ajung ca ATAȘAMENTE în emailul arhivarului. Imaginile se comprimă în browser
  * (Canvas, max 1600px) ca totalul să stea sub limita de 10MB/trimitere a serviciului. ---- */
+const CONTRIBUTIE_MIN_POZE = 2;
 const CONTRIBUTIE_MAX_POZE = 5;
 const CONTRIBUTIE_MAX_ORIGINAL = 25 * 1024 * 1024; /* peste 25MB refuzăm înainte de decodare */
 const stareContribuie = { fisiere: [], indexPrincipal: 0, trimitere: false };
+/* fiecare câmp știe unde îi apare eroarea inline (aria-describedby se compune la nevoie) */
+const EROARE_PE_CAMP = {
+  'contribuie-titlu': 'eroare-titlu',
+  'contribuie-descriere': 'eroare-descriere',
+  'contribuie-material': 'eroare-material',
+  'contribuie-an': 'eroare-an',
+  'contribuie-perioada': 'eroare-perioada',
+  'contribuie-lungime': 'eroare-dimensiuni',
+  'contribuie-latime': 'eroare-dimensiuni',
+  'contribuie-inaltime': 'eroare-dimensiuni',
+  'contribuie-autor': 'eroare-autor',
+  'contribuie-email': 'eroare-email',
+  'contribuie-sala': 'eroare-sala',
+  'contribuie-locatie': 'eroare-locatie',
+  'contribuie-raion': 'eroare-raion',
+  'contribuie-sat': 'eroare-sat',
+  'contribuie-dropzone': 'eroare-imagini'
+};
 function esteContribuieDeschis(){ return document.body.classList.contains('form-contribuie-deschis'); }
+function arataEroareCamp(camp, mesaj){
+  if(!camp) return;
+  const eroareId = EROARE_PE_CAMP[camp.id];
+  const eroare = eroareId ? document.getElementById(eroareId) : null;
+  if(eroare){ eroare.textContent = mesaj; eroare.hidden = false; }
+  camp.setAttribute('aria-invalid', 'true');
+  if(eroareId){
+    const ids = (camp.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+    if(ids.indexOf(eroareId) === -1) ids.push(eroareId);
+    camp.setAttribute('aria-describedby', ids.join(' '));
+  }
+}
+function curataEroareCamp(camp){
+  if(!camp) return;
+  const eroareId = EROARE_PE_CAMP[camp.id];
+  if(!eroareId) return;
+  const eroare = document.getElementById(eroareId);
+  if(eroare){ eroare.textContent = ''; eroare.hidden = true; }
+  camp.removeAttribute('aria-invalid');
+  const ids = (camp.getAttribute('aria-describedby') || '').split(/\s+/).filter(id => id && id !== eroareId);
+  if(ids.length) camp.setAttribute('aria-describedby', ids.join(' '));
+  else camp.removeAttribute('aria-describedby');
+}
+function curataEroriContribuie(){
+  Object.keys(EROARE_PE_CAMP).forEach(id => curataEroareCamp(document.getElementById(id)));
+}
+function curataEroareDimensiuni(){
+  ['contribuie-lungime', 'contribuie-latime', 'contribuie-inaltime'].forEach(id => curataEroareCamp(document.getElementById(id)));
+}
+function enumera(lista){
+  if(lista.length <= 1) return lista.join('');
+  return lista.slice(0, -1).join(', ') + ' și ' + lista[lista.length - 1];
+}
+function arataEroareImagini(msg){
+  const dropzone = document.getElementById('contribuie-dropzone');
+  if(dropzone){ arataEroareCamp(dropzone, msg); return; }
+  const eroare = document.getElementById('eroare-imagini');
+  if(eroare){ eroare.textContent = msg; eroare.hidden = false; }
+}
+function focusCamp(camp){
+  if(!camp || typeof camp.focus !== 'function') return;
+  try{ camp.focus({preventScroll:true}); }catch(err){ camp.focus(); }
+  if(camp.scrollIntoView) camp.scrollIntoView({behavior: redus ? 'auto' : 'smooth', block: 'center'});
+}
+function curataSumarDacaNuMaiSuntErori(){
+  const stare = document.getElementById('contribuie-stare');
+  if(!stare || !stare.classList.contains('eroare')) return;
+  if(!document.querySelector('.form-contribuie [aria-invalid="true"]')) setStareContribuie('', false);
+}
 /* revenirea din redirectul FormSubmit (?contribuie=multumim) → ecranul de mulțumire */
 function esteIntoarcereContributie(){ return /multumim/i.test(location.search); }
 function deschideContribuie(push){
@@ -1101,9 +1169,23 @@ function randeazaPreviewContribuie(){
     item.appendChild(scoate);
     previewEl.appendChild(item);
   });
+  const nr = stareContribuie.fisiere.length;
   const total = totalImaginiContribuie();
-  counterEl.textContent = stareContribuie.fisiere.length + '/' + CONTRIBUTIE_MAX_POZE + ' imagini alese' +
+  let mesaj;
+  if(nr < CONTRIBUTIE_MIN_POZE){
+    const lipsa = CONTRIBUTIE_MIN_POZE - nr;
+    mesaj = ' · mai ' + (lipsa === 1 ? 'adaugă o imagine' : 'adaugă ' + lipsa + ' imagini');
+  }else if(nr >= CONTRIBUTIE_MAX_POZE){
+    mesaj = ' · maxim atins';
+  }else{
+    mesaj = ' · poți adăuga până la ' + CONTRIBUTIE_MAX_POZE;
+  }
+  counterEl.textContent = nr + '/' + CONTRIBUTIE_MAX_POZE + ' imagini alese' + mesaj +
     (total ? ' · ~' + dimensiuniUmane(total) : '');
+  const bara = document.getElementById('contribuie-progres-bara');
+  const umplere = document.getElementById('contribuie-progres');
+  if(bara) bara.setAttribute('aria-valuenow', String(nr));
+  if(umplere) umplere.style.width = Math.round((nr / CONTRIBUTIE_MAX_POZE) * 100) + '%';
 }
 /* Dimensiuni: 2 variante (2D = Lungime x Lățime, 3D = + Înălțime), câmpuri orizontale */
 function tipDimensiuni(){
@@ -1151,19 +1233,21 @@ function comprimaImagine(file, numeNou){
 async function onFisiereAlese(list){
   const primite = Array.from(list || []);
   if(!primite.length) return;
+  curataEroareCamp(document.getElementById('contribuie-dropzone'));
   const okTip = primite.filter(f => /^image\//.test(f.type || '') || /\.(jpe?g|png|webp|gif)$/i.test(f.name || ''));
-  if(okTip.length !== primite.length) toastPoarta('Doar imagini JPG / PNG / WebP / GIF.');
+  if(okTip.length !== primite.length) arataEroareImagini('Doar imagini JPG / PNG / WebP / GIF.');
   const spatiu = CONTRIBUTIE_MAX_POZE - stareContribuie.fisiere.length;
-  if(spatiu <= 0){ toastPoarta('Poți încărca maximum ' + CONTRIBUTIE_MAX_POZE + ' imagini.'); return; }
+  if(spatiu <= 0){ arataEroareImagini('Ai atins maximul de ' + CONTRIBUTIE_MAX_POZE + ' imagini. Șterge una înainte de a adăuga alta.'); return; }
   const deAdaugat = okTip.slice(0, spatiu);
-  if(okTip.length > spatiu) toastPoarta('Primele ' + spatiu + ' imagini au fost adăugate (max ' + CONTRIBUTIE_MAX_POZE + ').');
+  if(okTip.length > spatiu) arataEroareImagini('Am adăugat primele ' + spatiu + ' imagini — maximum ' + CONTRIBUTIE_MAX_POZE + '.');
   for(const f of deAdaugat){
-    if(f.size > CONTRIBUTIE_MAX_ORIGINAL){ toastPoarta('„' + (f.name || 'imagine') + '” depășește 25MB.'); continue; }
+    if(f.size > CONTRIBUTIE_MAX_ORIGINAL){ arataEroareImagini('„' + (f.name || 'imagine') + '” depășește 25MB și nu a fost adăugată.'); continue; }
     stareContribuie.fisiere.push(await comprimaImagine(f, 'contributie.jpg'));
   }
   if(stareContribuie.indexPrincipal >= stareContribuie.fisiere.length) stareContribuie.indexPrincipal = 0;
   Sunet.hartie();
   randeazaPreviewContribuie();
+  curataSumarDacaNuMaiSuntErori();
 }
 /* ---- raion/municipiu → sat (cascada; satul e inactiv până la alegerea raionului) ---- */
 function populeazaLocatieContribuie(){
@@ -1195,6 +1279,33 @@ function populeazaLocatieContribuie(){
   });
 }
 
+/* ---- sala: opțiunile vin din MUZEU.sali (sursa de adevăr din js/data.js) ---- */
+function populeazaSaliContribuie(){
+  const sel = document.getElementById('contribuie-sala');
+  if(!sel || sel.options.length > 1) return;
+  const sali = (typeof MUZEU !== 'undefined' && MUZEU && Array.isArray(MUZEU.sali)) ? MUZEU.sali : [];
+  sali.forEach(s => {
+    if(!s || !s.id || !s.nume) return;
+    const o = document.createElement('option');
+    o.value = s.nume;
+    o.textContent = s.nume;
+    o.setAttribute('data-cod', s.id);
+    sel.appendChild(o);
+  });
+  if(!sali.length){
+    sel.disabled = true;
+    sel.setAttribute('aria-disabled', 'true');
+    arataEroareCamp(sel, 'Lista sălilor nu este disponibilă momentan. Reîncarcă pagina.');
+  }
+}
+function actualizeazaCodSala(){
+  const sel = document.getElementById('contribuie-sala');
+  const cod = document.getElementById('contribuie-sala-cod');
+  if(!cod) return;
+  const opt = (sel && sel.selectedOptions && sel.selectedOptions[0]) ? sel.selectedOptions[0] : null;
+  cod.value = opt ? (opt.getAttribute('data-cod') || '') : '';
+}
+
 /* Legături formular: X, fundal, pickere imagini, buton harta, submit (defensiv, o singură dată) */
 function leagaFormContribuie(){
   if(window._contribuieLegat) return;
@@ -1207,15 +1318,29 @@ function leagaFormContribuie(){
   if(harta) harta.addEventListener('click', () => { Sunet.pas(); inchideContribuie(true); });
   const inp = document.getElementById('contribuie-imagini');
   if(inp) inp.addEventListener('change', () => { onFisiereAlese(inp.files); inp.value = ''; });
-  const eticheta = document.querySelector('label.btn-alege-imagini[for="contribuie-imagini"]');
+  const eticheta = document.querySelector('label.upload-dropzone[for="contribuie-imagini"]');
   if(eticheta) eticheta.addEventListener('keydown', e => {
     if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); if(inp) inp.click(); }
   });
   const form = document.getElementById('contribuie-form');
-  if(form) form.addEventListener('submit', trimiteContribuie);
+  if(form){
+    form.addEventListener('submit', trimiteContribuie);
+    const curata = e => {
+      if(!e.target || !e.target.id) return;
+      if(/^contribuie-(lungime|latime|inaltime)$/.test(e.target.id)) curataEroareDimensiuni();
+      else curataEroareCamp(e.target);
+      curataSumarDacaNuMaiSuntErori();
+    };
+    form.addEventListener('input', curata);
+    form.addEventListener('change', curata);
+  }
+  const sala = document.getElementById('contribuie-sala');
+  if(sala) sala.addEventListener('change', () => { actualizeazaCodSala(); Sunet.hartie(); });
   document.querySelectorAll('input[name="Tip dimensiuni"]').forEach(r => {
     r.addEventListener('change', () => { Sunet.hartie(); comutaDimensiuni(); });
   });
+  populeazaSaliContribuie();
+  actualizeazaCodSala();
   populeazaLocatieContribuie();
   comutaDimensiuni();
   randeazaPreviewContribuie();
@@ -1234,9 +1359,11 @@ async function trimiteContribuie(e){
   const unitEl = document.getElementById('contribuie-unitate');
   const autorEl = document.getElementById('contribuie-autor');
   const emailEl = document.getElementById('contribuie-email');
+  const salaEl = document.getElementById('contribuie-sala');
   const locEl = document.getElementById('contribuie-locatie');
   const raionEl = document.getElementById('contribuie-raion');
   const satEl = document.getElementById('contribuie-sat');
+  const dropzone = document.getElementById('contribuie-dropzone');
   const btn = document.getElementById('contribuie-trimite');
   const titlu = titluEl ? titluEl.value.trim() : '';
   const descriere = descEl ? descEl.value.trim() : '';
@@ -1249,39 +1376,60 @@ async function trimiteContribuie(e){
   const unitate = unitEl ? unitEl.value : 'cm';
   const autor = autorEl ? autorEl.value.trim().slice(0, 120) : '';
   const email = emailEl ? emailEl.value.trim() : '';
+  const sala = salaEl ? salaEl.value : '';
   const locatie = locEl ? locEl.value.trim().slice(0, 120) : '';
   const raionId = raionEl ? raionEl.value : '';
   const satId = satEl ? satEl.value : '';
   const e3d = tipDimensiuni() === '3d';
-  function eroare(msg){
-    setStareContribuie(msg, true);
-    toastPoarta(msg);
+  curataEroriContribuie();
+  const erori = [];
+  function eroare(camp, msg){
+    arataEroareCamp(camp, msg);
+    if(camp && erori.indexOf(camp) === -1) erori.push(camp);
   }
-  if(!titlu || !descriere){
-    eroare('Completează denumirea și descrierea obiectului.');
-    return;
-  }
-  if(!material){ eroare('Completează materialul obiectului (ex: hârtie / ceramică).'); return; }
-  if(!an){ eroare('Completează anul obiectului (ex: 1932 / cca 1900 / sec. XIX).'); return; }
-  if(!perioada){ eroare('Completează perioada obiectului (ex: Interbelic).'); return; }
-  if(!lungime || !latime || (e3d && !inaltime)){
-    eroare(e3d ? 'Completează lungimea, lățimea și înălțimea.' : 'Completează lungimea și lățimea.');
-    return;
-  }
-  if(!autor){ eroare('Completează autorul — introduceți numele dumneavoastră.'); return; }
+  function numarValid(v){ return /^\d+(?:[.,]\d+)?$/.test(v); }
+  if(!titlu) eroare(titluEl, 'Completează denumirea obiectului.');
+  if(!descriere) eroare(descEl, 'Completează descrierea obiectului.');
+  if(!material) eroare(matEl, 'Completează materialul obiectului (ex: hârtie / ceramică).');
+  if(!an) eroare(anEl, 'Completează anul obiectului (ex: 1932 / cca 1900 / sec. XIX).');
+  if(!perioada) eroare(perEl, 'Completează perioada obiectului (ex: Interbelic).');
+  if(!autor) eroare(autorEl, 'Completează autorul — introduceți numele dumneavoastră.');
   if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
-    eroare('Emailul nu pare complet — verifică-l sau lasă-l gol.');
-    return;
+    eroare(emailEl, 'Emailul nu pare complet — verifică-l sau lasă-l gol.');
   }
-  if(!locatie){ eroare('Completează locația obiectului (ex: muzeul școlar / colecție personală).'); return; }
-  if(!raionId){ eroare('Alege raionul / municipiul obiectului.'); return; }
-  if(!satId){ eroare('Alege satul (după raion).'); return; }
-  if(stareContribuie.fisiere.length !== CONTRIBUTIE_MAX_POZE){
-    eroare('Încarcă exact ' + CONTRIBUTIE_MAX_POZE + ' imagini (toate obligatorii).');
+  const lipsaDimensiuni = [];
+  if(!lungime) lipsaDimensiuni.push('lungimea');
+  if(!latime) lipsaDimensiuni.push('lățimea');
+  if(e3d && !inaltime) lipsaDimensiuni.push('înălțimea');
+  if(lipsaDimensiuni.length){
+    const mesajDim = 'Completează ' + enumera(lipsaDimensiuni) + '.';
+    const primulDim = !lungime ? lungEl : (!latime ? latEl : inalEl);
+    eroare(primulDim, mesajDim);
+    [lungEl, latEl, inalEl].forEach(el => {
+      if(el && !el.closest('[hidden]') && !el.value.trim()) arataEroareCamp(el, mesajDim);
+    });
+  }else if(!numarValid(lungime) || !numarValid(latime) || (e3d && !numarValid(inaltime))){
+    eroare(lungEl, 'Dimensiunile trebuie să fie numere (ex: 45 sau 45,5).');
+  }
+  if(!sala) eroare(salaEl, 'Alege sala în care va fi expus obiectul.');
+  if(!locatie) eroare(locEl, 'Completează locația obiectului (ex: muzeul școlar / colecție personală).');
+  if(!raionId) eroare(raionEl, 'Alege raionul / municipiul obiectului.');
+  if(!satId) eroare(satEl, 'Alege satul (după raion).');
+  const nrPoze = stareContribuie.fisiere.length;
+  if(nrPoze < CONTRIBUTIE_MIN_POZE){
+    eroare(dropzone, 'Adaugă cel puțin ' + CONTRIBUTIE_MIN_POZE + ' imagini — ai ' + nrPoze + '.');
+  }else if(nrPoze > CONTRIBUTIE_MAX_POZE){
+    eroare(dropzone, 'Poți încărca maximum ' + CONTRIBUTIE_MAX_POZE + ' imagini.');
+  }
+  if(erori.length){
+    setStareContribuie('Mai sunt câmpuri de verificat — le-am marcat mai sus.', true);
+    focusCamp(erori[0]);
     return;
   }
   if(totalImaginiContribuie() > 9 * 1024 * 1024){
-    eroare('Imaginile depășesc 9MB în total — scoate una și reîncearcă.');
+    eroare(dropzone, 'Imaginile depășesc 9MB în total — scoate una și reîncearcă.');
+    setStareContribuie('Imaginile depășesc 9MB în total — scoate una și reîncearcă.', true);
+    focusCamp(dropzone);
     return;
   }
   const dimensiuni = e3d
@@ -1289,23 +1437,27 @@ async function trimiteContribuie(e){
     : lungime + ' × ' + latime + ' ' + unitate;
   const raionNume = (raionEl && raionEl.selectedOptions && raionEl.selectedOptions[0]) ? raionEl.selectedOptions[0].textContent : raionId;
   const satNume = (satEl && satEl.selectedOptions && satEl.selectedOptions[0]) ? satEl.selectedOptions[0].textContent : satId;
+  const salaNume = (salaEl && salaEl.selectedOptions && salaEl.selectedOptions[0]) ? salaEl.selectedOptions[0].textContent : sala;
   const subjEl = document.getElementById('contribuie-subject');
-  if(subjEl) subjEl.value = '[MUZEU CONTRIBUȚIE] ' + titlu + ' — ' + raionNume + ' / ' + satNume;
+  if(subjEl) subjEl.value = '[MUZEU CONTRIBUȚIE] ' + titlu + ' — ' + salaNume + ' · ' + raionNume + ' / ' + satNume;
   const dimEl = document.getElementById('contribuie-dimensiuni-camp');
   if(dimEl) dimEl.value = dimensiuni;
+  actualizeazaCodSala();
   const nextEl = document.getElementById('contribuie-next');
   if(nextEl) nextEl.value = location.origin + location.pathname + '?contribuie=multumim';
   const infoEl = document.getElementById('contribuie-principala-info');
   if(infoEl) infoEl.value = 'contributie-principala.jpg (vezi atașamentul nr. 1)';
   if(!('DataTransfer' in window)){
-    eroare('Browserul este prea vechi pentru încărcarea imaginilor — încearcă un browser recent.');
+    eroare(dropzone, 'Browserul este prea vechi pentru încărcarea imaginilor — încearcă un browser recent.');
+    setStareContribuie('Browserul este prea vechi pentru încărcarea imaginilor — încearcă un browser recent.', true);
+    focusCamp(dropzone);
     return;
   }
   /* exact câte un fișier în fiecare input denumit — schema documentată FormSubmit;
      slotul 0 primește ÎNTOTDEAUNA imaginea marcată cu ⭐; restul, în ordinea alegerii */
   const poPrincipala = stareContribuie.indexPrincipal;
   const restul = stareContribuie.fisiere.map((f, i) => i).filter(i => i !== poPrincipala);
-  for(let i = 0; i <= 4; i++){
+  for(let i = 0; i < CONTRIBUTIE_MAX_POZE; i++){
     const inp = document.getElementById('contribuie-fisier-' + i);
     if(!inp) continue;
     const dt = new DataTransfer();
@@ -1315,6 +1467,7 @@ async function trimiteContribuie(e){
       dt.items.add(new File([f], numeFinal, { type: f.type, lastModified: f.lastModified || Date.now() }));
     }
     try{ inp.files = dt.files; }catch(err){}
+    inp.disabled = !f; /* sloturile nefolosite nu pleacă în email ca atașamente goale */
   }
   stareContribuie.trimitere = true;
   if(btn){ btn.disabled = true; btn.textContent = 'SE TRIMITE…'; }
