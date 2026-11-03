@@ -27,12 +27,13 @@
     "receptor-radio.json",
     "roata-de-tors-traditionala.json",
     "roata-de-tors.json",
+    "sapaliga-manuala.json",
     "semanatoare-manuala.json",
     "telefon-fix-cu-disc-rotativ.json",
     "televizor-sovietic-406.json",
     "ulcior-de-lut.json",
     "virtelnita.json"
   ],
-  "count": 32,
-  "updatedAt": "2026-11-03T12:00:31.082539+00:00"
+  "count": 33,
+  "updatedAt": "2026-11-03T12:04:06.357229+00:00"
 }

@@ -1,5 +1,6 @@
 {
   "id": "sapaliga-manuala",
+  "dosarId": "DOS-00046",
   "titlu": "Săpaliga manuala",
   "sala": "sala-mestesugurilor",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/sapaliga-manuala/contributie-principala.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/sapaliga-manuala/contributie-suplimentara-2.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/sapaliga-manuala/contributie-suplimentara-4.avif",
-  "sat": "puhoi"
+  "sat": "puhoi",
+  "raion": "ialoveni"
 }
