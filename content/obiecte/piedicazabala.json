@@ -1,5 +1,6 @@
 {
   "id": "piedicazabala",
+  "dosarId": "DOS-00051",
   "titlu": "Piedica (zăbală)",
   "sala": "sala-mestesugurilor",
   "perioada": "Sovietică",
@@ -11,5 +12,6 @@
   "descriere": "Obiectul este o zăbală arhaică pentru cal, o piesă metalică de harnașament compusă din două bare de fier legate printr-o za centrală și prevăzută la capete cu inele mari pentru prinderea frielor. Această unealtă provine dintr-o curte rurală și a fost folosită de gospodari pentru a conduce calul de povară în timpul muncilor grele de la câmp sau la transportul lemnelor din pădure. Astăzi, piesa acoperită de o rugină profundă nu mai strunește destine, ci a devenit o prețioasă amintire de familie și o autentică capsulă a timpului. Ea păstrează vie memoria gospodăriei de altădată, amintindu-ne cu respect de devotamentul meșteșugarilor și de legătura strânsă de parteneriat și atașament care exista între om și animal în lumea satului patriarhal.",
   "imagine_principala": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/piedicazabala/contributie-principala.avif",
   "img_1": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/piedicazabala/contributie-suplimentara-3.avif",
-  "sat": "puhoi"
+  "sat": "puhoi",
+  "raion": "ialoveni"
 }
