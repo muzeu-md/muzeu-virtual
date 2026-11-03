@@ -1,5 +1,6 @@
 {
   "id": "covata-din-lemn",
+  "dosarId": "DOS-00042",
   "titlu": "Covată din lemn",
   "sala": "sala-gospodariei",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/covata-din-lemn/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/covata-din-lemn/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/covata-din-lemn/contributie-suplimentara-4.avif",
-  "sat": "puhoi"
+  "sat": "puhoi",
+  "raion": "ialoveni"
 }
