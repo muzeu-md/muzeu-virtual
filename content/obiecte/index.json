@@ -9,6 +9,7 @@
     "bustul-reginei-tomiris.json",
     "calculatorul-iskra-111m.json",
     "capcana-mecanica-cu-arc.json",
+    "colectie-de-inele-arheologice.json",
     "covata-din-lemn.json",
     "epoleti-militari-sovietici.json",
     "fier-de-calcat-cucarbune.json",
@@ -50,6 +51,6 @@
     "ulcior-de-lut.json",
     "virtelnita.json"
   ],
-  "count": 49,
-  "updatedAt": "2026-11-03T15:28:44.408939+00:00"
+  "count": 50,
+  "updatedAt": "2026-11-03T15:31:18.050443+00:00"
 }

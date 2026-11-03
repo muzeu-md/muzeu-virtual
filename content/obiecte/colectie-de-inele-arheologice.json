@@ -1,5 +1,6 @@
 {
   "id": "colectie-de-inele-arheologice",
+  "dosarId": "DOS-00063",
   "titlu": "Colecție de inele arheologice",
   "sala": "sala-documentelor",
   "perioada": "Evul Mediu / Epoca Medievală",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/colectie-de-inele-arheologice/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/colectie-de-inele-arheologice/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/colectie-de-inele-arheologice/contributie-suplimentara-4.avif",
-  "sat": "susleni"
+  "sat": "susleni",
+  "raion": "orhei"
 }
