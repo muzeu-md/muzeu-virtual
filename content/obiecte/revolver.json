@@ -1,0 +1,18 @@
+{
+  "id": "revolver",
+  "titlu": "Revolver",
+  "sala": "sala-marturiilor",
+  "perioada": "Al doilea Razboi Mondial",
+  "an": "1941-1945",
+  "material": "Fier",
+  "dimensiuni": "30 × 30 cm",
+  "autor": "Lupanciuc David",
+  "locatie_fizica": "Muzeu raional",
+  "descriere": "Era destinat luptelor. Cel mai des folosit în Germania,deoarece acolo își are originea.",
+  "imagine_principala": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/revolver/contributie-principala.avif",
+  "img_1": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/revolver/contributie-suplimentara-1.avif",
+  "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/revolver/contributie-suplimentara-2.avif",
+  "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/revolver/contributie-suplimentara-3.avif",
+  "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/revolver/contributie-suplimentara-4.avif",
+  "sat": "hincesti"
+}
