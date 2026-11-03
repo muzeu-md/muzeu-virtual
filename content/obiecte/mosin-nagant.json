@@ -1,0 +1,18 @@
+{
+  "id": "mosin-nagant",
+  "titlu": "Mosin-Nagant",
+  "sala": "sala-marturiilor",
+  "perioada": "Epoca modernă",
+  "an": "Secolele XIX-XX",
+  "material": "Fier",
+  "dimensiuni": "40 × 5 cm",
+  "autor": "Lupanciuc David",
+  "locatie_fizica": "Muzeu raional",
+  "descriere": "A fost creată de Serghei Ivanovich Mosin și de Léon Nagant. Folosită la lupte.",
+  "imagine_principala": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/mosin-nagant/contributie-principala.avif",
+  "img_1": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/mosin-nagant/contributie-suplimentara-1.avif",
+  "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/mosin-nagant/contributie-suplimentara-2.avif",
+  "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/mosin-nagant/contributie-suplimentara-3.avif",
+  "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/mosin-nagant/contributie-suplimentara-4.avif",
+  "sat": "costesti"
+}
