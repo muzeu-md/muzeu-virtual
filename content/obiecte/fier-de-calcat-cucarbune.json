@@ -1,5 +1,6 @@
 {
   "id": "fier-de-calcat-cucarbune",
+  "dosarId": "DOS-00045",
   "titlu": "Fier de calcat cu cărbune",
   "sala": "sala-gospodariei",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/fier-de-calcat-cucarbune/contributie-suplimentara-1.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/fier-de-calcat-cucarbune/contributie-suplimentara-2.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/fier-de-calcat-cucarbune/contributie-suplimentara-3.avif",
-  "sat": "puhoi"
+  "sat": "puhoi",
+  "raion": "ialoveni"
 }
