@@ -19,6 +19,7 @@
     "lampa-cu-petrol.json",
     "magnitofon-cu-bobine.json",
     "mangalau.json",
+    "masea-de-mamut.json",
     "masina-de-cusut-cu-pedala.json",
     "masina-de-scris-mecanica.json",
     "masina-de-tunsmanuala-mecanica.json",
@@ -47,6 +48,6 @@
     "ulcior-de-lut.json",
     "virtelnita.json"
   ],
-  "count": 46,
-  "updatedAt": "2026-11-03T15:07:41.482816+00:00"
+  "count": 47,
+  "updatedAt": "2026-11-03T15:12:32.809804+00:00"
 }

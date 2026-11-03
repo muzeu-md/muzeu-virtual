@@ -1,5 +1,6 @@
 {
   "id": "masea-de-mamut",
+  "dosarId": "DOS-00060",
   "titlu": "Măsea de mamut",
   "sala": "sala-naturii",
   "perioada": "Preistorie / Epoca Pleistocenei",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/masea-de-mamut/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/masea-de-mamut/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/masea-de-mamut/contributie-suplimentara-4.avif",
-  "sat": "susleni"
+  "sat": "susleni",
+  "raion": "orhei"
 }
