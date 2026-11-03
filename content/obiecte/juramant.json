@@ -1,0 +1,18 @@
+{
+  "id": "juramant",
+  "titlu": "Jurământ",
+  "sala": "sala-documentelor",
+  "perioada": "Interbelică",
+  "an": "1939 - Octombrie",
+  "material": "Hârtie",
+  "dimensiuni": "22 × 30 cm",
+  "autor": "Ursu Nikita",
+  "locatie_fizica": "Muzeul Liceului Teoretic „Alexandru cel bun”",
+  "descriere": "Document vechi care conține jurământul de credință față de Regele României, Constituție și legile țării. Documentul este completat de mână și prezintă semnături și ștampila preotului.",
+  "imagine_principala": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/juramant/contributie-principala.avif",
+  "img_1": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/juramant/contributie-suplimentara-1.avif",
+  "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/juramant/contributie-suplimentara-2.avif",
+  "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/juramant/contributie-suplimentara-3.avif",
+  "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/juramant/contributie-suplimentara-4.avif",
+  "sat": "singera"
+}
