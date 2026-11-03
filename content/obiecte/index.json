@@ -22,6 +22,7 @@
     "proiector.json",
     "radiogramofon-rekord-314.json",
     "radioreceptor-portabil-sovietic.json",
+    "rasnita-manuala-din-piatra.json",
     "receptor-radio.json",
     "roata-de-tors-traditionala.json",
     "roata-de-tors.json",
@@ -31,6 +32,6 @@
     "ulcior-de-lut.json",
     "virtelnita.json"
   ],
-  "count": 30,
-  "updatedAt": "2026-11-03T11:50:47.302551+00:00"
+  "count": 31,
+  "updatedAt": "2026-11-03T11:54:21.487336+00:00"
 }

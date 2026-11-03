@@ -1,5 +1,6 @@
 {
   "id": "rasnita-manuala-din-piatra",
+  "dosarId": "DOS-00044",
   "titlu": "Râșniță manuală din piatra",
   "sala": "sala-gospodariei",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/rasnita-manuala-din-piatra/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/rasnita-manuala-din-piatra/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/rasnita-manuala-din-piatra/contributie-suplimentara-4.avif",
-  "sat": "puhoi"
+  "sat": "puhoi",
+  "raion": "ialoveni"
 }
