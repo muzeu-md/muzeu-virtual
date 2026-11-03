@@ -1,0 +1,18 @@
+{
+  "id": "proiector",
+  "titlu": "Proiector",
+  "sala": "sala-scolii",
+  "perioada": "Sovietică",
+  "an": "1960",
+  "material": "Metal, sticlă",
+  "dimensiuni": "45 × 40 cm",
+  "autor": "Rafaela Rapcea",
+  "locatie_fizica": "Muzeul Liceului Teoretic „Alexandru cel bun”",
+  "descriere": "Proiectorul datează din anul 1960 și reprezintă un aparat utilizat în epoca cinematografiei analogice, înainte de apariția tehnologiilor digitale moderne de pe Uniunea Sovietică.Aparatul era utilizat de un operator specializat, numit proiecționist. Acesta funcționa cu ajutorul unei pelicule cinematografice pe care erau înregistrate imaginile succesive ale unui film. Pelicula era așezată pe bobină și deplasată printr-un mecanism format din role și piese metalice. În cazul unui proiector, o sursă de lumină și un obiectiv permiteau proiectarea imaginilor mărite pe un ecran. Succesiunea rapidă a cadrelor crea impresia de mișcare, permițând spectatorilor să urmărească filmul. Aparatele de acest tip erau folosite în cinematografe, școli, case de cultură și alte instituții pentru divertisment și educație. Construit din metal și prevăzut cu mecanisme mecanice, aparatul era conceput pentru utilizare repetată. Importanța sa istorică constă în faptul că ilustrează nivelul tehnologiei cinematografice din anii 1960 și evoluția mijloacelor de transmitere a imaginilor. Astăzi, asemenea aparate reprezintă obiecte de patrimoniu tehnic, păstrând vie amintirea unei perioade importante din istoria cinematografiei.",
+  "imagine_principala": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/proiector/contributie-principala.avif",
+  "img_1": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/proiector/contributie-suplimentara-1.avif",
+  "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/proiector/contributie-suplimentara-2.avif",
+  "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/proiector/contributie-suplimentara-3.avif",
+  "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/proiector/contributie-suplimentara-4.avif",
+  "sat": "singera"
+}
