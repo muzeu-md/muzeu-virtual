@@ -11,6 +11,7 @@
     "mangalau.json",
     "masina-de-cusut-cu-pedala.json",
     "masina-de-scris-mecanica.json",
+    "masina-de-tunsmanuala-mecanica.json",
     "piatra-penteu-treerat.json",
     "pick-up-cu-disc-lider-306mono.json",
     "pieptene-de-scarmanat.json",
@@ -23,6 +24,6 @@
     "telefon-fix-cu-disc-rotativ.json",
     "virtelnita.json"
   ],
-  "count": 22,
-  "updatedAt": "2026-11-03T10:55:37.776574+00:00"
+  "count": 23,
+  "updatedAt": "2026-11-03T11:00:11.955258+00:00"
 }

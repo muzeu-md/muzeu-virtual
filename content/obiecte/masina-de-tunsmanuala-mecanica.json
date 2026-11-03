@@ -1,5 +1,6 @@
 {
   "id": "masina-de-tunsmanuala-mecanica",
+  "dosarId": "DOS-00036",
   "titlu": "Mașină de tuns manuală (mecanică)",
   "sala": "sala-mestesugurilor",
   "perioada": "Comunism",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/masina-de-tunsmanuala-mecanica/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/masina-de-tunsmanuala-mecanica/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/masina-de-tunsmanuala-mecanica/contributie-suplimentara-4.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }
