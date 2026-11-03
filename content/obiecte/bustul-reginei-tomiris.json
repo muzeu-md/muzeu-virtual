@@ -1,5 +1,6 @@
 {
   "id": "bustul-reginei-tomiris",
+  "dosarId": "DOS-00059",
   "titlu": "Bustul Reginei Tomiris",
   "sala": "sala-documentelor",
   "perioada": "Antichitate",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/bustul-reginei-tomiris/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/bustul-reginei-tomiris/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/bustul-reginei-tomiris/contributie-suplimentara-4.avif",
-  "sat": "susleni"
+  "sat": "susleni",
+  "raion": "orhei"
 }
