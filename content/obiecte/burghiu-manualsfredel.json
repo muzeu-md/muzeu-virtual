@@ -1,5 +1,6 @@
 {
   "id": "burghiu-manualsfredel",
+  "dosarId": "DOS-00050",
   "titlu": "Burghiu manual (sfredel)",
   "sala": "sala-mestesugurilor",
   "perioada": "Sovietică",
@@ -10,5 +11,6 @@
   "locatie_fizica": "Colecție personală",
   "descriere": "Obiectul este un sfredel manual arhaic realizat din fier forjat și prevăzut cu un mâner din lemn în formă de T. Această unealtă provine din gospodăriile rurale și era folosit de meșterii dulgheri pentru a găuri manual grinzile masive din lemn la construcția caselor sau a hambarelor. Astăzi, sfredelul nu mai este o simplă sculă de lucru, ci o prețioasă amintire de familie. El reprezintă o adevărată capsulă a timpului care ne conectează cu rădăcinile noastre, amintindu-ne de truda fizică, de măiestria și de ingeniozitatea cu care strămoșii noștri își clădeau singuri adăpostul, doar prin forța brațelor.",
   "imagine_principala": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/burghiu-manualsfredel/contributie-suplimentara-1.avif",
-  "sat": "puhoi"
+  "sat": "puhoi",
+  "raion": "ialoveni"
 }
