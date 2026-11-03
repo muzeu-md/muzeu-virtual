@@ -1485,7 +1485,9 @@ async function trimiteContribuie(e){
   } catch(err) {
     console.error(err);
     setStareContribuie('Eroare: ' + err.message, true);
-    if(btn){ btn.disabled = false; btn.textContent = 'TRIMITE CONTRIBUȚIA'; btn.classList.remove('loading'); }
+    try {
+      if(btn){ btn.disabled = false; btn.textContent = 'TRIMITE CONTRIBUȚIA'; btn.classList.remove('loading'); }
+    } catch(e) {}
     stareContribuie.trimitere = false;
   }
 }
@@ -1547,7 +1549,8 @@ async function trimiteContribuieGAS(btn){
 
   const result = await res.json();
   if(result.status === 'success'){
-    if(btn){ btn.classList.remove('loading'); }
+    try { if(btn) btn.classList.remove('loading'); } catch(e) {}
+    // Redirect forțat chiar dacă btn e problematic
     window.location.href = result.redirect;
   } else {
     throw new Error(result.message || 'Eroare server');
