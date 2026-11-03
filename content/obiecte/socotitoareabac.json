@@ -1,5 +1,6 @@
 {
   "id": "socotitoareabac",
+  "dosarId": "DOS-00047",
   "titlu": "Socotitoare(abac)",
   "sala": "sala-scolii",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/socotitoareabac/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/socotitoareabac/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/socotitoareabac/contributie-suplimentara-4.avif",
-  "sat": "puhoi"
+  "sat": "puhoi",
+  "raion": "ialoveni"
 }
