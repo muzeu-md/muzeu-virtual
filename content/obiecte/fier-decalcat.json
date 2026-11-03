@@ -1,5 +1,6 @@
 {
   "id": "fier-decalcat",
+  "dosarId": "DOS-00040",
   "titlu": "Fier de călcat",
   "sala": "sala-gospodariei",
   "perioada": "Sovietică",
@@ -14,5 +15,6 @@
   "img_2": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/fier-decalcat/contributie-suplimentara-2.avif",
   "img_3": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/fier-decalcat/contributie-suplimentara-3.avif",
   "img_4": "https://raw.githubusercontent.com/muzeu-md/img-muzeu/refs/heads/main/fier-decalcat/contributie-suplimentara-4.avif",
-  "sat": "singera"
+  "sat": "singera",
+  "raion": "chisinau"
 }

@@ -5,6 +5,7 @@
     "aritmometru.json",
     "aspirator-de-praf.json",
     "calculatorul-iskra-111m.json",
+    "fier-decalcat.json",
     "filmoscop.json",
     "juramant.json",
     "lampa-cu-petrol.json",
@@ -27,6 +28,6 @@
     "televizor-sovietic-406.json",
     "virtelnita.json"
   ],
-  "count": 26,
-  "updatedAt": "2026-11-03T11:21:37.264603+00:00"
+  "count": 27,
+  "updatedAt": "2026-11-03T11:26:39.492477+00:00"
 }
