@@ -184,7 +184,9 @@ const PrafViu = { culoare: '#ffe9b0' };
     P = [];
     for(let i = 0; i < n; i++) P.push({x: Math.random()*W, y: Math.random()*H, r: .6 + Math.random()*1.8, v: .12 + Math.random()*.35, o: .15 + Math.random()*.4});
   }
-  dim(); addEventListener('resize', dim);
+  dim();
+  let rzDim;
+  addEventListener('resize', () => { clearTimeout(rzDim); rzDim = setTimeout(dim, 150); });
   let cadre = 0, t0 = performance.now(), oprit = false, mort = false, rafPend = false;
   /* o singură programare rAF activă: comutări rapide de tab nu dublează bucla */
   function programeaza(){
@@ -193,21 +195,19 @@ const PrafViu = { culoare: '#ffe9b0' };
     requestAnimationFrame(() => { rafPend = false; f(); });
   }
   addEventListener('visibilitychange', () => { oprit = document.hidden; if(!oprit) programeaza(); });
-  /* Cât loader-ul de arhivă e vizibil, sărim desenarea: GPU liber pentru boot.
-   * Verificarea e ieftină (o clasă pe body), rAF-ul continuă ca să reluăm instant.
-   * (rAF nu rulează în tab-uri ascunse, deci nu consumă baterie.) */
-  function loaderActiv(){
-    return !document.body.classList.contains('arhiva-gata') && !!document.getElementById('loader-arhiva');
+  /* Cât poarta e pe ecran (harta acasă) sau loader-ul e activ, sărim desenarea: GPU liber */
+  function pauzaPraf(){
+    if(!document.body.classList.contains('arhiva-gata') && !!document.getElementById('loader-arhiva')) return true;
+    return !document.body.classList.contains('poarta-deschisa') && !document.body.classList.contains('usile-deschise');
   }
   function f(){
-    if(mort) return;
-    if(oprit) return; /* reluat de visibilitychange */
-    if(loaderActiv()){ programeaza(); return; }
+    if(mort || oprit) return;
+    if(pauzaPraf()){ programeaza(); return; }
     x.clearRect(0, 0, W, H); x.fillStyle = PrafViu.culoare;
     for(const p of P){
       p.y -= p.v; p.x += Math.sin(p.y * .01) * .15;
       if(p.y < -4){ p.y = H + 4; p.x = Math.random() * W; }
-      x.globalAlpha = p.o; x.beginPath(); x.arc(p.x, p.y, p.r, 0, 7); x.fill();
+      x.globalAlpha = p.o; x.beginPath(); x.arc(p.x, p.y, p.r, 0, 6.283); x.fill();
     }
     x.globalAlpha = 1;
     cadre++;
@@ -939,10 +939,11 @@ function intoarceLaHarta(){
     if(mh) mh.focus({preventScroll:true});
   }, 1300);
 }
-/* harta SVG din poartă: hover premium (mărire + plăcuță) + click raion */
+/* harta SVG din poartă: hover premium (mărire + plăcuță) + click raion (delegare performantă) */
 function leagaHartaPoarta(){
   const svg = document.getElementById('harta-svg');
-  if(!svg) return;
+  if(!svg || svg._legatHarta) return;
+  svg._legatHarta = true;
   const placuta = document.getElementById('harta-placuta');
   const parinte = svg.parentElement;
   function pozitioneaza(g){
@@ -956,7 +957,7 @@ function leagaHartaPoarta(){
     }catch(e){}
   }
   function scoate(g){
-    if(!placuta) return;
+    if(!placuta || !g) return;
     placuta.textContent = g.getAttribute('data-nume') || '';
     placuta.classList.add('arata');
     pozitioneaza(g);
@@ -965,17 +966,33 @@ function leagaHartaPoarta(){
     if(!placuta) return;
     placuta.classList.remove('arata');
   }
-  svg.querySelectorAll('.raion').forEach(g => {
-    g.addEventListener('click', () => alegeRaion(g.getAttribute('data-id')));
-    g.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); alegeRaion(g.getAttribute('data-id')); } });
-    g.addEventListener('pointerenter', e => {
-      /* pe touch nu arătăm plăcuța: tap-ul navighează direct */
-      if(e.pointerType && e.pointerType !== 'mouse') return;
-      scoate(g);
-    });
-    g.addEventListener('pointerleave', ascunde);
-    g.addEventListener('focus', () => scoate(g));
-    g.addEventListener('blur', ascunde);
+
+  svg.addEventListener('click', e => {
+    const g = e.target.closest('.raion');
+    if(g) alegeRaion(g.getAttribute('data-id'));
+  });
+  svg.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' '){
+      const g = e.target.closest('.raion');
+      if(g){ e.preventDefault(); alegeRaion(g.getAttribute('data-id')); }
+    }
+  });
+  svg.addEventListener('pointerover', e => {
+    if(e.pointerType && e.pointerType !== 'mouse') return;
+    const g = e.target.closest('.raion');
+    if(g) scoate(g);
+  });
+  svg.addEventListener('pointerout', e => {
+    const g = e.target.closest('.raion');
+    if(g && (!e.relatedTarget || !g.contains(e.relatedTarget))) ascunde();
+  });
+  svg.addEventListener('focusin', e => {
+    const g = e.target.closest('.raion');
+    if(g) scoate(g);
+  });
+  svg.addEventListener('focusout', e => {
+    const g = e.target.closest('.raion');
+    if(g && (!e.relatedTarget || !g.contains(e.relatedTarget))) ascunde();
   });
 }
 /* ---- contribuire: overlay peste hartă; trimitere via Google Apps Script (JSON base64) —
@@ -1277,25 +1294,29 @@ function populeazaLocatieContribuie(){
   const sSel = document.getElementById('contribuie-sat');
   if(!rSel || !sSel || rSel.options.length > 1) return;
   const lista = (typeof RAIOANE !== 'undefined' && RAIOANE && RAIOANE.raioane) ? RAIOANE.raioane : [];
+  const fragR = document.createDocumentFragment();
   lista.forEach(r => {
     const o = document.createElement('option');
     o.value = r.id;
     o.textContent = r.nume;
-    rSel.appendChild(o);
+    fragR.appendChild(o);
   });
+  rSel.appendChild(fragR);
   rSel.addEventListener('change', () => {
     sSel.innerHTML = '';
+    const fragS = document.createDocumentFragment();
     const gol = document.createElement('option');
     gol.value = '';
     gol.textContent = '— alege satul —';
-    sSel.appendChild(gol);
+    fragS.appendChild(gol);
     const r = lista.find(x => x.id === rSel.value);
     (r && r.sate ? r.sate : []).forEach(s => {
       const o = document.createElement('option');
       o.value = s.id;
       o.textContent = s.nume;
-      sSel.appendChild(o);
+      fragS.appendChild(o);
     });
+    sSel.appendChild(fragS);
     sSel.disabled = !r;
     Sunet.hartie();
   });
@@ -1306,14 +1327,16 @@ function populeazaSaliContribuie(){
   const sel = document.getElementById('contribuie-sala');
   if(!sel || sel.options.length > 1) return;
   const sali = (typeof MUZEU !== 'undefined' && MUZEU && Array.isArray(MUZEU.sali)) ? MUZEU.sali : [];
+  const frag = document.createDocumentFragment();
   sali.forEach(s => {
     if(!s || !s.id || !s.nume) return;
     const o = document.createElement('option');
     o.value = s.nume;
     o.textContent = s.nume;
     o.setAttribute('data-cod', s.id);
-    sel.appendChild(o);
+    frag.appendChild(o);
   });
+  sel.appendChild(frag);
   if(!sali.length){
     sel.disabled = true;
     sel.setAttribute('aria-disabled', 'true');
@@ -1720,17 +1743,13 @@ pista.addEventListener('keydown', e => {
 
 let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(randareCarusel, 150); });
 
-/* ---- click pe loc gol închide panoul activ (dosar, sate sau modal sală; NU formularul contribuie) ---- */
+/* ---- click pe loc gol închide panoul activ (dosar, sate sau modal sală; NU formularul contribuie) — selector grupat pentru viteză ---- */
+const SELECTOR_EXCLUS_CLICK = '#form-contribuie, #btn-contribuie, #fereastra, #sate, #modal-sala, #modal-sali, #vizor, #btn-descopera, #btn-sate, #btn-sunet, #btn-harta, #cap-harta, #cap-sali, .cadru-card, .stepper, #cartus-sala';
 document.addEventListener('click', e => {
   const t = e.target;
-  /* formularul contribuie se închide doar cu X / fundal / Escape — nu la click gol (are câmpuri) */
-  if(t.closest && (t.closest('#form-contribuie') || t.closest('#btn-contribuie'))) return;
+  if(!t || !t.closest) return;
   if(!esteDeschis() && !esteSateDeschis() && !esteModalSalaDeschis() && !esteModalSaliDeschis()) return;
-  /* conținutul panourilor */
-  if(t.closest && (t.closest('#fereastra') || t.closest('#sate') || t.closest('#modal-sala') || t.closest('#modal-sali') || t.closest('#vizor'))) return;
-  /* comutatoarele și acțiunile funcționale — nu sunt „loc gol” */
-  if(t.closest && (t.closest('#btn-descopera') || t.closest('#btn-sate') || t.closest('#btn-sunet') ||
-    t.closest('#btn-harta') || t.closest('#cap-harta') || t.closest('#cap-sali') || t.closest('.cadru-card') || t.closest('.stepper') || t.closest('#cartus-sala'))) return;
+  if(t.closest(SELECTOR_EXCLUS_CLICK)) return;
   if(esteModalSalaDeschis()) inchideModalSala();
   else if(esteModalSaliDeschis()) inchideModalSali();
   else if(esteDeschis()) inchide();

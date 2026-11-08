@@ -11,18 +11,25 @@
   var SIGURANTA_LOADER_MS = 12000; /* loader-ul nu blochează niciodată mai mult */
 
   /* ---- Loader tematic arhivă: progres real, nu spinner fals ----
-   * Overlay-ul e HTML static în index.html (vizibil instant, fără JS).
-   * Aici doar actualizăm bara; ascunderea se face cu body.arhiva-gata. */
+   * Cache-uim referințele elementelor pentru viteză maximă de randare */
   var LoaderArhiva = (function () {
-    function el(id) { return document.getElementById(id); }
+    var elBara, elProgres, elPct, elMsg, elArhiva;
+    function initCache() {
+      if (!elBara) {
+        elBara = document.getElementById('loader-bara');
+        elProgres = document.getElementById('loader-progres');
+        elPct = document.getElementById('loader-pct');
+        elMsg = document.getElementById('loader-msg');
+        elArhiva = document.getElementById('loader-arhiva');
+      }
+    }
     function set(pct, msg) {
+      initCache();
       pct = Math.max(0, Math.min(100, Math.round(pct)));
-      var bara = el('loader-bara'), umplere = el('loader-progres'),
-          txt = el('loader-pct'), mesaj = el('loader-msg');
-      if (umplere) umplere.style.width = pct + '%';
-      if (bara) bara.setAttribute('aria-valuenow', String(pct));
-      if (txt) txt.textContent = pct + '%';
-      if (mesaj && msg) mesaj.textContent = msg;
+      if (elProgres) elProgres.style.width = pct + '%';
+      if (elBara) elBara.setAttribute('aria-valuenow', String(pct));
+      if (elPct) elPct.textContent = pct + '%';
+      if (elMsg && msg) elMsg.textContent = msg;
     }
     var gata = false;
     function done() {
@@ -31,14 +38,14 @@
       set(100, 'Arhiva e deschisă. Bine ai venit!');
       document.body.classList.add('arhiva-gata');
       setTimeout(function () {
-        var n = el('loader-arhiva');
-        if (n && n.parentNode) n.parentNode.removeChild(n);
+        initCache();
+        if (elArhiva && elArhiva.parentNode) elArhiva.parentNode.removeChild(elArhiva);
       }, 700);
     }
     setTimeout(done, SIGURANTA_LOADER_MS);
     /* muzeu.js anunță primul cadru randat → închidem precis, nu aproximativ */
     window.addEventListener('muzeu-gata', done, { once: true });
-    window.addEventListener('load', function () { setTimeout(done, 2500); });
+    window.addEventListener('load', function () { setTimeout(done, 2000); });
     return { set: set, done: done };
   })();
   window.LoaderArhiva = LoaderArhiva;
@@ -68,34 +75,33 @@
     return out;
   }
 
-   function loadScript(src) {
-     return new Promise(function (res, rej) {
-       var s = document.createElement('script');
-       s.src = src;
-       s.defer = true;
-       s.onload = res;
-       s.onerror = function () { rej(new Error('Nu s-a încărcat ' + src)); };
-       document.body.appendChild(s);
-     });
-   }
-   function fetchJSON(url, ms) {
+  function loadScript(src) {
+    return new Promise(function (res, rej) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.defer = true;
+      s.onload = res;
+      s.onerror = function () { rej(new Error('Nu s-a încărcat ' + src)); };
+      (document.head || document.body).appendChild(s);
+    });
+  }
+
+  function fetchJSON(url, ms, noStore) {
     var c = ('AbortController' in window) ? new AbortController() : null;
     var t = setTimeout(function () { if (c) c.abort(); }, ms || TIMEOUT_MS);
-    /* cache: 'no-store' — editările din CMS se văd instant la refresh; fără max-age=600 din Pages */
-    var opt = c ? { signal: c.signal, cache: 'no-store' } : { cache: 'no-store' };
+    var opt = { signal: c ? c.signal : undefined };
+    if (noStore) opt.cache = 'no-store';
     return fetch(url, opt).then(function (r) {
       clearTimeout(t);
       if (!r.ok) throw new Error('HTTP ' + r.status + ' la ' + url);
       return r.json();
     }).catch(function (e) { clearTimeout(t); throw e; });
   }
+
   /* data.js declară const MUZEU (lexical, nu pe window) — citește pe ambele căi. */
   function G_MUZEU() { return (typeof MUZEU !== 'undefined') ? MUZEU : window.MUZEU; }
 
-  /* Normalizează o fișă Pages CMS → formatul intern folosit de muzeu.js.
-   * Acceptă hibrid imagini: cale relativă din repo (public/images/…) sau URL extern.
-   * imagine_principala e mereu prima din galerie (e imaginea afișată în dosar);
-   * img_1…img_4 sunt imaginile secundare, dedublicate. */
+  /* Normalizează o fișă Pages CMS → formatul intern folosit de muzeu.js. */
   function normalizeazaObiect(o) {
     o = o || {};
     var principal = String(o.imagine_principala || o.imagine || '').trim();
@@ -111,46 +117,67 @@
       dosarId: o.dosarId || null
     };
   }
-  /* Citește obiectele din content/obiecte/ (index + câte un fetch per fișă).
-   * Static pe GitHub Pages nu există listare de director, de aceea index.json
-   * e regenerat de scripts/build-index.py (vezi .github/workflows/build-index.yml). */
+
+  /* Citește obiectele din content/obiecte/ cu verificare de cache sincronizată cu CMS-ul.
+   * index.json are mereu noStore ca să detecteze instant orice editare din Pages CMS.
+   * Dacă updatedAt e identic, cele 51 de fișe sunt servite instant din memorie (0 cereri HTTP). */
   function incarcaContentObiecte() {
-    return fetchJSON('content/obiecte/index.json', TIMEOUT_MS).then(function (idx) {
+    return fetchJSON('content/obiecte/index.json', TIMEOUT_MS, true).then(function (idx) {
       var files = (idx && idx.files) || [];
       if (!files.length) throw new Error('index gol');
-      LoaderArhiva.set(55, 'Se citesc fișele din content/obiecte…');
-      /* allSettled: o fișă coruptă/404 nu golește tot muzeul — se sare peste ea */
+      
+      var cheieVersiune = 'muzeu_cache_' + (idx.updatedAt || idx.count);
+      try {
+        var salvate = localStorage.getItem(cheieVersiune);
+        if (salvate) {
+          var lista = JSON.parse(salvate);
+          if (Array.isArray(lista) && lista.length === files.length) {
+            LoaderArhiva.set(60, 'Fișele sunt încărcate din arhiva locală…');
+            return lista;
+          }
+        }
+      } catch (err) {}
+
+      LoaderArhiva.set(50, 'Se citesc fișele din content/obiecte…');
       return Promise.allSettled(files.map(function (f) {
-        return fetchJSON('content/obiecte/' + f, TIMEOUT_MS);
+        return fetchJSON('content/obiecte/' + f, TIMEOUT_MS, false);
       })).then(function (rez) {
         var ok = [];
         rez.forEach(function (r, i) {
           if (r.status === 'fulfilled') ok.push(normalizeazaObiect(r.value));
-          else console.warn('[cms] Fișă inaccesibilă, sar peste:',
-            files[i], (r.reason && r.reason.message) || r.reason);
+          else console.warn('[cms] Fișă inaccesibilă, sar peste:', files[i]);
         });
+        
+        try {
+          for (var k in localStorage) {
+            if (k.indexOf('muzeu_cache_') === 0) localStorage.removeItem(k);
+          }
+          localStorage.setItem(cheieVersiune, JSON.stringify(ok));
+        } catch (err) {}
+        
         return ok;
       });
     });
   }
 
-   /* Boot static unic: data + raioane + content/obiecte, apoi muzeu.js. */
+  /* Boot optimizat paralel: data.js, raioane.js și fișele se încarcă simultan */
   function bootStatic(dosId, viewCerut) {
-    LoaderArhiva.set(25, 'Deschidem arhiva locală…');
-    return loadScript('js/data.js')
-      .then(function () { LoaderArhiva.set(45, 'File locale găsite…'); return loadScript('js/raioane.js'); })
-      .then(function () {
-        return incarcaContentObiecte().then(function (obiecte) {
-          if (obiecte && obiecte.length) G_MUZEU().obiecte = obiecte;
-          LoaderArhiva.set(60, 'Fișele sunt aici (' + G_MUZEU().obiecte.length + ')…');
-        }).catch(function (e) {
-          console.warn('[cms] content/obiecte indisponibil, folosesc js/data.js:', (e && e.message) || e);
-        });
-      })
-      .then(function () {
+    LoaderArhiva.set(20, 'Deschidem arhiva locală…');
+
+    var pData = loadScript('js/data.js');
+    var pRaioane = loadScript('js/raioane.js');
+    var pContent = incarcaContentObiecte().catch(function (e) {
+      console.warn('[cms] content/obiecte indisponibil, folosesc rezerva:', (e && e.message) || e);
+      return [];
+    });
+
+    return Promise.all([pData, pRaioane, pContent])
+      .then(function (rezultate) {
+        var obiecte = rezultate[2];
+        if (obiecte && obiecte.length) G_MUZEU().obiecte = obiecte;
+        LoaderArhiva.set(68, 'Fișele sunt pregătite (' + G_MUZEU().obiecte.length + ')…');
+
         var MZ = G_MUZEU();
-        /* Siguranță: dacă o fișă n-are dosarId (ocolire CMS), primește
-         * următorul număr liber, niciodată unul deja folosit. */
         var maxDosar = 0;
         MZ.obiecte.forEach(function (x) {
           var m = /^DOS-(\d+)$/i.exec(String(x.dosarId || ''));
@@ -160,24 +187,29 @@
           if (o.dosarId) return;
           maxDosar += 1;
           o.dosarId = 'DOS-' + String(maxDosar).padStart(5, '0');
-          console.warn('[cms] Fișă fără dosarId, atribuit automat:', o.id, o.dosarId);
         });
+
         if (viewCerut === 'contribuie') {
           window.__boot = { view: 'contribuie' };
         } else if (dosId) {
-          var exista = MZ.obiecte.some(function (x) { return String(x.dosarId || x.id || '').toUpperCase() === String(dosId).toUpperCase(); });
+          var exista = MZ.obiecte.some(function (x) { 
+            return String(x.dosarId || x.id || '').toUpperCase() === String(dosId).toUpperCase(); 
+          });
           window.__boot = { view: 'dosar', dosar: String(dosId).toUpperCase(), dosarLipsa: !exista };
-          if (!exista) console.warn('[cms] Dosarul cerut nu există în content/obiecte:', dosId);
+          if (!exista) console.warn('[cms] Dosarul cerut nu există:', dosId);
         } else {
           window.__boot = { view: 'home' };
         }
-        LoaderArhiva.set(70, 'Se așază exponatele…');
-        return loadScript('js/muzeu.js').then(function () { LoaderArhiva.set(88, 'Se aprind luminile sălii…'); });
+
+        LoaderArhiva.set(80, 'Se așază exponatele…');
+        return loadScript('js/muzeu.js').then(function () { 
+          LoaderArhiva.set(90, 'Se aprind luminile sălii…'); 
+        });
       });
   }
 
   function boot() {
-    LoaderArhiva.set(12, 'Se descuie ușile muzeului…');
+    LoaderArhiva.set(10, 'Se descuie ușile muzeului…');
     var q = parseQuery(location.search);
     if (q.view === 'contribuie') return bootStatic(null, 'contribuie');
     if (q.dosar) return bootStatic(q.dosar, 'dosar');
@@ -185,10 +217,5 @@
   }
 
   window.__cms = { parseQuery: parseQuery };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { boot().catch(function (e) { console.error('[cms]', e); }); });
-  } else {
-    boot().catch(function (e) { console.error('[cms]', e); });
-  }
+  boot().catch(function (e) { console.error('[cms]', e); });
 })();

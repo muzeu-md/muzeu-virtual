@@ -29,7 +29,7 @@ body[data-sala="sala-marturiilor"]{--spot-c:rgba(220,170,230,.13);--praf-c:#e0c8
   linear-gradient(180deg,transparent 0 68%,rgba(201,162,39,.6) 68%,rgba(201,162,39,.6) calc(68% + 2px),rgba(0,0,0,.55) calc(68% + 2px),rgba(0,0,0,.55) calc(68% + 5px),transparent calc(68% + 5px)),
   repeating-linear-gradient(90deg,rgba(0,0,0,.12) 0 2px,transparent 2px 34px,transparent 0 68px,rgba(0,0,0,.5) 68px 71px),
   linear-gradient(180deg,transparent 68%,color-mix(in srgb,var(--lambriu) 85%,#000) 68.6%)}
-.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E")}
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.07;transform:translateZ(0);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E")}
 .praf{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5}
 body.usor .praf{opacity:.3}
 body.usor .grain{display:none}
@@ -50,7 +50,7 @@ button:active{transform:translateY(1px)!important;box-shadow:0 4px 10px rgba(0,0
   repeating-linear-gradient(90deg,rgba(0,0,0,.35) 0 2px,transparent 2px 26px),
   linear-gradient(180deg,#2b1d0e,#17100a);
   border-right:1px solid rgba(201,162,39,.4);
-  transition:transform 1.2s cubic-bezier(.6,0,.25,1),filter 1.2s ease;will-change:transform}
+  transition:transform 1.2s cubic-bezier(.6,0,.25,1),filter 1.2s ease;will-change:transform;backface-visibility:hidden;transform:translateZ(0)}
 .poarta-usi span:first-child{transform-origin:right center;box-shadow:inset -30px 0 50px rgba(0,0,0,.6)}
 .poarta-usi span:last-child{border-right:0;border-left:1px solid rgba(201,162,39,.4);transform-origin:left center;box-shadow:inset 30px 0 50px rgba(0,0,0,.6)}
 body.usile-deschise .poarta-usi span:first-child{transform:translateX(-102%);filter:brightness(.7)}
@@ -333,7 +333,7 @@ body.carusel-gol .car-sageata{display:none}
 body.carusel-gol .nav-mobil{display:none}
 body.carusel-gol .cadru-card{cursor:default}
 .cadru-card.centru{transform-style:preserve-3d}
-.cadru{position:relative;padding:22px;border-radius:2px;transform-style:preserve-3d;transform-origin:center;will-change:transform;
+.cadru{position:relative;padding:22px;border-radius:2px;transform-style:preserve-3d;transform-origin:center;will-change:transform;backface-visibility:hidden;
   box-shadow:0 14px 28px rgba(0,0,0,.55),0 3px 10px rgba(0,0,0,.45),
   inset 0 2px 2px rgba(255,255,255,.45),inset 0 -4px 7px rgba(0,0,0,.55),
   inset 4px 0 7px rgba(0,0,0,.28),inset -4px 0 7px rgba(0,0,0,.28)}
@@ -404,7 +404,7 @@ body.carusel-gol .cadru-card{cursor:default}
 /* ===== DOSAR DE ARHIVĂ (fereastra) ===== */
 .fereastra{position:fixed;top:var(--top-h);right:0;bottom:var(--foot-h);width:min(450px,45vw);z-index:30;
   color:var(--cerneala);border-left:3px solid var(--aur);box-shadow:-30px 0 70px rgba(0,0,0,.55);overflow-y:auto;padding:20px 22px 26px;
-  transform:translateX(105%);transition:transform .3s cubic-bezier(.2,.9,.25,1);
+  transform:translateX(105%);transition:transform .3s cubic-bezier(.2,.9,.25,1);will-change:transform;backface-visibility:hidden;
   background:
     radial-gradient(220px 140px at 85% 12%,rgba(120,70,10,.12),transparent 70%),
     radial-gradient(300px 200px at 10% 90%,rgba(90,50,10,.10),transparent 70%),
@@ -466,7 +466,7 @@ body.vizor-deschis .vizor{opacity:1}
 #vizor-next{right:12px}
 #vizor-inchide{position:fixed;top:18px;right:18px;float:none;margin:0}
 .vizor-caption{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);margin:0;font-family:var(--font-titlu);font-size:12px;letter-spacing:.1em;color:var(--aur-deschis);background:rgba(20,12,4,.7);border:1px solid rgba(201,162,39,.5);border-radius:999px;padding:7px 18px;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
-.galerie-mare-fundal{position:absolute;inset:-24px;background-size:cover;background-position:center;filter:blur(18px) brightness(.72) saturate(1.25) sepia(.25)}
+.galerie-mare-fundal{position:absolute;inset:-24px;background-size:cover;background-position:center;filter:blur(18px) brightness(.72) saturate(1.25) sepia(.25);transform:translateZ(0);will-change:transform}
 .galerie #f-mare{position:relative;width:100%;height:100%;object-fit:contain;display:block;filter:sepia(.25) contrast(1.03)}
 .miniaturi{display:flex;gap:8px;margin-top:8px}
 .mini{display:block;position:relative;overflow:hidden;flex:1 1 0;min-width:0;height:64px;background:#e7d3a8;border-radius:2px;cursor:pointer;border:2px solid #c9b98a;opacity:.8}
@@ -749,7 +749,7 @@ body.form-contribuie-deschis .contribuie-card{opacity:1;transform:none}
 /* ===== PANOU SATE (stânga, oglinda dosarului) ===== */
 .sate{position:fixed;top:var(--top-h);left:0;bottom:var(--foot-h);width:min(340px,80vw);z-index:30;
   color:var(--cerneala);border-right:3px solid var(--aur);box-shadow:30px 0 70px rgba(0,0,0,.55);overflow-y:auto;padding:20px 20px 26px;
-  transform:translateX(-105%);transition:transform .3s cubic-bezier(.2,.9,.25,1);
+  transform:translateX(-105%);transition:transform .3s cubic-bezier(.2,.9,.25,1);will-change:transform;backface-visibility:hidden;
   background:
     radial-gradient(220px 140px at 15% 12%,rgba(120,70,10,.12),transparent 70%),
     linear-gradient(180deg,#f8efdb,#efdfbd 60%,#e7d3a8);
